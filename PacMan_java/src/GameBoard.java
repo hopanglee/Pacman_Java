@@ -4,7 +4,6 @@ public class GameBoard { // Node들을 저장할 class
 	
 	public GameBoard() {
 		nodes = new Node[69];
-		int r;
 		
 		nodes[0].Setting(nodes[1], nodes[6], null, null, false, null, 2, 2);
 		nodes[1].Setting(nodes[2], nodes[7], nodes[0], null, false, null, 5, 2);
