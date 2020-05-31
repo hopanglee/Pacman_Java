@@ -1,8 +1,9 @@
+import java.awt.Rectangle;
 
-public class GameObject {
+public class GameObject extends Rectangle{
 
 	public GameObject() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	
 }
