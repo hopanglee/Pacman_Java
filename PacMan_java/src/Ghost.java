@@ -2,7 +2,16 @@
 public class Ghost extends GameObject{
 
 	public Ghost() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	
+	@Override
+	public void start() {
+		
+	}
+	
+	@Override
+	public void update() {
+		
+	}
 }
