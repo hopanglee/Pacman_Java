@@ -3,7 +3,7 @@ public class GameBoard { // Node들을 저장할 class
 	public Node[] nodes; // 맵에 존재하는 모든 노드를 담을 배열
 	
 	public GameBoard() {
-		nodes = new Node[69];
+		nodes = new Node[70];
 		
 		nodes[0].Setting(nodes[1], nodes[6], null, null, false, null, 2, 2);
 		nodes[1].Setting(nodes[2], nodes[7], nodes[0], null, false, null, 5, 2);
@@ -40,8 +40,8 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[32].Setting(nodes[33], nodes[36], null, nodes[27], false, null, 13, 11);
 		nodes[33].Setting(nodes[34], nodes[43], nodes[32], nodes[21], false, null, 15, 11);
 		nodes[34].Setting(null, null, nodes[33], null, true, nodes[28], 2, 11);
-		nodes[35].Setting(nodes[36], nodes[39], null, nodes[30], false, null, 7, 13);
-		nodes[36].Setting(null, nodes[42], nodes[35], nodes[32], false, null, 13, 13);
+		nodes[35].Setting(nodes[69], nodes[39], null, nodes[30], false, null, 7, 13);
+		nodes[36].Setting(null, nodes[42], nodes[69], nodes[32], false, null, 13, 13);
 		nodes[37].Setting(nodes[38], nodes[45], null, null, false, null, 2, 15);
 		nodes[38].Setting(nodes[39], nodes[47], nodes[37], nodes[29], false, null, 5, 15);
 		nodes[39].Setting(nodes[40], null, nodes[38], nodes[35], false, null, 7, 15);
@@ -74,7 +74,7 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[66].Setting(nodes[67], null, nodes[65], nodes[59], false, null, 9, 21);
 		nodes[67].Setting(nodes[68], null, nodes[66], nodes[60], false, null, 11, 21);
 		nodes[68].Setting(null, null, nodes[67], nodes[64], false, null, 18, 21);
-		
+		nodes[69].Setting(nodes[36], null, nodes[35], null, false, null, 13, 10);
 	}
 	
 }
