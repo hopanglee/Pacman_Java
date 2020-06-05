@@ -1,9 +1,15 @@
 public class GameBoard { // Node들을 저장할 class
 
 	public Node[] nodes; // 맵에 존재하는 모든 노드를 담을 배열
+	public int[] nodeX = new int[510];
+	public int[] nodeY = new int [510];
+	
+	private int boardWidth = 21;
+	private int boardHeight = 24;
+	public Node[][] board = new Node[boardWidth][boardHeight]; // 노드위치에 해당 노드 저장
 	
 	public GameBoard() {
-		nodes = new Node[70];
+		nodes = new Node[74];
 		
 		nodes[0].Setting(nodes[1], nodes[6], null, null, false, null, 2, 2);
 		nodes[1].Setting(nodes[2], nodes[7], nodes[0], null, false, null, 5, 2);
@@ -75,6 +81,21 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[67].Setting(nodes[68], null, nodes[66], nodes[60], false, null, 11, 21);
 		nodes[68].Setting(null, null, nodes[67], nodes[64], false, null, 18, 21);
 		nodes[69].Setting(nodes[36], null, nodes[35], null, false, null, 13, 10);
+		
+		nodes[70].Setting(null, null, null, null, false, null, 0, 0); // 좌측 상단
+		nodes[71].Setting(null, null, nodes[35], null, false, null, 20, 0); // 우측 상단
+		nodes[72].Setting(null, null, nodes[35], null, false, null, 0, 23); // 좌측 하단
+		nodes[73].Setting(null, null, nodes[35], null, false, null, 20, 23); // 우측 하단
+		
+		
+		// nodeX와 nodeY에 모든 노드의 x좌표와 y좌표를 담음
+		for(int i = 0; i < nodes.length; i++) {
+			nodeX[i] = nodes[i].x;
+			nodeY[i] = nodes[i].y;
+		}
+		for(int i = 0; i < nodes.length; i++) {
+			board[nodeX[i]][nodeY[i]] = nodes[i];
+		}
 	}
 	
 }
