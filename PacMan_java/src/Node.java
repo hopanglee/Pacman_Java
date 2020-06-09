@@ -14,6 +14,11 @@ public class Node extends GameObject{ // GameObject를 상속받을 때 x,y위치 변수 �
 		
 	}
 	
+	public Node(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	// neighbor 및 기본 설정 -> 이후 최적화 해야할 듯 (gameboard 노가다 바꾸기 싫어서 일단 이렇게 함)
 	public void Setting(Node right, Node down, Node left, Node up, boolean isPotal, Node otherNode, int x, int y) {
 		temp[0] = right;

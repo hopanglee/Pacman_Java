@@ -1,15 +1,28 @@
+import java.awt.Graphics;
+import java.util.Random;
+
 
 public class Ghost extends GameObject{
 	
-	public float ghostRleaseTimer = 0; // 유령이 나오는 시간
+	public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
 	public int pinkyReleaseTimer = 5; 
 	
 	public boolean isInGhostHouse = false; // 유령이 현재 집에 있는지
 	
-	/* 난이도마다 탐지 시간과 추격 시간
+	/* 
+	 * 난이도마다 탐지 시간과 추격 시간
 	 * scatter : 탐지, chase : 추격
 	 * 시간이 갈수록 탐지시간이 짧아지고 추격시간이 늘어남 
 	 */
+	private float modeChangeTimer = 0; // 모드가 바뀔 시간을 잼 -> 필요시 변환
+	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
+	public int frightenedModeDuration = 10; // frigtenedMode를 유지할 시간
+	
+	private float blinkTimer = 0;
+	public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
+	
+	private boolean frightenedModelsWhite = false;
+	
 	public float scatterModeTimer1 = 4;
 	public float chaseModeTimer1 = 4;
 	public float scatterModeTimer2 = 9;
@@ -25,6 +38,8 @@ public class Ghost extends GameObject{
 	Node currentPosition;
 	Pacman pacMan;
 	Node currentNode, previousNode, targetNode, homeNode;
+	int movingSpeed = 3;
+	int frightenedMovingSpeed = 2;
 	int previousMovingSpeed;
 	int consumedMoveSpeed = 5;
 	int normalMoveSpeed = 3;
@@ -37,7 +52,11 @@ public class Ghost extends GameObject{
 	boolean isActive = false; // 현재 유령이 활성화가 됬는지
 	
 	public Mode currentMode = Mode.Scatter; // 유령의 현재 모드
+	Mode previousMode;
+	private int modeChangeIteration = 1;
+	
 	public GhostType ghostType = GhostType.Red;
+	
 	public int[] nodeX = new int[510];
 	public int[] nodeY = new int[510];
 	public int nodeCount = 0;
@@ -106,7 +125,9 @@ public class Ghost extends GameObject{
 	
 	@Override
 	public void update() {
-		
+		ModeUpdate();
+		Move();
+		CheckIsInGhostHouse();
 	}
 	
 	void SetDijkstra(int x, int y) {
@@ -186,7 +207,7 @@ public class Ghost extends GameObject{
 			targetTile = homeNode;
 		}
 		else if(currentMode == Mode.frighted) {
-			//targetTile = GetRandomTile();
+			targetTile = GetRandomTile();
 		}
 		else if(currentMode == Mode.Consumed) {
 			targetTile = ghostHouse;
@@ -281,20 +302,342 @@ public class Ghost extends GameObject{
 	Node GetRedGhostTargetTile()
     {
         // 팩맨의 포지션을 알고 팩맨의 현재 노드를 바로 따라가는 AI
-        return pacMan.previousNode;
+		Node targetTile = new Node(pacMan.x, pacMan.y);
+		
+        return targetTile;
     }
     Node GetPinkyGhostTargetTile()
     {
         //팩맨이 가는 방향으로 팩맨의 타겟노드로 가는 AI
-        return pacMan.targetNode;
+    	Vector2 pacManOrientation = pacMan.direction;
+    	int targetx = 0, targety = 0;
+    	switch(pacManOrientation) {
+    	case Up:
+    		targety = 4;
+    		break;
+    		
+    	case Down:
+    		targety = -4;
+    		break;
+    		
+    	case Left:
+    		targetx = -4;
+    		break;
+    		
+    	case Right:
+    		targetx = 4;
+    		break;
+    		
+    	case Zero:
+    		break;
+    	}
+    	
+    	Node targetTile = new Node(pacMan.x + targetx, pacMan.y + targety);
+		
+        return targetTile;
     }
     Node GetBlueGhostTargetTile()
     {
         // 팩맨이 가는 방향으로 팩맨의 4타일 뒤인 곳으로 가는 AI
-    	return pacMan.previousNode;
+    	Vector2 pacManOrientation = pacMan.direction;
+    	int targetx = 0, targety = 0;
+    	switch(pacManOrientation) {
+    	case Up:
+    		targety = -4;
+    		break;
+    		
+    	case Down:
+    		targety = +4;
+    		break;
+    		
+    	case Left:
+    		targetx = +4;
+    		break;
+    		
+    	case Right:
+    		targetx = -4;
+    		break;
+    		
+    	case Zero:
+    		break;
+    	}
+    	
+    	Node targetTile = new Node(pacMan.x + targetx, pacMan.y + targety);
+		
+        return targetTile;
     }
     Node GetOrangeGhostTargetTile()
     {
-    	return pacMan.targetNode;
+    	Vector2 pacManOrientation = pacMan.direction;
+    	int targetx = 0, targety = 0;
+    	switch(pacManOrientation) {
+    	case Up:
+    		targety = 4;
+    		break;
+    		
+    	case Down:
+    		targety = -4;
+    		break;
+    		
+    	case Left:
+    		targetx = -4;
+    		break;
+    		
+    	case Right:
+    		targetx = 4;
+    		break;
+    		
+    	case Zero:
+    		break;
+    	}
+    	
+    	Node targetTile = new Node(x + targetx, y + targety);
+		
+        return targetTile;
     }
+    
+    Node GetRandomTile() {
+    	Random rand = new Random();
+    	int targetx = rand.nextInt(boardWidth);
+		int targety = rand.nextInt(boardHeight);
+		
+		Node targetTile = new Node(targetx, targety);
+		
+		return targetTile;
+    }
+    
+    void ModeUpdate() {
+    	if(currentMode != Mode.frighted) {
+    		// modeChangeTimer  += Time.deltaTime;
+    		if(modeChangeIteration == 1) {
+    			if(currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer1) {
+    				ChangeMode(Mode.Chase);
+    				modeChangeTimer = 0;
+    			}
+    			if(currentMode == Mode.Chase && modeChangeTimer > chaseModeTimer1) {
+    				ChangeMode(Mode.Scatter);
+    				modeChangeTimer = 0;
+    				modeChangeIteration = 2;
+    			}
+    		}
+    		else if(modeChangeIteration == 2) {
+    			if(currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer2) {
+    				ChangeMode(Mode.Chase);
+    				modeChangeTimer = 0;
+    			}
+    			if(currentMode == Mode.Chase && modeChangeTimer > chaseModeTimer2) {
+    				ChangeMode(Mode.Scatter);
+    				modeChangeTimer = 0;
+    				modeChangeIteration = 3;
+    			}
+    		}
+    		else if(modeChangeIteration == 3) {
+    			if(currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer3) {
+    				ChangeMode(Mode.Chase);
+    				modeChangeTimer = 0;
+    			}
+    			if(currentMode == Mode.Chase && modeChangeTimer > chaseModeTimer3) {
+    				ChangeMode(Mode.Scatter);
+    				modeChangeTimer = 0;
+    				modeChangeIteration = 4;
+    			}
+    		}
+    		else if(modeChangeIteration == 4) {
+    			if(currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer4) {
+    				ChangeMode(Mode.Chase);
+    				modeChangeTimer = 0;
+    			}
+    			if(currentMode == Mode.Chase && modeChangeTimer > chaseModeTimer4) {
+    				ChangeMode(Mode.Scatter);
+    				modeChangeTimer = 0;
+    				modeChangeIteration = 5;
+    			}
+    		}
+    		else if(modeChangeIteration == 5) {
+    			if(currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer5) {
+    				ChangeMode(Mode.Chase);
+    				modeChangeTimer = 0;
+    			}
+    			if(currentMode == Mode.Chase && modeChangeTimer > chaseModeTimer5) {
+    				ChangeMode(Mode.Scatter);
+    				modeChangeTimer = 0;
+    				modeChangeIteration = 5;
+    			}
+    		}
+    	}
+    	else if (currentMode == Mode.frighted) {
+    		//frightendModeTimer += Time.deltaTime;
+    		
+    		if(frightenedModeTimer >= frightenedModeDuration) {
+    			frightenedModeTimer = 0;
+    			ChangeMode(previousMode);
+    		}
+    		
+    		// frightenedMode가 거의 끝나갈때
+    		if(frightenedModeTimer >= startBlinkingAt) {
+    			//blinkTimer += Time.deltaTime;
+    			if(blinkTimer >= 0.1f) {
+    				blinkTimer = 0f;
+    				
+    				// 깜빡거리기 표현
+    				if(frightenedModelsWhite) {
+    					// 검정색됬다가
+    					frightenedModelsWhite = false;
+    				}
+    				else {
+    					// 하얀색됬다가
+    					frightenedModelsWhite = true;
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    void ChangeMode(Mode m) {
+    	if(currentMode == Mode.frighted) {
+    		movingSpeed = previousMovingSpeed;
+    	}
+    	if(m == Mode.frighted) {
+    		previousMovingSpeed = movingSpeed;
+    		movingSpeed = frightenedMovingSpeed;
+    	}
+    	if(currentMode != m) {
+    		previousMode = currentMode;
+    		currentMode = m;
+    	}
+    	
+    	// 스프라이트 컨트롤러
+    }
+    
+    void Move() {
+    	if(currentNode != targetNode && targetNode != null && !isInGhostHouse) {
+    		if(OverShotTarget()) {
+    			currentNode = targetNode;
+    			x = currentNode.x;
+    			y = currentNode.y;
+    			
+    			if(currentNode.otherNode != null) {
+    				currentNode = currentNode.otherNode;
+    				x = currentNode.x;
+    				y = currentNode.y;
+    			}
+    			targetNode = ChooseNextNode();
+    			previousNode = currentNode;
+    			currentNode = null;
+    			
+    		}
+    		else {
+    			switch(direction) {
+    			case Up:
+    				y += movingSpeed;
+    				break;
+    				
+    			case Down:
+    				y -= movingSpeed;
+    				break;
+    				
+    			case Left:
+    				x -= movingSpeed;
+    				break;
+    				
+    			case Right:
+    				x += movingSpeed;
+    				break;
+    				
+    			case Zero:
+    				break;
+    			}
+    		}
+    	}
+    }
+    
+    boolean OverShotTarget() {
+    	float nodeToTarget = LengthFromNode(targetNode.x, targetNode.y); // 이전 노드부터 타겟노드까지의 길이
+		float nodeToSelf = LengthFromNode(x, y); // 이전 노드부터 현재 위치까지의 길이
+		return nodeToSelf > nodeToTarget; // 현재 위치가 타겟 노드 위치를 넘었으면 true 아니면 false
+    }
+    
+    float LengthFromNode(int targetx, int targety) {
+    	float fx = (float)targetx;
+		float fy = (float)targety;
+		
+		// 길이: x^2 + y^2값 반환
+		return (fx - (float)previousNode.x) * (fx - (float)previousNode.x) + (fy - (float)previousNode.y) * (fy - (float)previousNode.y);
+    }
+    
+    void CheckIsInGhostHouse() {
+    	if(currentMode == Mode.Consumed) {
+    		if(currentNode == ghostHouse) { // 현재노드가 집노드(맵 중앙)라면 세팅 리셋
+    			movingSpeed = normalMoveSpeed;
+    			direction = Vector2.Up;
+    			targetNode = ChooseNextNode();
+    			previousNode = currentNode;
+    			currentMode = Mode.Chase;
+    			// 스프라이트 변경
+    		}
+    	}
+    }
+    
+    // 팩맨과 충돌했을 때 죽음(consumed상태로 변경) (유령이 도망상태인 경우)
+    public void Consumed() {
+    	currentMode = Mode.Consumed;
+    	previousMovingSpeed = movingSpeed;
+    	movingSpeed = consumedMoveSpeed;
+    	
+    	Node temp;
+    	
+    	if(currentNode == null && !(x == previousNode.x && y == previousNode.y)) {
+    		if(minDistance[previousNode.x][previousNode.y] + GetDistance(this, previousNode) < minDistance[targetNode.x][targetNode.y] + GetDistance(this, targetNode)) {
+    			if(x < previousNode.x) { 
+    				// ghost.......previousNode
+    				direction = Vector2.Right;
+    			}
+    			else if(x > previousNode.x) { 
+    				// previousNode.......ghost
+    				direction = Vector2.Left;
+    			}
+    			else if(y < previousNode.y) {
+    				/*
+    				 * previousNode
+    				 * .
+    				 * .
+    				 * .
+    				 * ghost
+    				 */
+    				direction = Vector2.Up;
+    			}
+    			else if(y > previousNode.y){
+    				/*
+    				 * ghost
+    				 * .
+    				 * .
+    				 * .
+    				 * previousNode
+    				 */
+    				direction = Vector2.Down;
+    			}
+    			
+    			// targetNode와 previousNode를 swap
+    			temp = targetNode;
+    			targetNode = previousNode;
+    			previousNode = temp;
+    		}
+    	}
+    	
+    	// consumed 스프라이트로 변경
+    }
+        
+    // frightenedMode 시작
+    public void StartFrightenedMode() {
+    	if(currentMode != Mode.Consumed) {
+    		frightenedModeTimer = 0;
+    		ChangeMode(Mode.frighted);
+    	}
+    }
+    
+    
+    // 그리기 함수
+    public void render(Graphics g) {
+		g.drawImage(Character.ghost[imageIndex], x, y, null);
+	}
 }

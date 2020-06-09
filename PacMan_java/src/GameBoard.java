@@ -1,8 +1,17 @@
+import java.util.List;
+
+import java.util.ArrayList;
+
 public class GameBoard { // Node들을 저장할 class
 
 	public Node[] nodes; // 맵에 존재하는 모든 노드를 담을 배열
 	public int[] nodeX = new int[510];
 	public int[] nodeY = new int [510];
+	
+	public List<Coin> coins; // 맵에 존재하는 모든 코인을 담을 배열
+	public List<BigCoin> bigCoins; // 맵에 존재하는 모든 bigCoin을 담을 배열
+	public List<Ghost> ghosts; // 맵에 존재하는 모든 유령을 담을 배열
+	public Pacman pacman; // 팩맨 생성
 	
 	private int boardWidth = 21;
 	private int boardHeight = 24;
@@ -87,7 +96,6 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[72].Setting(null, null, nodes[35], null, false, null, 0, 23); // 좌측 하단
 		nodes[73].Setting(null, null, nodes[35], null, false, null, 20, 23); // 우측 하단
 		
-		
 		// nodeX와 nodeY에 모든 노드의 x좌표와 y좌표를 담음
 		for(int i = 0; i < nodes.length; i++) {
 			nodeX[i] = nodes[i].x;
@@ -96,6 +104,23 @@ public class GameBoard { // Node들을 저장할 class
 		for(int i = 0; i < nodes.length; i++) {
 			board[nodeX[i]][nodeY[i]] = nodes[i];
 		}
+		
+		// 코인 생성
+		coins = new ArrayList<Coin>(161);
+		// 코인 위치 조정
+		
+		// bigCoins 생성
+		bigCoins = new ArrayList<BigCoin>(4);
+		// Big Coins 위치 조정? 아니면 생성과 동시에 위치 설정
+		
+		// 팩맨 생성
+		pacman = new Pacman(this);
+		
+		// 유령 생성
+		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Red));
+		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Blue));
+		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Orange));
+		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Pink));
 	}
 	
 }

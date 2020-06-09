@@ -1,5 +1,8 @@
+import java.awt.Graphics;
 
 public class Pacman extends GameObject{
+	
+	public int score = 0; // 나중에 game클라스나 gameboard클라스의 score에 대체
 	
 	public Vector2 direction; // 팩맨의 이동 방향 
 	public boolean ghostAte = false; // 팩맨이 유령들을 잡아먹을 수 있는 상태인지
@@ -31,6 +34,55 @@ public class Pacman extends GameObject{
 		ConsumeCoin();
 		UpdateOrientation(); // 팩맨이 바라보는 방향의 이미지로 바꿔줌
 		//CheckAte();
+		
+		/*********************************충돌 관련************************************/
+		// Coin과 충돌시 Coin사라짐
+		for(int i = 0; i < board.coins.size(); i++) {
+			if(this.intersects(board.coins.get(i))) {
+				score += 10;
+				board.coins.remove(i);
+				break;
+			}
+		}
+		
+		// BigCoin과 충돌시 BigCoin사라짐과 동시에 유령은 도망상태로 전환
+		for(int i = 0; i < board.bigCoins.size(); i++) {
+			if(this.intersects(board.bigCoins.get(i))) {
+				score += 50;
+				board.bigCoins.remove(i);
+				
+				board.ghosts.get(0).StartFrightenedMode();
+				board.ghosts.get(1).StartFrightenedMode();
+				board.ghosts.get(2).StartFrightenedMode();
+				board.ghosts.get(3).StartFrightenedMode();
+				
+				break;
+			}
+		}
+		
+		// 모든 coin을 다 먹음 -> Game Clear
+		if(board.coins.size() == 0) {
+			// GameClear
+			System.out.println("Game Clear!");
+			return;
+		}
+		
+		for(int i = 0; i < board.ghosts.size(); i++) {
+			Ghost temp = board.ghosts.get(i);
+			if(this.intersects(temp)) {
+				if(temp.currentMode != Ghost.Mode.Consumed) { // 이미 먹은 유령이 아니고
+					 if(temp.currentMode == Ghost.Mode.frighted) { // 겁에 질린 유령이라면 유령이 죽음
+						 score += 200;
+						 temp.Consumed();
+					 }
+					 else { // 아니라면 팩맨이 잡힘
+						 // Game Over (목숨 3개?)
+						 System.out.println("Game Over!");
+						 return;
+					 }
+				}
+			}
+		}
 	}
 
 	Node GetNodePosition() {
@@ -189,5 +241,13 @@ public class Pacman extends GameObject{
 			 // Zero의 경우 그냥 이전 모습으로 놨둠
 			break;
 		}
+	}
+	
+	// 코인 및 유령 및 빅코인과 충돌시 함수
+	
+	
+	// 그리기 함수
+	public void render(Graphics g) {
+		g.drawImage(Character.pacman[imageIndex], x, y, null);
 	}
 }
