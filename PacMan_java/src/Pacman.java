@@ -1,22 +1,47 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Pacman extends GameObject{
 	
 	public int score = 0; // 나중에 game클라스나 gameboard클라스의 score에 대체
-	
+
 	public Vector2 direction; // 팩맨의 이동 방향 
 	public boolean ghostAte = false; // 팩맨이 유령들을 잡아먹을 수 있는 상태인지
 	public Node currentNode, previousNode, targetNode; // 팩맨이 현재 위치하는 노드, 이전에 위치했던 노드, 가려는 노드
 	
 	private int speed = 4; // 팩맨 이동속도
-	private int imageIndex = 0; // 팩맨 이미지 index (0: 오른쪽, 1: 아래쪽, 2: 왼쪽, 3: 위쪽)
-	private int animation_index = 0; // 팩맨 애니메이션 index
+	
+	// 스프라이트 관련
+	private static BufferedImage[] pacmanSprite;
+	private int imageIndex = 0; // 팩맨 이미지 index (0: 오른쪽, 3: 위쪽, 6: 왼쪽, 9: 아래쪽)
+	private int animation_index = 0; // 팩맨 애니메이션 index (0,1,2,1)
+	
 	private Vector2 nextDirection; // 방향키를 눌러서 팩맨이 움직일 방향
 	
 	private GameBoard board;
 	
 	public Pacman(GameBoard board) {
 		this.board = board; // 모든 노드를 담고 있는 게임보드를 받음
+		pacmanSprite = new BufferedImage[4];
+		try {
+			pacmanSprite[0] = ImageIO.read(getClass().getResource("/PacMan0.PNG"));
+			pacmanSprite[1] = ImageIO.read(getClass().getResource("/PacMan1.PNG"));
+			pacmanSprite[2] = ImageIO.read(getClass().getResource("/PacMan2.PNG"));
+			pacmanSprite[3] = ImageIO.read(getClass().getResource("/PacMan3.PNG"));
+			pacmanSprite[4] = ImageIO.read(getClass().getResource("/PacMan4.PNG"));
+			pacmanSprite[5] = ImageIO.read(getClass().getResource("/PacMan5.PNG"));
+			pacmanSprite[6] = ImageIO.read(getClass().getResource("/PacMan6.PNG"));
+			pacmanSprite[7] = ImageIO.read(getClass().getResource("/PacMan7.PNG"));
+			pacmanSprite[8] = ImageIO.read(getClass().getResource("/PacMan8.PNG"));
+			pacmanSprite[9] = ImageIO.read(getClass().getResource("/PacMan9.PNG"));
+			pacmanSprite[10] = ImageIO.read(getClass().getResource("/PacMan10.PNG"));
+			pacmanSprite[11] = ImageIO.read(getClass().getResource("/PacMan11.PNG"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -33,7 +58,13 @@ public class Pacman extends GameObject{
 		Move(); // 팩맨을 계속 움직임
 		ConsumeCoin();
 		UpdateOrientation(); // 팩맨이 바라보는 방향의 이미지로 바꿔줌
-		//CheckAte();
+		
+		// 애니메이션 인덱스 조정
+		if(animation_index < 2) {
+			animation_index++;
+		}
+		else animation_index = 0;
+		
 		
 		/*********************************충돌 관련************************************/
 		// Coin과 충돌시 Coin사라짐
@@ -187,15 +218,19 @@ public class Pacman extends GameObject{
 			else {
 				switch(direction) {
 				case Up:
+					imageIndex = 3;
 					y += speed;
 					break;
 				case Down:
+					imageIndex = 9;
 					y -= speed;
 					break;
 				case Left:
+					imageIndex = 6;
 					x -= speed;
 					break;
 				case Right:
+					imageIndex = 0;
 					x += speed;
 					break;
 				default:
@@ -248,6 +283,6 @@ public class Pacman extends GameObject{
 	
 	// 그리기 함수
 	public void render(Graphics g) {
-		g.drawImage(Character.pacman[imageIndex], x, y, null);
+		g.drawImage(pacmanSprite[imageIndex + animation_index], x, y, null);
 	}
 }

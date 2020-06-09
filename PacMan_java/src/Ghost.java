@@ -1,8 +1,18 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 
 public class Ghost extends GameObject{
+	private static BufferedImage[] ghostSprite;
+	/* 
+	 * 유령 이미지 index 
+	 * (0: 오른쪽, 1: 위쪽, 2: 왼쪽, 3: 아래쪽, frightened : 4, Consumed: 5)
+	 */
+	private int imageIndex = 1; 
 	
 	public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
 	public int pinkyReleaseTimer = 5; 
@@ -84,6 +94,45 @@ public class Ghost extends GameObject{
 		this.pacMan = pacMan;
 		this.board = board;
 		this.ghostType = ghostType;
+		
+		ghostSprite = new BufferedImage[4];
+		try {
+			switch(ghostType) {
+			case Red:
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_red.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_red.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_red.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_red.png"));
+				break;
+				
+			case Blue:
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
+				break;
+				
+			case Orange:
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				break;
+				
+			case Pink:
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				break;
+			}
+			
+			ghostSprite[4] = ImageIO.read(getClass().getResource("/ghost_frighten.png"));
+			ghostSprite[5] = ImageIO.read(getClass().getResource("/ghost_consumed.png"));
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -473,6 +522,7 @@ public class Ghost extends GameObject{
     			ChangeMode(previousMode);
     		}
     		
+    		/* 아마 구현하기 시간없을 것 같음
     		// frightenedMode가 거의 끝나갈때
     		if(frightenedModeTimer >= startBlinkingAt) {
     			//blinkTimer += Time.deltaTime;
@@ -489,7 +539,7 @@ public class Ghost extends GameObject{
     					frightenedModelsWhite = true;
     				}
     			}
-    		}
+    		}*/
     	}
     }
     
@@ -500,6 +550,8 @@ public class Ghost extends GameObject{
     	if(m == Mode.frighted) {
     		previousMovingSpeed = movingSpeed;
     		movingSpeed = frightenedMovingSpeed;
+    		
+    		imageIndex = 4;
     	}
     	if(currentMode != m) {
     		previousMode = currentMode;
@@ -529,18 +581,22 @@ public class Ghost extends GameObject{
     		else {
     			switch(direction) {
     			case Up:
+    				if(currentMode!=Mode.frighted && currentMode != Mode.Consumed) imageIndex = 1;
     				y += movingSpeed;
     				break;
     				
     			case Down:
+    				if(currentMode!=Mode.frighted && currentMode != Mode.Consumed) imageIndex = 3;
     				y -= movingSpeed;
     				break;
     				
     			case Left:
+    				if(currentMode!=Mode.frighted && currentMode != Mode.Consumed) imageIndex = 2;
     				x -= movingSpeed;
     				break;
     				
     			case Right:
+    				if(currentMode!=Mode.frighted && currentMode != Mode.Consumed) imageIndex = 0;
     				x += movingSpeed;
     				break;
     				
@@ -580,6 +636,8 @@ public class Ghost extends GameObject{
     
     // 팩맨과 충돌했을 때 죽음(consumed상태로 변경) (유령이 도망상태인 경우)
     public void Consumed() {
+    	imageIndex = 5;
+    	
     	currentMode = Mode.Consumed;
     	previousMovingSpeed = movingSpeed;
     	movingSpeed = consumedMoveSpeed;
@@ -638,6 +696,6 @@ public class Ghost extends GameObject{
     
     // 그리기 함수
     public void render(Graphics g) {
-		g.drawImage(Character.ghost[imageIndex], x, y, null);
+		g.drawImage(ghostSprite[imageIndex], x, y, null);
 	}
 }
