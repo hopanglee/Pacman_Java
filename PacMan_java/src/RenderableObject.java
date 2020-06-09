@@ -1,16 +1,8 @@
 
-public class RenderableObject {
+public interface RenderableObject {
 	
-	public RenderableObject() {
-		
-	}
+	public void start();
 	
-	public void start() {
-		
-	}
-	
-	public void update() {
-		
-	}
+	public void update();
 
 }
