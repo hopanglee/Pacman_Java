@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 
 public class Game extends JFrame implements Runnable{
 	
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
+	public static final int WIDTH = 1200;
+	public static final int HEIGHT = 1200;
 	public static final String TITLE = "PACMAN";
 	
 	private int FPS = 60;
