@@ -695,6 +695,7 @@ public class Ghost extends GameObject{
     
     
     // 그리기 함수
+    @Override
     public void render(Graphics g) {
 		g.drawImage(ghostSprite[imageIndex], x, y, null);
 	}
