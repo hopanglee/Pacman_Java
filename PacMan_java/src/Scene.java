@@ -16,7 +16,7 @@ public class Scene extends Canvas {
 		PAUSED,
 		EXIT
 	}
-	private RunningState RUNNINGSTATE;
+	private RunningState RUNNINGSTATE = RunningState.RUNNING;
 	
 	public Scene(KeyListener Input) {
 		setIgnoreRepaint(true);
@@ -25,6 +25,9 @@ public class Scene extends Canvas {
 	
 	public void addObject(RenderableObject o) {
 		objs.add(o);
+	}
+	public void addObjects(List<? extends RenderableObject> l) {
+		objs.addAll(l);
 	}
 	
 	public void setSubtitle(String s) {
