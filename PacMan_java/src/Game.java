@@ -84,8 +84,6 @@ public class Game extends JFrame implements Runnable{
 				lag -= frameUpdateTime;
 			}
 			scene.render();
-			g.dispose();
-			buffer.show();
 		}
 		
 		stop();

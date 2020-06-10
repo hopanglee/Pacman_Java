@@ -36,10 +36,6 @@ public class Scene extends Canvas {
 	public String getSubtitle() {
 		return subtitle;
 	}
-	
-	public Graphics getGraphics() {
-		return graphics;
-	}
 
 	public RunningState getRunningState() {
 		return RUNNINGSTATE;
@@ -50,13 +46,9 @@ public class Scene extends Canvas {
 	
 	public void start() {
 		BufferStrategy buffer = getBufferStrategy();
-		
 		if (buffer == null) {
 			createBufferStrategy(2);
 		}
-		graphics = getBufferStrategy().getDrawGraphics();
-		graphics.setColor(Color.black);
-		graphics.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		
 		for (RenderableObject o : objs) {
 			o.start();
@@ -70,9 +62,17 @@ public class Scene extends Canvas {
 	}
 	
 	public void render() {
+		BufferStrategy buffer = getBufferStrategy();
+		graphics = buffer.getDrawGraphics();
+		graphics.setColor(Color.black);
+		graphics.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+		
 		for (RenderableObject o : objs) {
 			o.render(graphics);
 		}
+		
+		graphics.dispose();
+		buffer.show();
 	}
 
 }

@@ -3,7 +3,6 @@ import java.awt.event.KeyListener;
 public class GameScene extends Scene {
 	
 	private GameBoard gameBoard = new GameBoard();
-	//private Pacman pacman;
 
 	public GameScene(KeyListener input) {
 		super(input);
