@@ -15,6 +15,9 @@ public class GameBoard { // Node들을 저장할 class
 	
 	private int boardWidth = 21;
 	private int boardHeight = 24;
+	
+	public int scale = 20;
+	
 	public Node[][] board = new Node[boardWidth][boardHeight]; // 노드위치에 해당 노드 저장
 	
 	public GameBoard() {
@@ -101,8 +104,8 @@ public class GameBoard { // Node들을 저장할 class
 		
 		// nodeX와 nodeY에 모든 노드의 x좌표와 y좌표를 담음
 		for(int i = 0; i < nodes.length; i++) {
-			nodeX[i] = nodes[i].x;
-			nodeY[i] = nodes[i].y;
+			nodeX[i] = nodes[i].x / scale;
+			nodeY[i] = nodes[i].y / scale;
 		}
 		for(int i = 0; i < nodes.length; i++) {
 			board[nodeX[i]][nodeY[i]] = nodes[i];

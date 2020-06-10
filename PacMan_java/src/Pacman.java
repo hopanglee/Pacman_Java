@@ -47,6 +47,8 @@ public class Pacman extends GameObject{
 	@Override
 	public void start() {
 		currentNode = board.nodes[69];
+		x = currentNode.x;
+		y = currentNode.y;
 		
 		direction = Vector2.Right;
 		changePosition(direction);
@@ -95,7 +97,7 @@ public class Pacman extends GameObject{
 		if(board.coins.size() == 0) {
 			// GameClear
 			System.out.println("Game Clear!");
-			//return;
+			return;
 		}
 		
 		for(int i = 0; i < board.ghosts.size(); i++) {
@@ -109,7 +111,7 @@ public class Pacman extends GameObject{
 					 else { // ¾Æ´Ï¶ó¸é ÆÑ¸ÇÀÌ ÀâÈû
 						 // Game Over (¸ñ¼û 3°³?)
 						 System.out.println("Game Over!");
-						 //return;
+						 return;
 					 }
 				}
 			}

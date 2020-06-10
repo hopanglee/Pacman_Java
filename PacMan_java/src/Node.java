@@ -11,6 +11,8 @@ public class Node extends GameObject{ // GameObject를 상속받을 때 x,y위치 변수 �
 	public Vector2[] validDirection; // 해당 노드에서 갈 수 있는 방향 저장
 	public int length = 0; // 이웃의 개수 
 	
+	public int scale = 20;
+	
 	// default Constructor
 	public Node() {
 		
@@ -67,8 +69,8 @@ public class Node extends GameObject{ // GameObject를 상속받을 때 x,y위치 변수 �
 		this.isPotal = isPotal;
 		this.otherNode = otherNode;
 		
-		this.x = x;
-		this.y = y;
+		this.x = x * scale;
+		this.y = y * scale;
 	}
 
 	@Override

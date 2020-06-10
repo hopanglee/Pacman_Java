@@ -75,6 +75,8 @@ public class Ghost extends GameObject{
 	private int boardHeight = 24;
 	public float[][] minDistance = new float[boardWidth][boardHeight];
 	
+	public int scale = 20;
+	
 	public enum Mode{
 		Scatter,
 		Chase,
@@ -154,6 +156,9 @@ public class Ghost extends GameObject{
 		
 		ghostHouse = board.nodes[31];
 		
+		x = currentNode.x;
+		y = currentNode.y;
+		
 		nodeX = board.nodeX;
 		nodeY = board.nodeY;
 		nodeCount = board.nodes.length;
@@ -214,16 +219,17 @@ public class Ghost extends GameObject{
 					}
 				}
 			}
+			
 			Node visitNode = board.board[visitX][visitY];
 			for(int i = 0; i < visitNode.neighbors.length; i++) {
-				if(distance[visitNode.neighbors[i].x][visitNode.neighbors[i].y] > distance[visitX][visitY] + GetDistance(visitNode, visitNode.neighbors[i])) {
-					distance[visitNode.neighbors[i].x][visitNode.neighbors[i].y] = distance[visitX][visitY] + GetDistance(visitNode, visitNode.neighbors[i]);
+				if(distance[visitNode.neighbors[i].x/scale][visitNode.neighbors[i].y/scale] > distance[visitX][visitY] + GetDistance(visitNode, visitNode.neighbors[i])) {
+					distance[visitNode.neighbors[i].x/scale][visitNode.neighbors[i].y/scale] = distance[visitX][visitY] + GetDistance(visitNode, visitNode.neighbors[i]);
 				}
 			}
 			check[visitX][visitY] = 1;
 			checkN++;
 		}
-		minDistance[x][y] = distance[ghostHouse.x][ghostHouse.y];
+		minDistance[x][y] = distance[ghostHouse.x/scale][ghostHouse.y/scale];
 	}
 	
 	float GetDistance(GameObject a, GameObject b) {
@@ -333,10 +339,10 @@ public class Ghost extends GameObject{
 				float distance = 999999f;
 				for (int i = 0; i < foundNodes.length; i++) {
 					if(foundNodesDirection[i] != Vector2.Zero) {
-						if(minDistance[foundNodes[i].x][foundNodes[i].y] + GetDistance(this, foundNodes[i]) < distance) {
+						if(minDistance[foundNodes[i].x/scale][foundNodes[i].y/scale] + GetDistance(this, foundNodes[i]) < distance) {
 							moveToNode = foundNodes[i];
 							direction = foundNodesDirection[i];
-							distance = minDistance[foundNodes[i].x][foundNodes[i].y] + GetDistance(this, foundNodes[i]);
+							distance = minDistance[foundNodes[i].x/scale][foundNodes[i].y/scale] + GetDistance(this, foundNodes[i]);
 						}
 					}
 				}
@@ -656,7 +662,7 @@ public class Ghost extends GameObject{
     	Node temp;
     	
     	if(currentNode == null && !(x == previousNode.x && y == previousNode.y)) {
-    		if(minDistance[previousNode.x][previousNode.y] + GetDistance(this, previousNode) < minDistance[targetNode.x][targetNode.y] + GetDistance(this, targetNode)) {
+    		if(minDistance[previousNode.x / scale][previousNode.y / scale] + GetDistance(this, previousNode) < minDistance[targetNode.x / scale][targetNode.y / scale] + GetDistance(this, targetNode)) {
     			if(x < previousNode.x) { 
     				// ghost.......previousNode
     				direction = Vector2.Right;
@@ -709,5 +715,6 @@ public class Ghost extends GameObject{
     @Override
     public void render(Graphics g) {
 		g.drawImage(ghostSprite[imageIndex], x, y, null);
+		//g.drawImage(ghostSprite[imageIndex], 200, 50, null);
 	}
 }
