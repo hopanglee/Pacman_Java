@@ -1,15 +1,20 @@
 import java.awt.event.KeyListener;
 
 public class GameScene extends Scene {
-	//Pacman pacman = new Pacman(null);
-	//Ghost ghost = new Ghost(null, pacman, null, null);
+	
+	private GameBoard gameBoard = new GameBoard();
+	private Pacman pacman;
 
 	public GameScene(KeyListener input) {
 		super(input);
 		setSubtitle("Game");
 		
-		// Add Object to Scene as below example
-		//addObject(pacman);
-		//addObject(ghost);
+	}
+	
+	public void addObjectsFromGameBoard(GameBoard gb) {
+		addObject(gameBoard.pacman);
+		addObjects(gameBoard.bigCoins);
+		addObjects(gameBoard.coins);
+		addObjects(gameBoard.ghosts);
 	}
 }

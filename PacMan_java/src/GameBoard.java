@@ -19,6 +19,9 @@ public class GameBoard { // Node들을 저장할 class
 	
 	public GameBoard() {
 		nodes = new Node[74];
+		for (int i = 0; i < 74; i++) {
+			nodes[i] = new Node();
+		}
 		
 		nodes[0].Setting(nodes[1], nodes[6], null, null, false, null, 2, 2);
 		nodes[1].Setting(nodes[2], nodes[7], nodes[0], null, false, null, 5, 2);
@@ -117,6 +120,8 @@ public class GameBoard { // Node들을 저장할 class
 		pacman = new Pacman(this);
 		
 		// 유령 생성
+		ghosts = new ArrayList<Ghost>(4);
+		
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Red));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Blue));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Orange));
