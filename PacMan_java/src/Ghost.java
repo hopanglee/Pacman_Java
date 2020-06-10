@@ -28,10 +28,10 @@ public class Ghost extends GameObject{
 	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
 	public int frightenedModeDuration = 10; // frigtenedMode를 유지할 시간
 	
-	private float blinkTimer = 0;
-	public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
+	//rivate float blinkTimer = 0;
+	//public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 	
-	private boolean frightenedModelsWhite = false;
+	//private boolean frightenedModelsWhite = false; //아마 사용 안할 듯
 	
 	public float scatterModeTimer1 = 4;
 	public float chaseModeTimer1 = 4;
