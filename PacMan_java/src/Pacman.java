@@ -221,11 +221,11 @@ public class Pacman extends GameObject{
 				switch(direction) {
 				case Up:
 					imageIndex = 3;
-					y += speed;
+					y -= speed;
 					break;
 				case Down:
 					imageIndex = 9;
-					y -= speed;
+					y += speed;
 					break;
 				case Left:
 					imageIndex = 6;

@@ -101,6 +101,7 @@ public class Ghost extends GameObject{
 		try {
 			switch(ghostType) {
 			case Red:
+				System.out.println("red");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_red.png"));
@@ -108,6 +109,7 @@ public class Ghost extends GameObject{
 				break;
 				
 			case Blue:
+				System.out.println("blue");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
@@ -115,6 +117,7 @@ public class Ghost extends GameObject{
 				break;
 				
 			case Orange:
+				System.out.println("orange");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
@@ -122,10 +125,11 @@ public class Ghost extends GameObject{
 				break;
 				
 			case Pink:
-				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
-				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
-				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
-				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				System.out.println("pink");
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
 				break;
 			}
 			
@@ -189,6 +193,13 @@ public class Ghost extends GameObject{
 		ModeUpdate();
 		Move();
 		CheckIsInGhostHouse();
+		
+		if(ghostType == GhostType.Red)System.out.print("Red: ");
+		else if(ghostType == GhostType.Blue)System.out.print("blue: ");
+		else if(ghostType == GhostType.Orange)System.out.print("Orange: ");
+		else if(ghostType == GhostType.Pink)System.out.print("Pink: ");
+		
+		System.out.println("x = " + x + ", y = "+ y);
 	}
 	
 	void SetDijkstra(int x, int y) {
@@ -599,12 +610,12 @@ public class Ghost extends GameObject{
     			switch(direction) {
     			case Up:
     				if(currentMode!=Mode.frighted && currentMode != Mode.Consumed) imageIndex = 1;
-    				y += movingSpeed;
+    				y -= movingSpeed;
     				break;
     				
     			case Down:
     				if(currentMode!=Mode.frighted && currentMode != Mode.Consumed) imageIndex = 3;
-    				y -= movingSpeed;
+    				y += movingSpeed;
     				break;
     				
     			case Left:
@@ -715,6 +726,6 @@ public class Ghost extends GameObject{
     @Override
     public void render(Graphics g) {
 		g.drawImage(ghostSprite[imageIndex], x, y, null);
-		//g.drawImage(ghostSprite[imageIndex], 200, 50, null);
+		//g.drawImage(ghostSprite[imageIndex], 200, 200, null);
 	}
 }

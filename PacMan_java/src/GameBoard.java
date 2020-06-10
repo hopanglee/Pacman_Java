@@ -60,7 +60,7 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[31].Setting(null, null, null, nodes[35], false, null, 10, 11);
 		nodes[32].Setting(nodes[33], nodes[36], null, nodes[27], false, null, 13, 11);
 		nodes[33].Setting(nodes[34], nodes[43], nodes[32], nodes[21], false, null, 15, 11);
-		nodes[34].Setting(null, null, nodes[33], null, true, nodes[28], 2, 11);
+		nodes[34].Setting(null, null, nodes[33], null, true, nodes[28], 18, 11);
 		nodes[35].Setting(nodes[69], nodes[39], null, nodes[30], false, null, 7, 13);
 		nodes[36].Setting(null, nodes[42], nodes[69], nodes[32], false, null, 13, 13);
 		nodes[37].Setting(nodes[38], nodes[45], null, null, false, null, 2, 15);
@@ -86,7 +86,7 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[57].Setting(null, null, nodes[56], nodes[47], false, null, 5, 19);
 		nodes[58].Setting(nodes[59], null, null, nodes[48], false, null, 7, 19);
 		nodes[59].Setting(null, nodes[66], nodes[58], null, false, null, 9, 19);
-		nodes[60].Setting(nodes[61], nodes[67], null, null, false, null, 2, 19);
+		nodes[60].Setting(nodes[61], nodes[67], null, null, false, null, 11, 19);
 		nodes[61].Setting(null, null, nodes[60], nodes[51], false, null, 13, 19);
 		nodes[62].Setting(nodes[63], null, null, nodes[52], false, null, 15, 19);
 		nodes[63].Setting(nodes[64], null, nodes[62], nodes[53], false, null, 17, 19);
