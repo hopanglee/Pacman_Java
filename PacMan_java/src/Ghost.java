@@ -101,7 +101,7 @@ public class Ghost extends GameObject{
 		try {
 			switch(ghostType) {
 			case Red:
-				System.out.println("red");
+				//System.out.println("red");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_red.png"));
@@ -109,7 +109,7 @@ public class Ghost extends GameObject{
 				break;
 				
 			case Blue:
-				System.out.println("blue");
+				//System.out.println("blue");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
@@ -117,7 +117,7 @@ public class Ghost extends GameObject{
 				break;
 				
 			case Orange:
-				System.out.println("orange");
+				//System.out.println("orange");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
@@ -125,7 +125,7 @@ public class Ghost extends GameObject{
 				break;
 				
 			case Pink:
-				System.out.println("pink");
+				//System.out.println("pink");
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
@@ -143,20 +143,27 @@ public class Ghost extends GameObject{
 	
 	@Override
 	public void start() {
-		if(ghostType==GhostType.Red)
-        {
-            homeNode = board.nodes[71];
-        }else if (ghostType == GhostType.Pink)
-        {
-        	homeNode = board.nodes[70];
-        }else  if(ghostType== GhostType.Blue)
-        {
-        	homeNode = board.nodes[72];
-        }
-        else if(ghostType== GhostType.Orange)
-        {
-        	homeNode = board.nodes[73];
-        }
+		switch(ghostType) {
+		case Red:
+			System.out.println("red");
+			homeNode = board.nodes[71];
+			break;
+			
+		case Blue:
+			System.out.println("blue");
+			homeNode = board.nodes[72];
+			break;
+			
+		case Orange:
+			System.out.println("orange");
+			homeNode = board.nodes[73];
+			break;
+			
+		case Pink:
+			System.out.println("pink");
+			homeNode = board.nodes[70];
+			break;
+		}
 		
 		ghostHouse = board.nodes[31];
 		
