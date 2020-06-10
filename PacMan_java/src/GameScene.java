@@ -8,7 +8,7 @@ public class GameScene extends Scene {
 	public GameScene(KeyListener input) {
 		super(input);
 		setSubtitle("Game");
-		
+		addObjectsFromGameBoard(gameBoard);
 	}
 	
 	public void addObjectsFromGameBoard(GameBoard gb) {
