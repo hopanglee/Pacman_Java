@@ -98,9 +98,9 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[69].Setting(nodes[36], null, nodes[35], null, false, null, 10, 13);
 		
 		nodes[70].Setting(null, null, null, null, false, null, 0, 0); // 좌측 상단
-		nodes[71].Setting(null, null, nodes[35], null, false, null, 20, 0); // 우측 상단
-		nodes[72].Setting(null, null, nodes[35], null, false, null, 0, 23); // 좌측 하단
-		nodes[73].Setting(null, null, nodes[35], null, false, null, 20, 23); // 우측 하단
+		nodes[71].Setting(null, null, null, null, false, null, 20, 0); // 우측 상단
+		nodes[72].Setting(null, null, null, null, false, null, 0, 23); // 좌측 하단
+		nodes[73].Setting(null, null, null, null, false, null, 20, 23); // 우측 하단
 		
 		// nodeX와 nodeY에 모든 노드의 x좌표와 y좌표를 담음
 		for(int i = 0; i < nodes.length; i++) {
