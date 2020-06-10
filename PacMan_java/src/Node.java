@@ -69,4 +69,16 @@ public class Node extends GameObject{ // GameObject를 상속받을 때 x,y위치 변수 �
 		this.y = y;
 	}
 
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

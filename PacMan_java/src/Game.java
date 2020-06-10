@@ -3,9 +3,11 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game extends Canvas{
-	private ArrayList<RenderableObject> objs = new ArrayList<RenderableObject>();
+	private List<RenderableObject> objs = new ArrayList<RenderableObject>();
+	private final boolean isRunning = true; 
 	
 	class KeyInput implements KeyListener {
 
@@ -40,6 +42,12 @@ public class Game extends Canvas{
 	public Game() {
 		setBackground(Color.BLACK);
 		addKeyListener(new KeyInput());
+	}
+	
+	public void run() {
+		while(isRunning) {
+			
+		}
 	}
 	
 	public void start() {
