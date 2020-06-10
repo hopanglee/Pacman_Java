@@ -274,6 +274,7 @@ public class Ghost extends GameObject{
 		Vector2[] foundNodesDirection = new Vector2[4];
 		
 		int nodeCounter = 0, ch = 0, inverseDirection = 0;
+		
 		if(currentMode == Mode.Consumed) {
 			for(int i = 0; i < currentNode.neighbors.length; i++) {
 				foundNodes[nodeCounter] = currentNode.neighbors[i];
@@ -315,6 +316,8 @@ public class Ghost extends GameObject{
 					inverseDirection = i;
 				}
 			}
+			
+
 		}
 		if(ch==0) {
 			foundNodes[nodeCounter] = currentNode.neighbors[inverseDirection];
@@ -341,7 +344,8 @@ public class Ghost extends GameObject{
 			else {
 				float leastDistance = 10000f;
 				for(int i = 0; i < foundNodes.length; i++) {
-					if(foundNodesDirection[i] != Vector2.Zero) {
+					if(foundNodes[i] != null) {
+						//if(foundNodes[i] == null) System.out.println("foundNodes["+ i +"] is null");
 						float distance = GetDistance(foundNodes[i], targetTile);
 						if(distance < leastDistance) {
 							leastDistance = distance;
