@@ -30,7 +30,7 @@ public class Ghost extends GameObject{
 	
 	//rivate float blinkTimer = 0;
 	//public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
-	
+	 
 	//private boolean frightenedModelsWhite = false; //아마 사용 안할 듯
 	
 	public float scatterModeTimer1 = 4;
