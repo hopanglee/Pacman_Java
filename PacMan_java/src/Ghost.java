@@ -95,7 +95,7 @@ public class Ghost extends GameObject{
 		this.board = board;
 		this.ghostType = ghostType;
 		
-		ghostSprite = new BufferedImage[4];
+		ghostSprite = new BufferedImage[6];
 		try {
 			switch(ghostType) {
 			case Red:

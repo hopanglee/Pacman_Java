@@ -25,7 +25,7 @@ public class Pacman extends GameObject{
 	
 	public Pacman(GameBoard board) {
 		this.board = board; // 모든 노드를 담고 있는 게임보드를 받음
-		pacmanSprite = new BufferedImage[4];
+		pacmanSprite = new BufferedImage[12];
 		try {
 			pacmanSprite[0] = ImageIO.read(getClass().getResource("/PacMan0.PNG"));
 			pacmanSprite[1] = ImageIO.read(getClass().getResource("/PacMan1.PNG"));
