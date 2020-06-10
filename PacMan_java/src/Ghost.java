@@ -75,7 +75,7 @@ public class Ghost extends GameObject{
 	private int boardHeight = 24;
 	public float[][] minDistance = new float[boardWidth][boardHeight];
 	
-	public int scale = 20;
+	private int scale = GameBoard.SCALE;
 	
 	public enum Mode{
 		Scatter,
@@ -201,12 +201,13 @@ public class Ghost extends GameObject{
 		Move();
 		CheckIsInGhostHouse();
 		
+		/*
 		if(ghostType == GhostType.Red)System.out.print("Red: ");
 		else if(ghostType == GhostType.Blue)System.out.print("blue: ");
 		else if(ghostType == GhostType.Orange)System.out.print("Orange: ");
 		else if(ghostType == GhostType.Pink)System.out.print("Pink: ");
 		
-		System.out.println("x = " + x + ", y = "+ y);
+		System.out.println("x = " + x + ", y = "+ y);*/
 	}
 	
 	void SetDijkstra(int x, int y) {

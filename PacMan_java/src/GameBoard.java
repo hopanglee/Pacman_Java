@@ -16,7 +16,7 @@ public class GameBoard { // Node들을 저장할 class
 	private int boardWidth = 21;
 	private int boardHeight = 24;
 	
-	public int scale = 20;
+	public static final int SCALE = 32;
 	
 	public Node[][] board = new Node[boardWidth][boardHeight]; // 노드위치에 해당 노드 저장
 	
@@ -57,7 +57,7 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[28].Setting(nodes[29], null, null, null, true, nodes[34], 1, 11);
 		nodes[29].Setting(nodes[30], nodes[38], nodes[28], nodes[15], false, null, 5, 11);
 		nodes[30].Setting(null, nodes[35], nodes[29], nodes[23], false, null, 7, 11);
-		nodes[31].Setting(null, null, null, nodes[35], false, null, 10, 11);
+		nodes[31].Setting(null, null, null, nodes[25], false, null, 10, 11);
 		nodes[32].Setting(nodes[33], nodes[36], null, nodes[27], false, null, 13, 11);
 		nodes[33].Setting(nodes[34], nodes[43], nodes[32], nodes[21], false, null, 15, 11);
 		nodes[34].Setting(null, null, nodes[33], null, true, nodes[28], 18, 11);
