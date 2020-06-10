@@ -95,7 +95,7 @@ public class Ghost extends GameObject{
 		this.board = board;
 		this.ghostType = ghostType;
 		
-		ghostSprite = new BufferedImage[4];
+		ghostSprite = new BufferedImage[6];
 		try {
 			switch(ghostType) {
 			case Red:
@@ -700,6 +700,7 @@ public class Ghost extends GameObject{
     
     
     // 그리기 함수
+    @Override
     public void render(Graphics g) {
 		g.drawImage(ghostSprite[imageIndex], x, y, null);
 	}

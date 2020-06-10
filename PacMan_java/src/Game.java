@@ -1,68 +1,98 @@
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.event.KeyEvent;
+import java.awt.*;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.image.*;
+import java.util.*;
+import javax.swing.JFrame;
 
-public class Game extends Canvas{
-	private List<RenderableObject> objs = new ArrayList<RenderableObject>();
-	private final boolean isRunning = true; 
+public class Game extends JFrame implements Runnable{
 	
-	class KeyInput implements KeyListener {
+	public static final int WIDTH = 640;
+	public static final int HEIGHT = 480;
+	public static final String TITLE = "PACMAN";
+	
+	private int FPS = 60;
 
-		@Override
-		public void keyTyped(KeyEvent e) {}
-		@Override
-		public void keyReleased(KeyEvent e) {}
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			switch(e.getKeyCode()) {
-			case KeyEvent.VK_W:
-			case KeyEvent.VK_UP:
-				// Pacman goes up
-				break;
-			case KeyEvent.VK_A:
-			case KeyEvent.VK_LEFT:
-				// Pacman goes left
-				break;
-			case KeyEvent.VK_D:
-			case KeyEvent.VK_RIGHT:
-				// Pacman goes right
-				break;
-			case KeyEvent.VK_S:
-			case KeyEvent.VK_DOWN:
-				// Pacman goes down
-				break;
-			}
-		}
+	KeyListener keyInput = new Input();
+	
+	Scene scene;
+	Thread thread;
+	
+	private static enum SceneState {
+		GAME,
+		MENU
 	}
-
+	private SceneState SCENESTATE;
+	
 	public Game() {
+		setIgnoreRepaint(true);
 		setBackground(Color.BLACK);
-		addKeyListener(new KeyInput());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		start(new GameScene(keyInput));
+	}
+	
+	public synchronized void start(Scene s) {
+		Dimension dimension = new Dimension(Game.WIDTH, Game.HEIGHT);
+		
+		scene = s;
+		scene.setPreferredSize(dimension);
+		scene.setMinimumSize(dimension);
+		scene.setMaximumSize(dimension);
+		
+		setTitle(Game.TITLE + " - " + scene.getSubtitle());
+		
+		add(scene);
+		setResizable(false);
+		pack();
+		scene.start();
+		setVisible(true);
+		
+		thread = new Thread(this);
+		thread.start();
+	}
+	
+	public synchronized void stop() {
+	    try {
+	    	thread.join();
+	    } catch (InterruptedException e) {
+	    	e.printStackTrace();
+	    } finally {
+	    	
+	    }
 	}
 	
 	public void run() {
-		while(isRunning) {
+		scene.requestFocus();
+		BufferStrategy buffer = scene.getBufferStrategy();
+		Graphics g = buffer.getDrawGraphics();
+		
+		double frameUpdateTime = 1000000000 / FPS;
+		
+		long previousTime = System.nanoTime();
+		long lag = 0;
+		
+		while(scene.getRunningState() != Scene.RunningState.EXIT) {
+			long currentTime = System.nanoTime();
+			long elapsedTime = currentTime - previousTime;
+			previousTime = currentTime;
+			lag += elapsedTime;
+			Input.poll();
 			
+			// fixed time update
+			while (lag >= frameUpdateTime) {
+				scene.update();
+				lag -= frameUpdateTime;
+			}
+			scene.render();
+			g.dispose();
+			buffer.show();
 		}
-	}
-	
-	public void start() {
-		for (RenderableObject o : objs) {
-			o.start();
-		}
-	}
-	
-	public void update() {
-		for (RenderableObject o : objs) {
-			o.update();
-		}
+		
+		stop();
 	}
 	
 	public static void main(String[] args) {
+		Game game = new Game();
 		
 	}
 }
