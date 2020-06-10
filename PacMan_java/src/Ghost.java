@@ -17,7 +17,7 @@ public class Ghost extends GameObject{
 	public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
 	public int pinkyReleaseTimer = 5; 
 	
-	public boolean isInGhostHouse = false; // 유령이 현재 집에 있는지
+	//public boolean isInGhostHouse = true; // 유령이 현재 집에 있는지
 	
 	/* 
 	 * 난이도마다 탐지 시간과 추격 시간
@@ -28,10 +28,10 @@ public class Ghost extends GameObject{
 	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
 	public int frightenedModeDuration = 10; // frigtenedMode를 유지할 시간
 	
-	private float blinkTimer = 0;
-	public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
-	
-	private boolean frightenedModelsWhite = false;
+	//rivate float blinkTimer = 0;
+	//public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
+	 
+	//private boolean frightenedModelsWhite = false; //아마 사용 안할 듯
 	
 	public float scatterModeTimer1 = 4;
 	public float chaseModeTimer1 = 4;
@@ -159,8 +159,12 @@ public class Ghost extends GameObject{
 			SetDijkstra(nodeX[i], nodeY[i]);
 		}
 		
+		// 유령 집에 있으면 초기 방향 위로 설정
+		direction = Vector2.Up;
+		targetNode = currentNode.neighbors[0];
+		
+		/*
 		if(isInGhostHouse) {
-			// 유령 집에 있으면 초기 방향 위로 설정
 			direction = Vector2.Up;
 			targetNode = currentNode.neighbors[0];
 		}
@@ -168,7 +172,8 @@ public class Ghost extends GameObject{
 			// 유령 집에 없을 때 초기 방향 설정
 			direction = Vector2.Right;
 			targetNode = ChooseNextNode();
-		}
+		}*/
+		
 		previousNode = currentNode;
 	}
 	
@@ -190,7 +195,7 @@ public class Ghost extends GameObject{
 			}
 		}
 		for(int i = 0; i < nodeCount; i++) {
-			distance[nodeX[i]][nodeY[i]] = 9999;
+			distance[nodeX[i]][nodeY[i]] = 9999f;
 		}
 		distance[x][y] = 0;
 		while(true) {
@@ -223,7 +228,7 @@ public class Ghost extends GameObject{
 		float dx = a.x - b.y;
 		float dy = a.y - b.y;
 		float dis = dx * dx + dy * dy;
-		return dis;
+		return (float) Math.sqrt(dis);
 	}
 
 	Node GetTargetTile() {
@@ -320,7 +325,7 @@ public class Ghost extends GameObject{
 		}
 		else if(nodeCounter > 1) {
 			if(currentMode == Mode.Consumed) {
-				float distance = 999999;
+				float distance = 999999f;
 				for (int i = 0; i < foundNodes.length; i++) {
 					if(foundNodesDirection[i] != Vector2.Zero) {
 						if(minDistance[foundNodes[i].x][foundNodes[i].y] + GetDistance(this, foundNodes[i]) < distance) {
@@ -332,7 +337,7 @@ public class Ghost extends GameObject{
 				}
 			}
 			else {
-				float leastDistance = 10000;
+				float leastDistance = 10000f;
 				for(int i = 0; i < foundNodes.length; i++) {
 					if(foundNodesDirection[i] != Vector2.Zero) {
 						float distance = GetDistance(foundNodes[i], targetTile);
@@ -562,7 +567,7 @@ public class Ghost extends GameObject{
     }
     
     void Move() {
-    	if(currentNode != targetNode && targetNode != null && !isInGhostHouse) {
+    	if(currentNode != targetNode && targetNode != null /*&& !isInGhostHouse*/) {
     		if(OverShotTarget()) {
     			currentNode = targetNode;
     			x = currentNode.x;
