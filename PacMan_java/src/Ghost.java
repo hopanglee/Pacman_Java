@@ -152,6 +152,8 @@ public class Ghost extends GameObject{
         	homeNode = board.nodes[73];
         }
 		
+		ghostHouse = board.nodes[31];
+		
 		nodeX = board.nodeX;
 		nodeY = board.nodeY;
 		nodeCount = board.nodes.length;
