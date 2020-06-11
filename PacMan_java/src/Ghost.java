@@ -14,8 +14,8 @@ public class Ghost extends GameObject{
 	 */
 	private int imageIndex = 0; 
 	
-	public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
-	public int pinkyReleaseTimer = 5; 
+	//public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
+	//public int pinkyReleaseTimer = 5; 
 	
 	//public boolean isInGhostHouse = true; // 유령이 현재 집에 있는지
 	
@@ -605,7 +605,7 @@ public class Ghost extends GameObject{
     }
     
     void Move() {
-    	if(currentNode != targetNode && targetNode != null /*&& !isInGhostHouse*/) {
+    	if(currentNode != targetNode && targetNode != null) {
     		if(OverShotTarget()) {
     			currentNode = targetNode;
     			x = currentNode.x;
@@ -618,10 +618,9 @@ public class Ghost extends GameObject{
     			}
     			targetNode = ChooseNextNode();
     			previousNode = currentNode;
-    			//if(currentNode == ghostHouse) System.out.println("응 집이야");
-    			CheckIsInGhostHouse(); // 시험삼아 넣어봄
-    			currentNode = null;
     			
+    			CheckIsInGhostHouse(); 
+    			currentNode = null;
     		}
     		else {
     			switch(direction) {
@@ -702,16 +701,6 @@ public class Ghost extends GameObject{
     			}
     			else if(y < previousNode.y) {
     				/*
-    				 * previousNode
-    				 * .
-    				 * .
-    				 * .
-    				 * ghost
-    				 */
-    				direction = Vector2.Up;
-    			}
-    			else if(y > previousNode.y){
-    				/*
     				 * ghost
     				 * .
     				 * .
@@ -719,6 +708,16 @@ public class Ghost extends GameObject{
     				 * previousNode
     				 */
     				direction = Vector2.Down;
+    			}
+    			else if(y > previousNode.y){
+    				/*
+    				 * previousNode
+    				 * .
+    				 * .
+    				 * .
+    				 * ghost
+    				 */
+    				direction = Vector2.Up;
     			}
     			
     			// targetNode와 previousNode를 swap
