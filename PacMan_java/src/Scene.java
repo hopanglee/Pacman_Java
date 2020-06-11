@@ -4,7 +4,9 @@ import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Scene extends Canvas {
 	private List<RenderableObject> objs = new ArrayList<RenderableObject>();
@@ -28,6 +30,10 @@ public class Scene extends Canvas {
 	}
 	public void addObjects(List<? extends RenderableObject> l) {
 		objs.addAll(l);
+	}
+	
+	public void removeObject(RenderableObject o) {
+		objs.remove(o);
 	}
 	
 	public void setSubtitle(String s) {
