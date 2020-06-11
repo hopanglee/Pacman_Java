@@ -26,12 +26,12 @@ public class Ghost extends GameObject{
 	 */
 	private float modeChangeTimer = 0; // 모드가 바뀔 시간을 잼 -> 필요시 변환
 	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
-	public int frightenedModeDuration = 10 * 60; // frigtenedMode를 유지할 시간
+	public int frightenedModeDuration = 9 * 60; // frigtenedMode를 유지할 시간
 	
 	
 	
 	private float blinkTimer = 0;
-	public int startBlinkingAt = 7 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
+	public int startBlinkingAt = 6 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 	 
 	private boolean frightenedModelsWhite = false; //아마 사용 안할 듯 -> 이걸 만들게됬네?
 	
@@ -50,11 +50,11 @@ public class Ghost extends GameObject{
 	Node currentPosition;
 	Pacman pacMan;
 	Node currentNode, previousNode, targetNode, homeNode;
-	int movingSpeed = 2;
-	int frightenedMovingSpeed = 1;
+	int movingSpeed = 3;
+	int frightenedMovingSpeed = 2;
 	int previousMovingSpeed;
-	int consumedMoveSpeed = 3;
-	int normalMoveSpeed = 2;
+	int consumedMoveSpeed = 5;
+	int normalMoveSpeed = 3;
 	
 	GameBoard board;
 	Vector2 direction, nextDirection;
