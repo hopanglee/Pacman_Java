@@ -13,7 +13,7 @@ public class Pacman extends GameObject{
 	public boolean ghostAte = false; // 팩맨이 유령들을 잡아먹을 수 있는 상태인지
 	public Node currentNode, previousNode, targetNode; // 팩맨이 현재 위치하는 노드, 이전에 위치했던 노드, 가려는 노드
 	
-	private int speed = 4; // 팩맨 이동속도
+	private int speed = 3; // 팩맨 이동속도
 	
 	// 스프라이트 관련
 	private static BufferedImage[] pacmanSprite;
