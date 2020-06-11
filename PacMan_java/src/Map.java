@@ -44,7 +44,7 @@ public class Map extends UiObject{
 		g.fillRect(611, 35, 26, 250);
 		g.fillRect(99, 99, 58, 58);
 		g.fillRect(195, 99, 90, 58);
-		g.fillRect(323, 99, 26, 58);
+		g.fillRect(323, 60, 26, 99);
 		g.fillRect(387, 99, 90, 58);
 		g.fillRect(515, 99, 58, 58);
 		g.fillRect(99, 195, 58, 26);

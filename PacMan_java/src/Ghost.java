@@ -170,6 +170,8 @@ public class Ghost extends GameObject{
 		x = currentNode.x;
 		y = currentNode.y;
 		
+		setBounds(x, y, 30, 30);
+		
 		nodeX = board.nodeX;
 		nodeY = board.nodeY;
 		nodeCount = board.nodes.length;
@@ -200,18 +202,7 @@ public class Ghost extends GameObject{
 		ModeUpdate();
 		Move();
 		CheckIsInGhostHouse();
-		
-		/*
-		if(ghostType == GhostType.Red)System.out.print("Red: ");
-		else if(ghostType == GhostType.Blue)System.out.print("blue: ");
-		else if(ghostType == GhostType.Orange)System.out.print("Orange: ");
-		else if(ghostType == GhostType.Pink)System.out.print("Pink: ");
-		
-<<<<<<< HEAD
-		System.out.println("x = " + (float)x / scale + ", y = "+ (float)y / scale);
-=======
-		System.out.println("x = " + x + ", y = "+ y);
->>>>>>> branch 'master' of https://github.com/HopangLee/Pacman_Java.git*/
+		//setLocation(x, y);
 	}
 	
 	void SetDijkstra(int x, int y) {
