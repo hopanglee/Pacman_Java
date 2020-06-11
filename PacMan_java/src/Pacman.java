@@ -182,6 +182,9 @@ public class Pacman extends GameObject{
 		for(int i = 0; i < currentNode.length; i++) { // 현재 노드에서 이웃한 노드 갯수 만큼 반복
 			if(currentNode.validDirection[i] == d) { // 현재 노드에서 갈 수 있는 방향이랑 d의 방향이랑 같은 지 체크
 				moveToNode = currentNode.neighbors[i];
+				if(moveToNode == board.nodes[31]) {
+					moveToNode = null;
+				}
 				break;
 			}
 		}		

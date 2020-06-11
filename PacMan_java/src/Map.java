@@ -77,6 +77,9 @@ public class Map extends UiObject{
 		g.fillRect(387, 643, 186, 26);
 		g.fillRect(131, 515, 26, 90);
 		g.fillRect(515, 515, 26, 90);
+		
+		g.setColor(Color.white);
+		g.fillRect(317, 333, 38, 3);
 	}
 
 }
