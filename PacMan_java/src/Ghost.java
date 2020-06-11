@@ -30,10 +30,10 @@ public class Ghost extends GameObject{
 	
 	
 	
-	//private float blinkTimer = 0;
-	//public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
+	private float blinkTimer = 0;
+	public int startBlinkingAt = 7 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 	 
-	//private boolean frightenedModelsWhite = false; //아마 사용 안할 듯
+	private boolean frightenedModelsWhite = false; //아마 사용 안할 듯 -> 이걸 만들게됬네?
 	
 	public float scatterModeTimer1 = 4 * 60; // 60 = 60fps때문
 	public float chaseModeTimer1 = 4 * 60;
@@ -99,7 +99,7 @@ public class Ghost extends GameObject{
 		this.board = board;
 		this.ghostType = ghostType;
 		
-		ghostSprite = new BufferedImage[6];
+		ghostSprite = new BufferedImage[7];
 		try {
 			switch(ghostType) {
 			case Red:				
@@ -136,7 +136,9 @@ public class Ghost extends GameObject{
 			}
 			
 			ghostSprite[4] = ImageIO.read(getClass().getResource("/ghost_frighten.png"));
-			ghostSprite[5] = ImageIO.read(getClass().getResource("/ghost_consumed.png"));
+			ghostSprite[5] = ImageIO.read(getClass().getResource("/ghost_white.png"));
+			ghostSprite[6] = ImageIO.read(getClass().getResource("/ghost_consumed.png"));
+			
 			
 		} catch(IOException e) {
 			e.printStackTrace();
@@ -561,24 +563,26 @@ public class Ghost extends GameObject{
     			ChangeMode(previousMode);
     		}
     		
-    		/* 아마 구현하기 시간없을 것 같음
+    		
     		// frightenedMode가 거의 끝나갈때
     		if(frightenedModeTimer >= startBlinkingAt) {
-    			//blinkTimer += Time.deltaTime;
-    			if(blinkTimer >= 0.1f) {
+    			blinkTimer++;
+    			if(blinkTimer >= 6f) { // 0.1 * 60
     				blinkTimer = 0f;
     				
     				// 깜빡거리기 표현
     				if(frightenedModelsWhite) {
     					// 검정색됬다가
+    					imageIndex = 4;
     					frightenedModelsWhite = false;
     				}
     				else {
     					// 하얀색됬다가
+    					imageIndex = 5;
     					frightenedModelsWhite = true;
     				}
     			}
-    		}*/
+    		}
     	}
     }
     
@@ -678,7 +682,7 @@ public class Ghost extends GameObject{
     
     // 팩맨과 충돌했을 때 죽음(consumed상태로 변경) (유령이 도망상태인 경우)
     public void Consumed() {
-    	imageIndex = 5;
+    	imageIndex = 6;
     	
     	currentMode = Mode.Consumed;
     	previousMovingSpeed = movingSpeed;
