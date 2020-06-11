@@ -30,13 +30,13 @@ public class GameScene extends Scene {
 	public void removeObjectsFromRequests(Queue<RenderableObject> requests) {
 		for (int i = 0; i < requests.size(); i++) {
 			RenderableObject o = requests.peek();
-			// System.out.println(o.toString());
+			System.out.println(o.toString());
 			requests.remove();
 			removeObject(o);
-			if (o instanceof Coin) {
-				gameBoard.coins.remove(o);
-			} else if (o instanceof BigCoin) {
+			if (o instanceof BigCoin) {
 				gameBoard.bigCoins.remove(o);
+			} else if (o instanceof Coin) {
+				gameBoard.coins.remove(o);
 			}
 			o = null;
 		}
