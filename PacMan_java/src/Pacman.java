@@ -81,7 +81,7 @@ public class Pacman extends GameObject{
 		for(int i = 0; i < board.coins.size(); i++) {
 			if(this.intersects(board.coins.get(i))) {
 				score += 10;
-				board.coins.remove(i);
+				board.removeObject(board.coins.get(i));
 				System.out.println("코인과 충돌");
 				break;
 			}
@@ -91,14 +91,14 @@ public class Pacman extends GameObject{
 		for(int i = 0; i < board.bigCoins.size(); i++) {
 			if(this.intersects(board.bigCoins.get(i))) {
 				score += 50;
-				board.bigCoins.remove(i);
+				board.removeObject(board.bigCoins.get(i));
 				
 				board.ghosts.get(0).StartFrightenedMode();
 				board.ghosts.get(1).StartFrightenedMode();
 				board.ghosts.get(2).StartFrightenedMode();
 				board.ghosts.get(3).StartFrightenedMode();
 				
-				System.out.println("빅 코인과 충돌");
+				// System.out.println("빅 코인과 충돌");
 				break;
 			}
 		}

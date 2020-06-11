@@ -27,7 +27,6 @@ public class Game extends JFrame implements Runnable{
 		setIgnoreRepaint(true);
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		start(new GameScene(keyInput));
 	}
 	

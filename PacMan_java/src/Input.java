@@ -53,7 +53,7 @@ public class Input implements KeyListener {
 	    
 	public synchronized void keyPressed( KeyEvent e ) {
 		int keyCode = e.getKeyCode();
-		System.out.println(keyCode);
+		// System.out.println(keyCode);
 		if( keyCode >= 0 && keyCode < KEY_COUNT ) {
 			currentKeys[ keyCode ] = true;
 		}
@@ -61,7 +61,7 @@ public class Input implements KeyListener {
 	
 	public synchronized void keyReleased( KeyEvent e ) {
 		int keyCode = e.getKeyCode();
-		System.out.println(keyCode);
+		// System.out.println(keyCode);
 		if( keyCode >= 0 && keyCode < KEY_COUNT ) {
 			currentKeys[ keyCode ] = false;
 		}
