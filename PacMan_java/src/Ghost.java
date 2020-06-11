@@ -48,11 +48,11 @@ public class Ghost extends GameObject{
 	Node currentPosition;
 	Pacman pacMan;
 	Node currentNode, previousNode, targetNode, homeNode;
-	int movingSpeed = 3;
-	int frightenedMovingSpeed = 2;
+	int movingSpeed = 2;
+	int frightenedMovingSpeed = 1;
 	int previousMovingSpeed;
-	int consumedMoveSpeed = 5;
-	int normalMoveSpeed = 3;
+	int consumedMoveSpeed = 3;
+	int normalMoveSpeed = 2;
 	
 	GameBoard board;
 	Vector2 direction, nextDirection;
@@ -206,7 +206,7 @@ public class Ghost extends GameObject{
 		else if(ghostType == GhostType.Orange)System.out.print("Orange: ");
 		else if(ghostType == GhostType.Pink)System.out.print("Pink: ");
 		
-		System.out.println("x = " + x + ", y = "+ y);
+		System.out.println("x = " + (float)x / scale + ", y = "+ (float)y / scale);
 	}
 	
 	void SetDijkstra(int x, int y) {
