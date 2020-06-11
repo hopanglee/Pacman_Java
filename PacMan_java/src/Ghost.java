@@ -201,7 +201,13 @@ public class Ghost extends GameObject{
 	public void update() {
 		ModeUpdate();
 		Move();
-		CheckIsInGhostHouse();
+		
+		/*
+		if(ghostType == GhostType.Red) {
+			if (currentNode == null)System.out.println("currentNode is null");
+			else System.out.println("currentNode.x: "+currentNode.x + ", currentNode.y: " + currentNode.y);
+		}*/
+		//CheckIsInGhostHouse();
 		//setLocation(x, y);
 	}
 	
@@ -625,6 +631,8 @@ public class Ghost extends GameObject{
     			}
     			targetNode = ChooseNextNode();
     			previousNode = currentNode;
+    			//if(currentNode == ghostHouse) System.out.println("응 집이야");
+    			CheckIsInGhostHouse(); // 시험삼아 넣어봄
     			currentNode = null;
     			
     		}
