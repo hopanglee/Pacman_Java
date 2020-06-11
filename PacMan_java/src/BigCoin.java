@@ -17,6 +17,7 @@ public class BigCoin extends Coin{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		//setBounds(x, y, 27, 27);
 	}
 	
 	@Override

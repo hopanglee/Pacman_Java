@@ -352,7 +352,7 @@ public class Ghost extends GameObject{
 			if(currentMode == Mode.Consumed) {
 				float distance = 999999f;
 				for (int i = 0; i < foundNodes.length; i++) {
-					if(foundNodesDirection[i] != Vector2.Zero) {
+					if(foundNodes[i] != null) {
 						if(minDistance[foundNodes[i].x/scale][foundNodes[i].y/scale] + GetDistance(this, foundNodes[i]) < distance) {
 							moveToNode = foundNodes[i];
 							direction = foundNodesDirection[i];
@@ -660,6 +660,7 @@ public class Ghost extends GameObject{
     			targetNode = ChooseNextNode();
     			previousNode = currentNode;
     			currentMode = Mode.Chase;
+    			System.out.println("집 도착!");
     			// 스프라이트 변경
     		}
     	}
