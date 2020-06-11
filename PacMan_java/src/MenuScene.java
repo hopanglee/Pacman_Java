@@ -1,5 +1,9 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 
 public class MenuScene extends Scene {
 
@@ -48,5 +52,22 @@ public class MenuScene extends Scene {
 		default:
 			break;
 		}
+	}
+	
+	@Override
+	public void render() {
+		BufferStrategy buffer = getBufferStrategy();
+		Graphics graphics = buffer.getDrawGraphics();
+		switch (getRunningState()) {
+		case RUNNING:
+			break;
+		case PAUSED:
+			break;
+		default:
+			break;
+		}
+
+		graphics.dispose();
+		buffer.show();
 	}
 }
