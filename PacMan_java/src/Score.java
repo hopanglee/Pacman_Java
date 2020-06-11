@@ -1,11 +1,18 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
+import java.util.ArrayList;
 
 public class Score extends UiObject{
 	
 	private static Integer score;
 	
 
-	public Score() {
+	
+	
+	public Score(int x, int y, int score) {
+		// TODO Auto-generated constructor stub
 		
 	}
 

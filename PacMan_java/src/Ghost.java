@@ -26,25 +26,25 @@ public class Ghost extends GameObject{
 	 */
 	private float modeChangeTimer = 0; // 모드가 바뀔 시간을 잼 -> 필요시 변환
 	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
-	public int frightenedModeDuration = 10 * 60; // frigtenedMode를 유지할 시간
+	public int frightenedModeDuration = 9 * 60; // frigtenedMode를 유지할 시간
 	
 	
 	
 	private float blinkTimer = 0;
-	public int startBlinkingAt = 7 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
+	public int startBlinkingAt = 6 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 	 
 	private boolean frightenedModelsWhite = false; //아마 사용 안할 듯 -> 이걸 만들게됬네?
 	
 	public float scatterModeTimer1 = 4 * 60; // 60 = 60fps때문
 	public float chaseModeTimer1 = 4 * 60;
-	public float scatterModeTimer2 = 9 * 60;
-	public float chaseModeTimer2 = 8 * 60;
-	public float scatterModeTimer3 = 8 * 60;
-	public float chaseModeTimer3 = 9 * 60;
-	public float scatterModeTimer4 = 7 * 60;
-	public float chaseModeTimer4 = 10 * 60;
-	public float scatterModeTimer5 = 6 * 60;
-	public float chaseModeTimer5 = 11 * 60;
+	public float scatterModeTimer2 = 8 * 60;
+	public float chaseModeTimer2 = 9 * 60;
+	public float scatterModeTimer3 = 7 * 60;
+	public float chaseModeTimer3 = 10 * 60;
+	public float scatterModeTimer4 = 6 * 60;
+	public float chaseModeTimer4 = 11 * 60;
+	public float scatterModeTimer5 = 5 * 60;
+	public float chaseModeTimer5 = 12 * 60;
 	
 	Node ghostHouse; // 맵 가운데 집
 	Node currentPosition;
@@ -53,7 +53,7 @@ public class Ghost extends GameObject{
 	int movingSpeed = 2;
 	int frightenedMovingSpeed = 1;
 	int previousMovingSpeed;
-	int consumedMoveSpeed = 3;
+	int consumedMoveSpeed = 4;
 	int normalMoveSpeed = 2;
 	
 	GameBoard board;
