@@ -154,6 +154,7 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(7, 5));
 		coins.add(new Coin(8, 5));
 		coins.add(new Coin(9, 5));
+		coins.add(new Coin(10, 5));
 		coins.add(new Coin(11, 5));
 		coins.add(new Coin(12, 5));
 		coins.add(new Coin(13, 5));
