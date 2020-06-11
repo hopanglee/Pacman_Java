@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -8,9 +10,12 @@ import javax.imageio.ImageIO;
 public class Pacman extends GameObject{
 	
 	public int score = 0; // 나중에 game클라스나 gameboard클라스의 score에 대체
+	int combo = 1; // 유령을 연속으로 잡을시 점수의 배수
+	int ghostAteTimer = 3 * 60;
+	int comboTime = 3 * 60;
+	public boolean ghostAte = false; // 팩맨이 유령들을 방금 먹었는지
 
 	public Vector2 direction; // 팩맨의 이동 방향 
-	public boolean ghostAte = false; // 팩맨이 유령들을 잡아먹을 수 있는 상태인지
 	public Node currentNode, previousNode, targetNode; // 팩맨이 현재 위치하는 노드, 이전에 위치했던 노드, 가려는 노드
 	
 	private int speed = 3; // 팩맨 이동속도
@@ -116,7 +121,10 @@ public class Pacman extends GameObject{
 				if(temp.currentMode != Ghost.Mode.Consumed) { // 이미 먹은 유령이 아니고
 					//System.out.println("유령과 충돌");
 					 if(temp.currentMode == Ghost.Mode.frighted) { // 겁에 질린 유령이라면 유령이 죽음
-						 score += 200;
+						 score += 200 * combo;
+						 combo *= 2;
+						 ghostAteTimer = 0;
+						 ghostAte = true;
 						 temp.Consumed();
 					 }
 					 else { // 아니라면 팩맨이 잡힘
@@ -125,6 +133,15 @@ public class Pacman extends GameObject{
 						 return;
 					 }
 				}
+			}
+		}
+		
+		if(ghostAte) {
+			ghostAteTimer++;
+			
+			if(ghostAteTimer > comboTime) {
+				combo = 1;
+				ghostAte = false;
 			}
 		}
 		
@@ -146,16 +163,6 @@ public class Pacman extends GameObject{
 	Node GetNodePosition() {
 		
 		return null;
-	}
-	
-	// 포식자 모드로 설정
-	public void setAteMode() {
-		ghostAte = true;
-	}
-	
-	// 다시 원래모드로 설정
-	public void backtoBasicMode() {
-		ghostAte = false;
 	}
 	
 	// d방향으로 팩맨의 방향을 바꿈(가능할 시)
@@ -314,5 +321,12 @@ public class Pacman extends GameObject{
 	// 그리기 함수
 	public void render(Graphics g) {
 		g.drawImage(pacmanSprite[imageIndex + animation_index/3], x, y, null);
+		
+		// Score 텍스트
+		//g.setColor(Color.BLACK);
+	    //g.fillRect(30, 860, 150, 70);
+	    g.setColor(Color.WHITE);
+	    g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+	    g.drawString(String.valueOf(score), 32, 780);
 	}
 }

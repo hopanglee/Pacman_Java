@@ -37,14 +37,14 @@ public class Ghost extends GameObject{
 	
 	public float scatterModeTimer1 = 4 * 60; // 60 = 60fps때문
 	public float chaseModeTimer1 = 4 * 60;
-	public float scatterModeTimer2 = 9 * 60;
-	public float chaseModeTimer2 = 8 * 60;
-	public float scatterModeTimer3 = 8 * 60;
-	public float chaseModeTimer3 = 9 * 60;
-	public float scatterModeTimer4 = 7 * 60;
-	public float chaseModeTimer4 = 10 * 60;
-	public float scatterModeTimer5 = 6 * 60;
-	public float chaseModeTimer5 = 11 * 60;
+	public float scatterModeTimer2 = 8 * 60;
+	public float chaseModeTimer2 = 9 * 60;
+	public float scatterModeTimer3 = 7 * 60;
+	public float chaseModeTimer3 = 10 * 60;
+	public float scatterModeTimer4 = 6 * 60;
+	public float chaseModeTimer4 = 11 * 60;
+	public float scatterModeTimer5 = 5 * 60;
+	public float chaseModeTimer5 = 12 * 60;
 	
 	Node ghostHouse; // 맵 가운데 집
 	Node currentPosition;

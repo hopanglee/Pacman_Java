@@ -1,7 +1,15 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
+import java.util.ArrayList;
 
 public class Score extends UiObject{
-
+	
+	String path;
+	File scoreboard;
+	private ArrayList<Integer> scores;
+	
 	public Score() {
 		// TODO Auto-generated constructor stub
 	}
