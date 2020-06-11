@@ -246,8 +246,8 @@ public class Ghost extends GameObject{
 		minDistance[x][y] = distance[ghostHouse.x/scale][ghostHouse.y/scale];
 	}
 	
-	float GetDistance(GameObject a, GameObject b) {		
-		float dx = a.x - b.x;
+	float GetDistance(GameObject a, GameObject b) {
+		float dx = a.x - b.y;
 		float dy = a.y - b.y;
 		float dis = dx * dx + dy * dy;
 		return (float) Math.sqrt(dis);
@@ -365,27 +365,8 @@ public class Ghost extends GameObject{
 				float leastDistance = 10000f;
 				for(int i = 0; i < foundNodes.length; i++) {
 					if(foundNodes[i] != null) {
-						
+						//if(foundNodes[i] == null) System.out.println("foundNodes["+ i +"] is null");
 						float distance = GetDistance(foundNodes[i], targetTile);
-						
-						/*
-						if(ghostType==GhostType.Red)
-				        {
-				            System.out.print("R: ");
-				        }else if (ghostType == GhostType.Pink)
-				        {
-				        	System.out.print("P: ");
-				        }else  if(ghostType== GhostType.Blue)
-				        {
-				        	System.out.print("B: ");
-				        }
-				        else if(ghostType== GhostType.Orange)
-				        {
-				        	System.out.print("O: ");
-				        }
-						System.out.println("foundNodes["+i+"]("+ foundNodes[i].x +", "+ foundNodes[i].y +"), " + "targetTile("+ targetTile.x +", "+ targetTile.y +")");
-						System.out.println("distance: " + distance);*/
-						
 						if(distance < leastDistance) {
 							leastDistance = distance;
 							moveToNode = foundNodes[i];
