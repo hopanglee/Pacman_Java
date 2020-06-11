@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 
 public class Game extends JFrame implements Runnable{
 	
-	public static final int WIDTH = 1200;
-	public static final int HEIGHT = 1200;
+	public static final int WIDTH = 672;
+	public static final int HEIGHT = 812;
 	public static final String TITLE = "PACMAN";
 	
 	private int FPS = 60;
@@ -44,7 +44,7 @@ public class Game extends JFrame implements Runnable{
 	    } catch (InterruptedException e) {
 	    	e.printStackTrace();
 	    } finally {
-	    	
+	    	System.exit(0);
 	    }
 	}
 	
@@ -59,7 +59,7 @@ public class Game extends JFrame implements Runnable{
 		long previousTime = System.nanoTime();
 		long lag = 0;
 		
-		while(scene.getRunningState() != Scene.RunningState.EXIT) {
+		while(true) {
 			long currentTime = System.nanoTime();
 			long elapsedTime = currentTime - previousTime;
 			previousTime = currentTime;
@@ -72,7 +72,8 @@ public class Game extends JFrame implements Runnable{
 				lag -= frameUpdateTime;
 			}
 			
-			if (scene.getRunningState() == Scene.RunningState.RESTART) {
+			switch (scene.getRunningState()) {
+			case RESTART:
 				System.out.println("Restart!!");
 				remove(scene);
 				scene = null;
@@ -80,18 +81,29 @@ public class Game extends JFrame implements Runnable{
 				buffer = scene.getBufferStrategy();
 				g = buffer.getDrawGraphics();
 				previousTime = System.nanoTime();
+			case EXIT:
+				switch(SCENESTATE) {
+				case GAME:
+					SCENESTATE = SceneState.GAME;
+					remove(scene);
+					scene = null;
+					init();
+					buffer = scene.getBufferStrategy();
+					g = buffer.getDrawGraphics();
+					previousTime = System.nanoTime();
+					break;
+				case MENU:
+					stop();
+					break;
+				}
+			default:
+				break;
 			}
 			
 			scene.render();
 		}
 		
-		switch(SCENESTATE) {
-		case GAME:
-			SCENESTATE = SceneState.MENU;
-			break;
-		case MENU:
-			break;
-		}
+		
 	}
 	
 	public void init() {
@@ -119,10 +131,10 @@ public class Game extends JFrame implements Runnable{
 		scene.start();
 		setVisible(true);
 		scene.requestFocus();
+		
 	}
 	
 	public static void main(String[] args) {
 		Game game = new Game();
-		
 	}
 }

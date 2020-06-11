@@ -130,10 +130,13 @@ public class GameScene extends Scene {
 			GameEvent e = EventQueue.peekEvent();
 			switch(e.getEvent()) {
 			case GameClear:
+				// TODO: 클리어 화면 렌더링
 				break;
 			case GameOver:
+				// TODO: 게임오버 화면 렌더링
 				break;
 			case GamePaused:
+				// TODO: 게임 퍼즈 메뉴 렌더링
 				int centerX = Game.WIDTH / 2;
 				int centerY = Game.HEIGHT / 2;
 				graphics.setColor(Color.black);
