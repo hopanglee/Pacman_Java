@@ -26,23 +26,23 @@ public class Ghost extends GameObject{
 	 */
 	private float modeChangeTimer = 0; // 모드가 바뀔 시간을 잼 -> 필요시 변환
 	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
-	public int frightenedModeDuration = 10; // frigtenedMode를 유지할 시간
+	public int frightenedModeDuration = 10 * 60; // frigtenedMode를 유지할 시간
 	
 	//private float blinkTimer = 0;
 	//public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 	 
 	//private boolean frightenedModelsWhite = false; //아마 사용 안할 듯
 	
-	public float scatterModeTimer1 = 4;
-	public float chaseModeTimer1 = 4;
-	public float scatterModeTimer2 = 9;
-	public float chaseModeTimer2 = 8;
-	public float scatterModeTimer3 = 8;
-	public float chaseModeTimer3 = 9;
-	public float scatterModeTimer4 = 7;
-	public float chaseModeTimer4 = 10;
-	public float scatterModeTimer5 = 6;
-	public float chaseModeTimer5 = 11;
+	public float scatterModeTimer1 = 4 * 60; // 60 = 60fps때문
+	public float chaseModeTimer1 = 4 * 60;
+	public float scatterModeTimer2 = 9 * 60;
+	public float chaseModeTimer2 = 8 * 60;
+	public float scatterModeTimer3 = 8 * 60;
+	public float chaseModeTimer3 = 9 * 60;
+	public float scatterModeTimer4 = 7 * 60;
+	public float chaseModeTimer4 = 10 * 60;
+	public float scatterModeTimer5 = 6 * 60;
+	public float chaseModeTimer5 = 11 * 60;
 	
 	Node ghostHouse; // 맵 가운데 집
 	Node currentPosition;
@@ -399,19 +399,19 @@ public class Ghost extends GameObject{
     	int targetx = 0, targety = 0;
     	switch(pacManOrientation) {
     	case Up:
-    		targety = 4;
+    		targety = 4 * GameBoard.SCALE;
     		break;
     		
     	case Down:
-    		targety = -4;
+    		targety = -4 * GameBoard.SCALE;
     		break;
     		
     	case Left:
-    		targetx = -4;
+    		targetx = -4 * GameBoard.SCALE;
     		break;
     		
     	case Right:
-    		targetx = 4;
+    		targetx = 4 * GameBoard.SCALE;
     		break;
     		
     	case Zero:
@@ -429,19 +429,19 @@ public class Ghost extends GameObject{
     	int targetx = 0, targety = 0;
     	switch(pacManOrientation) {
     	case Up:
-    		targety = -4;
+    		targety = -4 * GameBoard.SCALE;
     		break;
     		
     	case Down:
-    		targety = +4;
+    		targety = +4 * GameBoard.SCALE;
     		break;
     		
     	case Left:
-    		targetx = +4;
+    		targetx = +4 * GameBoard.SCALE;
     		break;
     		
     	case Right:
-    		targetx = -4;
+    		targetx = -4 * GameBoard.SCALE;
     		break;
     		
     	case Zero:
@@ -458,20 +458,20 @@ public class Ghost extends GameObject{
     	int targetx = 0, targety = 0;
     	switch(pacManOrientation) {
     	case Up:
-    		targety = 4;
+    		targety = 4 * GameBoard.SCALE;
     		break;
     		
     	case Down:
-    		targety = -4;
+    		targety = -4 * GameBoard.SCALE;
     		break;
     		
     	case Left:
-    		targetx = -4;
+    		targetx = -4 * GameBoard.SCALE;
     		break;
     		
     	case Right:
-    		targetx = 4;
-    		break;
+    		targetx = 4 * GameBoard.SCALE;
+    		break; 
     		
     	case Zero:
     		break;
@@ -494,7 +494,7 @@ public class Ghost extends GameObject{
     
     void ModeUpdate() {
     	if(currentMode != Mode.frighted) {
-    		// modeChangeTimer  += Time.deltaTime;
+    		modeChangeTimer++;
     		if(modeChangeIteration == 1) {
     			if(currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer1) {
     				ChangeMode(Mode.Chase);
@@ -552,7 +552,7 @@ public class Ghost extends GameObject{
     		}
     	}
     	else if (currentMode == Mode.frighted) {
-    		//frightendModeTimer += Time.deltaTime;
+    		frightenedModeTimer++;
     		
     		if(frightenedModeTimer >= frightenedModeDuration) {
     			frightenedModeTimer = 0;
@@ -732,7 +732,10 @@ public class Ghost extends GameObject{
     		ChangeMode(Mode.frighted);
     	}
     }
-    
+    /*
+    void ReleaseGhosts() {
+    	
+    }*/
     
     // 그리기 함수
     @Override
