@@ -55,7 +55,7 @@ public class Pacman extends GameObject{
 		x = currentNode.x;
 		y = currentNode.y;
 		
-		setBounds(x, y, 30, 30);
+		setBounds(x, y, 27, 27);
 		
 		direction = Vector2.Right;
 		changePosition(direction);

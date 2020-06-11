@@ -61,8 +61,8 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[32].Setting(nodes[33], nodes[36], null, nodes[27], false, null, 13, 11);
 		nodes[33].Setting(nodes[34], nodes[43], nodes[32], nodes[21], false, null, 15, 11);
 		nodes[34].Setting(null, null, nodes[33], null, true, nodes[28], 18, 11);
-		nodes[35].Setting(nodes[69], nodes[39], null, nodes[30], false, null, 7, 13);
-		nodes[36].Setting(null, nodes[42], nodes[69], nodes[32], false, null, 13, 13);
+		nodes[35].Setting(nodes[36], nodes[39], null, nodes[30], false, null, 7, 13);
+		nodes[36].Setting(null, nodes[42], nodes[35], nodes[32], false, null, 13, 13);
 		nodes[37].Setting(nodes[38], nodes[45], null, null, false, null, 2, 15);
 		nodes[38].Setting(nodes[39], nodes[47], nodes[37], nodes[29], false, null, 5, 15);
 		nodes[39].Setting(nodes[40], null, nodes[38], nodes[35], false, null, 7, 15);
@@ -95,7 +95,7 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[66].Setting(nodes[67], null, nodes[65], nodes[59], false, null, 9, 21);
 		nodes[67].Setting(nodes[68], null, nodes[66], nodes[60], false, null, 11, 21);
 		nodes[68].Setting(null, null, nodes[67], nodes[64], false, null, 18, 21);
-		nodes[69].Setting(nodes[36], null, nodes[35], null, false, null, 10, 13);
+		nodes[69].Setting(nodes[50], null, nodes[49], null, false, null, 10, 17);
 		
 		nodes[70].Setting(null, null, null, null, false, null, 0, 0); // 좌측 상단
 		nodes[71].Setting(null, null, null, null, false, null, 20, 0); // 우측 상단
@@ -113,11 +113,178 @@ public class GameBoard { // Node들을 저장할 class
 		
 		// 코인 생성
 		coins = new ArrayList<Coin>(161);
-		// 코인 위치 조정
-		
-		// bigCoins 생성
 		bigCoins = new ArrayList<BigCoin>(4);
-		// Big Coins 위치 조정? 아니면 생성과 동시에 위치 설정
+		
+		coins.add(new Coin(2, 2));
+		coins.add(new Coin(3, 2));
+		coins.add(new Coin(4, 2));
+		coins.add(new Coin(5, 2));
+		coins.add(new Coin(6, 2));
+		coins.add(new Coin(7, 2));
+		coins.add(new Coin(8, 2));
+		coins.add(new Coin(9, 2));
+		coins.add(new Coin(11, 2));
+		coins.add(new Coin(12, 2));
+		coins.add(new Coin(13, 2));
+		coins.add(new Coin(14, 2));
+		coins.add(new Coin(15, 2));
+		coins.add(new Coin(16, 2));
+		coins.add(new Coin(17, 2));
+		coins.add(new Coin(18, 2));
+		
+		coins.add(new Coin(2, 3));
+		coins.add(new Coin(5, 3));
+		coins.add(new Coin(9, 3));
+		coins.add(new Coin(11, 3));
+		coins.add(new Coin(15, 3));
+		coins.add(new Coin(18, 3));
+		
+		bigCoins.add(new BigCoin(2, 4));
+		coins.add(new Coin(5, 4));
+		coins.add(new Coin(9, 4));
+		coins.add(new Coin(11, 4));
+		coins.add(new Coin(15, 4));
+		bigCoins.add(new BigCoin(18, 4));
+		
+		coins.add(new Coin(2, 5));
+		coins.add(new Coin(3, 5));
+		coins.add(new Coin(4, 5));
+		coins.add(new Coin(5, 5));
+		coins.add(new Coin(6, 5));
+		coins.add(new Coin(7, 5));
+		coins.add(new Coin(8, 5));
+		coins.add(new Coin(9, 5));
+		coins.add(new Coin(11, 5));
+		coins.add(new Coin(12, 5));
+		coins.add(new Coin(13, 5));
+		coins.add(new Coin(14, 5));
+		coins.add(new Coin(15, 5));
+		coins.add(new Coin(16, 5));
+		coins.add(new Coin(17, 5));
+		coins.add(new Coin(18, 5));
+		
+		coins.add(new Coin(2, 6));
+		coins.add(new Coin(5, 6));
+		coins.add(new Coin(7, 6));
+		coins.add(new Coin(13, 6));
+		coins.add(new Coin(15, 6));
+		coins.add(new Coin(18, 6));
+		
+		coins.add(new Coin(2, 7));
+		coins.add(new Coin(3, 7));
+		coins.add(new Coin(4, 7));
+		coins.add(new Coin(5, 7));
+		coins.add(new Coin(7, 7));
+		coins.add(new Coin(8, 7));
+		coins.add(new Coin(9, 7));
+		coins.add(new Coin(10, 7));
+		coins.add(new Coin(11, 7));
+		coins.add(new Coin(12, 7));
+		coins.add(new Coin(13, 7));
+		coins.add(new Coin(15, 7));
+		coins.add(new Coin(16, 7));
+		coins.add(new Coin(17, 7));
+		coins.add(new Coin(18, 7));
+		
+		coins.add(new Coin(5, 8));
+		coins.add(new Coin(15, 8));
+		coins.add(new Coin(5, 9));
+		coins.add(new Coin(15, 9));
+		coins.add(new Coin(5, 10));
+		coins.add(new Coin(15, 10));
+		coins.add(new Coin(5, 11));
+		coins.add(new Coin(15, 11));
+		coins.add(new Coin(5, 12));
+		coins.add(new Coin(15, 12));
+		coins.add(new Coin(5, 13));
+		coins.add(new Coin(15, 13));
+		coins.add(new Coin(5, 14));
+		coins.add(new Coin(15, 14));
+		
+		coins.add(new Coin(2, 15));
+		coins.add(new Coin(3, 15));
+		coins.add(new Coin(4, 15));
+		coins.add(new Coin(5, 15));
+		coins.add(new Coin(6, 15));
+		coins.add(new Coin(7, 15));
+		coins.add(new Coin(8, 15));
+		coins.add(new Coin(9, 15));
+		coins.add(new Coin(11, 15));
+		coins.add(new Coin(12, 15));
+		coins.add(new Coin(13, 15));
+		coins.add(new Coin(14, 15));
+		coins.add(new Coin(15, 15));
+		coins.add(new Coin(16, 15));
+		coins.add(new Coin(17, 15));
+		coins.add(new Coin(18, 15));
+		
+		coins.add(new Coin(2, 16));
+		coins.add(new Coin(5, 16));
+		coins.add(new Coin(9, 16));
+		coins.add(new Coin(11, 16));
+		coins.add(new Coin(15, 16));
+		coins.add(new Coin(18, 16));
+		
+		bigCoins.add(new BigCoin(2, 17));
+		coins.add(new Coin(3, 17));
+		coins.add(new Coin(5, 17));
+		coins.add(new Coin(6, 17));
+		coins.add(new Coin(7, 17));
+		coins.add(new Coin(8, 17));
+		coins.add(new Coin(9, 17));
+		coins.add(new Coin(10, 17));
+		coins.add(new Coin(11, 17));
+		coins.add(new Coin(12, 17));
+		coins.add(new Coin(13, 17));
+		coins.add(new Coin(14, 17));
+		coins.add(new Coin(15, 17));
+		coins.add(new Coin(17, 17));
+		bigCoins.add(new BigCoin(18, 17));
+		
+		coins.add(new Coin(3, 18));
+		coins.add(new Coin(5, 18));
+		coins.add(new Coin(7, 18));
+		coins.add(new Coin(13, 18));
+		coins.add(new Coin(15, 18));
+		coins.add(new Coin(17, 18));
+		
+		coins.add(new Coin(2, 19));
+		coins.add(new Coin(3, 19));
+		coins.add(new Coin(4, 19));
+		coins.add(new Coin(5, 19));
+		coins.add(new Coin(7, 19));
+		coins.add(new Coin(8, 19));
+		coins.add(new Coin(9, 19));
+		coins.add(new Coin(11, 19));
+		coins.add(new Coin(12, 19));
+		coins.add(new Coin(13, 19));
+		coins.add(new Coin(15, 19));
+		coins.add(new Coin(16, 19));
+		coins.add(new Coin(17, 19));
+		coins.add(new Coin(18, 19));
+		
+		coins.add(new Coin(2, 20));
+		coins.add(new Coin(9, 20));
+		coins.add(new Coin(11, 20));
+		coins.add(new Coin(18, 20));
+		
+		coins.add(new Coin(2, 21));
+		coins.add(new Coin(3, 21));
+		coins.add(new Coin(4, 21));
+		coins.add(new Coin(5, 21));
+		coins.add(new Coin(6, 21));
+		coins.add(new Coin(7, 21));
+		coins.add(new Coin(8, 21));
+		coins.add(new Coin(9, 21));
+		coins.add(new Coin(10, 21));
+		coins.add(new Coin(11, 21));
+		coins.add(new Coin(12, 21));
+		coins.add(new Coin(13, 21));
+		coins.add(new Coin(14, 21));
+		coins.add(new Coin(15, 21));
+		coins.add(new Coin(16, 21));
+		coins.add(new Coin(17, 21));
+		coins.add(new Coin(18, 21));
 		
 		// 팩맨 생성
 		pacman = new Pacman(this);
