@@ -16,6 +16,7 @@ public class Scene extends Canvas {
 	public static enum RunningState {
 		RUNNING,
 		PAUSED,
+		RESTART,
 		EXIT
 	}
 	private RunningState RUNNINGSTATE = RunningState.RUNNING;
@@ -23,6 +24,7 @@ public class Scene extends Canvas {
 	public Scene(KeyListener Input) {
 		setIgnoreRepaint(true);
 		addKeyListener(Input);
+		setRunningState(RunningState.RUNNING);
 	}
 	
 	public void addObject(RenderableObject o) {
@@ -42,7 +44,7 @@ public class Scene extends Canvas {
 	public String getSubtitle() {
 		return subtitle;
 	}
-
+	
 	public RunningState getRunningState() {
 		return RUNNINGSTATE;
 	}
@@ -76,9 +78,6 @@ public class Scene extends Canvas {
 		for (RenderableObject o : objs) {
 			o.render(graphics);
 		}
-		
-		graphics.dispose();
-		buffer.show();
 	}
 
 }

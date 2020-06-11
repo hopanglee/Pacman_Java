@@ -27,24 +27,12 @@ public class Game extends JFrame implements Runnable{
 		setIgnoreRepaint(true);
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		start(new GameScene(keyInput));
+		
+		SCENESTATE = SceneState.GAME;
+		start();
 	}
 	
-	public synchronized void start(Scene s) {
-		Dimension dimension = new Dimension(Game.WIDTH, Game.HEIGHT);
-		
-		scene = s;
-		scene.setPreferredSize(dimension);
-		scene.setMinimumSize(dimension);
-		scene.setMaximumSize(dimension);
-		
-		setTitle(Game.TITLE + " - " + scene.getSubtitle());
-		
-		add(scene);
-		setResizable(false);
-		pack();
-		scene.start();
-		setVisible(true);
+	public synchronized void start() {
 		
 		thread = new Thread(this);
 		thread.start();
@@ -61,7 +49,8 @@ public class Game extends JFrame implements Runnable{
 	}
 	
 	public void run() {
-		scene.requestFocus();
+		init();
+		
 		BufferStrategy buffer = scene.getBufferStrategy();
 		Graphics g = buffer.getDrawGraphics();
 		
@@ -75,17 +64,61 @@ public class Game extends JFrame implements Runnable{
 			long elapsedTime = currentTime - previousTime;
 			previousTime = currentTime;
 			lag += elapsedTime;
-			Input.poll();
 			
 			// fixed time update
 			while (lag >= frameUpdateTime) {
+				Input.poll();
 				scene.update();
 				lag -= frameUpdateTime;
 			}
+			
+			if (scene.getRunningState() == Scene.RunningState.RESTART) {
+				System.out.println("Restart!!");
+				remove(scene);
+				scene = null;
+				init();
+				buffer = scene.getBufferStrategy();
+				g = buffer.getDrawGraphics();
+				previousTime = System.nanoTime();
+			}
+			
 			scene.render();
 		}
 		
-		stop();
+		switch(SCENESTATE) {
+		case GAME:
+			SCENESTATE = SceneState.MENU;
+			break;
+		case MENU:
+			break;
+		}
+	}
+	
+	public void init() {
+		Input.init();
+		
+		Dimension dimension = new Dimension(Game.WIDTH, Game.HEIGHT);
+		
+		switch(SCENESTATE) {
+		case GAME:
+			scene = new GameScene(keyInput);
+			break;
+		case MENU:
+			scene = new MenuScene(keyInput);
+			break;
+		}
+		scene.setPreferredSize(dimension);
+		scene.setMinimumSize(dimension);
+		scene.setMaximumSize(dimension);
+		
+		setTitle(Game.TITLE + " - " + scene.getSubtitle());
+		
+		add(scene);
+		setResizable(false);
+		pack();
+		scene.start();
+		setVisible(true);
+		scene.requestFocus();
 	}
 	
 	public static void main(String[] args) {

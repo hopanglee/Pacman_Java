@@ -8,8 +8,6 @@ public class GameBoard { // Node들을 저장할 class
 	public int[] nodeX = new int[510];
 	public int[] nodeY = new int [510];
 	
-	private Queue<RenderableObject> requests; // GameScene의 모든 객체 배열
-	
 	public List<Coin> coins; // 맵에 존재하는 모든 코인을 담을 배열
 	public List<BigCoin> bigCoins; // 맵에 존재하는 모든 bigCoin을 담을 배열
 	public List<Ghost> ghosts; // 맵에 존재하는 모든 유령을 담을 배열
@@ -22,8 +20,7 @@ public class GameBoard { // Node들을 저장할 class
 	
 	public Node[][] board = new Node[boardWidth][boardHeight]; // 노드위치에 해당 노드 저장
 	
-	public GameBoard(Queue<RenderableObject> requests) {
-		this.requests = requests;
+	public GameBoard() {
 		
 		nodes = new Node[74];
 		for (int i = 0; i < 74; i++) {
@@ -301,11 +298,6 @@ public class GameBoard { // Node들을 저장할 class
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Blue));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Orange));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Pink));
-	}
-	
-	
-	public void removeObject(RenderableObject o) {
-		requests.add(o);
 	}
 	
 }

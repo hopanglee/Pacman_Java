@@ -87,7 +87,7 @@ public class Pacman extends GameObject{
 		for(int i = 0; i < board.coins.size(); i++) {
 			if(this.intersects(board.coins.get(i))) {
 				score += 10;
-				board.removeObject(board.coins.get(i));
+				EventQueue.pushEvent(GameEvent.EventType.RemoveObject, board.coins.get(i));
 				//System.out.println("코인과 충돌");
 				break;
 			}
@@ -97,7 +97,7 @@ public class Pacman extends GameObject{
 		for(int i = 0; i < board.bigCoins.size(); i++) {
 			if(this.intersects(board.bigCoins.get(i))) {
 				score += 50;
-				board.removeObject(board.bigCoins.get(i));
+				EventQueue.pushEvent(GameEvent.EventType.RemoveObject, board.bigCoins.get(i));
 				
 				board.ghosts.get(0).StartFrightenedMode();
 				board.ghosts.get(1).StartFrightenedMode();
@@ -111,7 +111,7 @@ public class Pacman extends GameObject{
 		
 		// 모든 coin을 다 먹음 -> Game Clear
 		if(board.coins.size() == 0 && board.bigCoins.size() == 0) {
-			
+			EventQueue.pushEvent(GameEvent.EventType.GameClear, null);
 			// System.out.println("Game Clear!");
 			return;
 		}
@@ -121,18 +121,19 @@ public class Pacman extends GameObject{
 			if(this.intersects(temp)) {
 				if(temp.currentMode != Ghost.Mode.Consumed) { // 이미 먹은 유령이 아니고
 					//System.out.println("유령과 충돌");
-					 if(temp.currentMode == Ghost.Mode.frighted) { // 겁에 질린 유령이라면 유령이 죽음
-						 score += 200 * combo;
-						 combo *= 2;
-						 ghostAteTimer = 0;
-						 ghostAte = true;		
-						 temp.Consumed();
-					 }
-					 else { // 아니라면 팩맨이 잡힘
-						 // Game Over (목숨 3개?)
-						 System.out.println("Game Over!");
-						 return;
-					 }
+					if(temp.currentMode == Ghost.Mode.frighted) { // 겁에 질린 유령이라면 유령이 죽음
+						score += 200 * combo;
+						combo *= 2;
+						ghostAteTimer = 0;
+						ghostAte = true;		
+						temp.Consumed();
+					}
+					else { // 아니라면 팩맨이 잡힘
+						// Game Over (목숨 3개?)
+						EventQueue.pushEvent(GameEvent.EventType.GameOver, null);
+						System.out.println("Game Over!");
+						return;
+					}
 				}
 			}
 		}

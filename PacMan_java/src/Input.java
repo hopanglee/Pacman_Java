@@ -4,6 +4,7 @@ import java.awt.event.KeyListener;
 public class Input implements KeyListener {
     
 	private static final int KEY_COUNT = 256;
+	private static final int KEY_DELAY = 10;
     
 	private enum KeyState {
 		RELEASED, // Not down
@@ -13,7 +14,7 @@ public class Input implements KeyListener {
     
 	// Current state of the keyboard
 	private static boolean[] currentKeys = null;
-	    
+	
 	// Polled keyboard state
 	private static KeyState[] keys = null;
 	    
@@ -24,14 +25,19 @@ public class Input implements KeyListener {
 			keys[ i ] = KeyState.RELEASED;
 		}
 	}
+	
+	public static synchronized void init() {
+		for( int i = 0; i < KEY_COUNT; ++i ) {
+			currentKeys[i] = false;
+			keys[i] = KeyState.RELEASED;
+		}
+	}
 	    
 	public static synchronized void poll() {
 		for( int i = 0; i < KEY_COUNT; ++i ) {
-			// Set the key state 
+			if (i == KeyEvent.VK_ESCAPE && keys[i] == KeyState.ONCE)
+				System.out.println(KeyEvent.getKeyText(i) + " " + keys[i].toString());
 			if( currentKeys[ i ] ) {
-				// If the key is down now, but was not
-				// down last frame, set it to ONCE,
-				// otherwise, set it to PRESSED
 				if( keys[ i ] == KeyState.RELEASED )
 					keys[ i ] = KeyState.ONCE;
 				else

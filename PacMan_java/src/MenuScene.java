@@ -1,8 +1,9 @@
+import java.awt.event.KeyListener;
 
 public class MenuScene extends Scene {
 
-	public MenuScene() {
-		
+	public MenuScene(KeyListener Input) {
+		super(Input);
 	}
-
+	
 }
