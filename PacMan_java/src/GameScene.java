@@ -4,18 +4,13 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class GameScene extends Scene {
-	private Queue<RenderableObject> removeRequests = new LinkedList<RenderableObject>();
-	
-	
+
 	private GameBoard gameBoard = new GameBoard();
-	
 
 	private int pauseMenuIndex = 0;
-	private static final String[] pauseMenuStrings = new String[] {"Resume", "Restart", "Back to Main Menu"};
+	private static final String[] pauseMenuStrings = new String[] { "Resume", "Restart", "Back to Main Menu" };
 
 	public GameScene(KeyListener input) {
 		super(input);
@@ -24,17 +19,17 @@ public class GameScene extends Scene {
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
 	}
-	
+
 	public void addObjectsFromGameBoard(GameBoard gb) {
 		addObject(gb.pacman);
 		addObjects(gb.bigCoins);
 		addObjects(gb.coins);
 		addObjects(gb.ghosts);
-	}	
-	
+	}
+
 	@Override
 	public void update() {
-		switch(getRunningState()) {
+		switch (getRunningState()) {
 		case RUNNING:
 			if (Input.getKeyDown(KeyEvent.VK_ESCAPE)) {
 				EventQueue.pushEvent(GameEvent.EventType.GamePaused, null);
@@ -43,7 +38,7 @@ public class GameScene extends Scene {
 			super.update();
 			for (int i = 0; i < EventQueue.size(); i++) {
 				GameEvent e = EventQueue.peekEvent();
-				switch(e.getEvent()) {
+				switch (e.getEvent()) {
 				case RemoveObject:
 					EventQueue.popEvent();
 					RenderableObject o = e.getObject();
@@ -66,7 +61,7 @@ public class GameScene extends Scene {
 			break;
 		case PAUSED:
 			GameEvent e = EventQueue.peekEvent();
-			switch(e.getEvent()) {
+			switch (e.getEvent()) {
 			case GameClear:
 			case GameOver:
 				if (Input.getKeyDown(KeyEvent.VK_R)) {
@@ -80,13 +75,19 @@ public class GameScene extends Scene {
 					EventQueue.popEvent();
 					setRunningState(RunningState.RESTART);
 				} else if (Input.getKeyDown(KeyEvent.VK_DOWN)) {
-					if (pauseMenuIndex < 2)
+					if (pauseMenuIndex == 2) {
+						pauseMenuIndex = 0;
+					} else {
 						++pauseMenuIndex;
+					}
 				} else if (Input.getKeyDown(KeyEvent.VK_UP)) {
-					if (pauseMenuIndex >= 0)
+					if (pauseMenuIndex == 0) {
+						pauseMenuIndex = 2;
+					} else {
 						--pauseMenuIndex;
+					}
 				} else if (Input.getKeyDown(KeyEvent.VK_ENTER)) {
-					switch(pauseMenuIndex) {
+					switch (pauseMenuIndex) {
 					case 0:
 						setRunningState(RunningState.RUNNING);
 						break;
@@ -110,25 +111,20 @@ public class GameScene extends Scene {
 		default:
 			break;
 		}
-		/*
-		case CLEAR:
-			if (Input.getKey(KeyEvent.VK_R)) {
-				setRunningState(RunningState.RUNNING);
-			} */
 	}
-	
+
 	@Override
 	public void render() {
 		BufferStrategy buffer = getBufferStrategy();
 		Graphics graphics = buffer.getDrawGraphics();
-		switch(getRunningState()) {
+		switch (getRunningState()) {
 		case RUNNING:
 			super.render();
 			break;
 		case PAUSED:
 			super.render();
 			GameEvent e = EventQueue.peekEvent();
-			switch(e.getEvent()) {
+			switch (e.getEvent()) {
 			case GameClear:
 				// TODO: 클리어 화면 렌더링
 				break;
@@ -141,18 +137,18 @@ public class GameScene extends Scene {
 				int centerY = Game.HEIGHT / 2;
 				graphics.setColor(Color.black);
 				graphics.fillRect(centerX - 300, centerY - 300, 600, 600);
-			    graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-			    for (int i = 0; i < 2; i++) {
-			    	if (i == pauseMenuIndex) {
-					    graphics.setColor(Color.WHITE);
-					    graphics.fillRect(centerX - 210, centerY + 200 * (i - 1) - 10, 420, 50);
-					    graphics.setColor(Color.black);
+				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+				for (int i = 0; i < 2; i++) {
+					if (i == pauseMenuIndex) {
+						graphics.setColor(Color.WHITE);
+						graphics.fillRect(centerX - 210, centerY + 200 * (i - 1) - 10, 420, 50);
+						graphics.setColor(Color.black);
 						graphics.drawString(pauseMenuStrings[i], centerX - 200, centerY + 200 * (i - 1));
-			    	} else {
-					    graphics.setColor(Color.WHITE);
+					} else {
+						graphics.setColor(Color.WHITE);
 						graphics.drawString(pauseMenuStrings[i], centerX - 200, centerY + 200 * (i - 1));
-			    	}
-			    }
+					}
+				}
 				break;
 			default:
 				System.err.println("Error: Event not available (" + e.getEvent().toString() + ")");
@@ -162,7 +158,7 @@ public class GameScene extends Scene {
 		default:
 			break;
 		}
-		
+
 		graphics.dispose();
 		buffer.show();
 	}
