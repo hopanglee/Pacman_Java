@@ -17,6 +17,7 @@ public class Coin extends GameObject{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		setBounds(this.x, this.y, 27, 27);
 	}
 	
 	// 팩맨과 충돌시 제거되고 스코어 오름
