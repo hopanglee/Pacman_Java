@@ -12,9 +12,9 @@ public class GameScene extends Scene {
 	}
 	
 	public void addObjectsFromGameBoard(GameBoard gb) {
-		addObject(gameBoard.pacman);
-		addObjects(gameBoard.bigCoins);
-		addObjects(gameBoard.coins);
-		addObjects(gameBoard.ghosts);
+		addObject(gb.pacman);
+		addObjects(gb.bigCoins);
+		addObjects(gb.coins);
+		addObjects(gb.ghosts);
 	}
 }
