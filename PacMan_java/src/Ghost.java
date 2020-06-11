@@ -7,12 +7,12 @@ import javax.imageio.ImageIO;
 
 
 public class Ghost extends GameObject{
-	private static BufferedImage[] ghostSprite;
+	private BufferedImage[] ghostSprite;
 	/* 
 	 * 유령 이미지 index 
 	 * (0: 오른쪽, 1: 위쪽, 2: 왼쪽, 3: 아래쪽, frightened : 4, Consumed: 5)
 	 */
-	private int imageIndex = 1; 
+	private int imageIndex = 0; 
 	
 	public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
 	public int pinkyReleaseTimer = 5; 
@@ -100,36 +100,36 @@ public class Ghost extends GameObject{
 		ghostSprite = new BufferedImage[6];
 		try {
 			switch(ghostType) {
-			case Red:
-				//System.out.println("red");
+			case Red:				
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_red.png"));
 				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_red.png"));
+				System.out.println("red");
 				break;
 				
-			case Blue:
-				//System.out.println("blue");
+			case Blue:				
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
 				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
+				System.out.println("blue");
 				break;
 				
-			case Orange:
-				//System.out.println("orange");
+			case Orange:				
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
 				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
+				System.out.println("orange");
 				break;
 				
-			case Pink:
-				//System.out.println("pink");
+			case Pink:				
 				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
 				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
 				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
 				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
+				System.out.println("pink");
 				break;
 			}
 			
@@ -145,22 +145,22 @@ public class Ghost extends GameObject{
 	public void start() {
 		switch(ghostType) {
 		case Red:
-			System.out.println("red");
+			//System.out.println("red");
 			homeNode = board.nodes[71];
 			break;
 			
 		case Blue:
-			System.out.println("blue");
+			//System.out.println("blue");
 			homeNode = board.nodes[72];
 			break;
 			
 		case Orange:
-			System.out.println("orange");
+			//System.out.println("orange");
 			homeNode = board.nodes[73];
 			break;
 			
 		case Pink:
-			System.out.println("pink");
+			//System.out.println("pink");
 			homeNode = board.nodes[70];
 			break;
 		}
