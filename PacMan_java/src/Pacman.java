@@ -104,8 +104,8 @@ public class Pacman extends GameObject{
 		}
 		
 		// 모든 coin을 다 먹음 -> Game Clear
-		if(board.coins.size() == 0) {
-			// GameClear
+		if(board.coins.size() == 0 && board.bigCoins.size() == 0) {
+			
 			// System.out.println("Game Clear!");
 			return;
 		}
