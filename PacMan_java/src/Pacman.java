@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.awt.event.KeyEvent;
 
 import javax.imageio.ImageIO;
 
@@ -56,7 +57,7 @@ public class Pacman extends GameObject{
 	
 	@Override
 	public void update() {
-		//CheckInput(); // 사용자가 어떤 키를 입력했는지 매 프레임마다 체크
+		CheckInput(); // 사용자가 어떤 키를 입력했는지 매 프레임마다 체크
 		Move(); // 팩맨을 계속 움직임
 		ConsumeCoin();
 		UpdateOrientation(); // 팩맨이 바라보는 방향의 이미지로 바꿔줌
@@ -96,7 +97,7 @@ public class Pacman extends GameObject{
 		// 모든 coin을 다 먹음 -> Game Clear
 		if(board.coins.size() == 0) {
 			// GameClear
-			System.out.println("Game Clear!");
+			// System.out.println("Game Clear!");
 			return;
 		}
 		
@@ -115,6 +116,18 @@ public class Pacman extends GameObject{
 					 }
 				}
 			}
+		}
+	}
+
+	private void CheckInput() {
+		if (Input.getKey(KeyEvent.VK_RIGHT)){
+			changePosition(Vector2.Right);
+		} else if (Input.getKey(KeyEvent.VK_LEFT)) {
+			changePosition(Vector2.Left);
+		} else if (Input.getKey(KeyEvent.VK_UP)) {
+			changePosition(Vector2.Up);
+		} else if (Input.getKey(KeyEvent.VK_DOWN)) {
+			changePosition(Vector2.Down);
 		}
 	}
 
