@@ -29,6 +29,7 @@ public class Pacman extends GameObject{
 	
 	private GameBoard board;
 	
+	
 	public Pacman(GameBoard board) {
 		this.board = board; // 모든 노드를 담고 있는 게임보드를 받음
 		pacmanSprite = new BufferedImage[16];
@@ -124,7 +125,7 @@ public class Pacman extends GameObject{
 						 score += 200 * combo;
 						 combo *= 2;
 						 ghostAteTimer = 0;
-						 ghostAte = true;
+						 ghostAte = true;		
 						 temp.Consumed();
 					 }
 					 else { // 아니라면 팩맨이 잡힘
@@ -144,8 +145,6 @@ public class Pacman extends GameObject{
 				ghostAte = false;
 			}
 		}
-		
-		//setLocation(x, y);
 	}
 
 	private void CheckInput() {

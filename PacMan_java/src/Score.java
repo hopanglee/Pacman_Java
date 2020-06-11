@@ -5,13 +5,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Score extends UiObject{
+
 	
-	String path;
-	File scoreboard;
-	private ArrayList<Integer> scores;
 	
-	public Score() {
+	public Score(int x, int y, int score) {
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
