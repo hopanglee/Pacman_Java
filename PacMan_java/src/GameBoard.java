@@ -6,27 +6,27 @@ public class GameBoard { // Node들을 저장할 class
 
 	public Node[] nodes; // 맵에 존재하는 모든 노드를 담을 배열
 	public int[] nodeX = new int[510];
-	public int[] nodeY = new int [510];
-	
+	public int[] nodeY = new int[510];
+
 	public List<Coin> coins; // 맵에 존재하는 모든 코인을 담을 배열
 	public List<BigCoin> bigCoins; // 맵에 존재하는 모든 bigCoin을 담을 배열
 	public List<Ghost> ghosts; // 맵에 존재하는 모든 유령을 담을 배열
 	public Pacman pacman; // 팩맨 생성
-	
+
 	private int boardWidth = 21;
 	private int boardHeight = 24;
-	
+
 	public static final int SCALE = 32;
-	
+
 	public Node[][] board = new Node[boardWidth][boardHeight]; // 노드위치에 해당 노드 저장
-	
+
 	public GameBoard() {
-		
+
 		nodes = new Node[74];
 		for (int i = 0; i < 74; i++) {
 			nodes[i] = new Node();
 		}
-		
+
 		nodes[0].Setting(nodes[1], nodes[6], null, null, false, null, 2, 2);
 		nodes[1].Setting(nodes[2], nodes[7], nodes[0], null, false, null, 5, 2);
 		nodes[2].Setting(null, nodes[9], nodes[1], null, false, null, 9, 2);
@@ -97,25 +97,25 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[67].Setting(nodes[68], null, nodes[66], nodes[60], false, null, 11, 21);
 		nodes[68].Setting(null, null, nodes[67], nodes[64], false, null, 18, 21);
 		nodes[69].Setting(nodes[50], null, nodes[49], null, false, null, 10, 17);
-		
+
 		nodes[70].Setting(null, null, null, null, false, null, 0, 0); // 좌측 상단
 		nodes[71].Setting(null, null, null, null, false, null, 20, 0); // 우측 상단
 		nodes[72].Setting(null, null, null, null, false, null, 0, 23); // 좌측 하단
 		nodes[73].Setting(null, null, null, null, false, null, 20, 23); // 우측 하단
-		
+
 		// nodeX와 nodeY에 모든 노드의 x좌표와 y좌표를 담음
-		for(int i = 0; i < nodes.length; i++) {
+		for (int i = 0; i < nodes.length; i++) {
 			nodeX[i] = nodes[i].x / SCALE;
 			nodeY[i] = nodes[i].y / SCALE;
 		}
-		for(int i = 0; i < nodes.length; i++) {
+		for (int i = 0; i < nodes.length; i++) {
 			board[nodeX[i]][nodeY[i]] = nodes[i];
 		}
-		
+
 		// 코인 생성
 		coins = new ArrayList<Coin>(161);
 		bigCoins = new ArrayList<BigCoin>(4);
-		
+
 		coins.add(new Coin(2, 2));
 		coins.add(new Coin(3, 2));
 		coins.add(new Coin(4, 2));
@@ -132,21 +132,21 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(16, 2));
 		coins.add(new Coin(17, 2));
 		coins.add(new Coin(18, 2));
-		
+
 		coins.add(new Coin(2, 3));
 		coins.add(new Coin(5, 3));
 		coins.add(new Coin(9, 3));
 		coins.add(new Coin(11, 3));
 		coins.add(new Coin(15, 3));
 		coins.add(new Coin(18, 3));
-		
+
 		bigCoins.add(new BigCoin(2, 4));
 		coins.add(new Coin(5, 4));
 		coins.add(new Coin(9, 4));
 		coins.add(new Coin(11, 4));
 		coins.add(new Coin(15, 4));
 		bigCoins.add(new BigCoin(18, 4));
-		
+
 		coins.add(new Coin(2, 5));
 		coins.add(new Coin(3, 5));
 		coins.add(new Coin(4, 5));
@@ -164,14 +164,14 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(16, 5));
 		coins.add(new Coin(17, 5));
 		coins.add(new Coin(18, 5));
-		
+
 		coins.add(new Coin(2, 6));
 		coins.add(new Coin(5, 6));
 		coins.add(new Coin(7, 6));
 		coins.add(new Coin(13, 6));
 		coins.add(new Coin(15, 6));
 		coins.add(new Coin(18, 6));
-		
+
 		coins.add(new Coin(2, 7));
 		coins.add(new Coin(3, 7));
 		coins.add(new Coin(4, 7));
@@ -187,7 +187,7 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(16, 7));
 		coins.add(new Coin(17, 7));
 		coins.add(new Coin(18, 7));
-		
+
 		coins.add(new Coin(5, 8));
 		coins.add(new Coin(15, 8));
 		coins.add(new Coin(5, 9));
@@ -202,7 +202,7 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(15, 13));
 		coins.add(new Coin(5, 14));
 		coins.add(new Coin(15, 14));
-		
+
 		coins.add(new Coin(2, 15));
 		coins.add(new Coin(3, 15));
 		coins.add(new Coin(4, 15));
@@ -219,14 +219,14 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(16, 15));
 		coins.add(new Coin(17, 15));
 		coins.add(new Coin(18, 15));
-		
+
 		coins.add(new Coin(2, 16));
 		coins.add(new Coin(5, 16));
 		coins.add(new Coin(9, 16));
 		coins.add(new Coin(11, 16));
 		coins.add(new Coin(15, 16));
 		coins.add(new Coin(18, 16));
-		
+
 		bigCoins.add(new BigCoin(2, 17));
 		coins.add(new Coin(3, 17));
 		coins.add(new Coin(5, 17));
@@ -242,14 +242,14 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(15, 17));
 		coins.add(new Coin(17, 17));
 		bigCoins.add(new BigCoin(18, 17));
-		
+
 		coins.add(new Coin(3, 18));
 		coins.add(new Coin(5, 18));
 		coins.add(new Coin(7, 18));
 		coins.add(new Coin(13, 18));
 		coins.add(new Coin(15, 18));
 		coins.add(new Coin(17, 18));
-		
+
 		coins.add(new Coin(2, 19));
 		coins.add(new Coin(3, 19));
 		coins.add(new Coin(4, 19));
@@ -264,12 +264,12 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(16, 19));
 		coins.add(new Coin(17, 19));
 		coins.add(new Coin(18, 19));
-		
+
 		coins.add(new Coin(2, 20));
 		coins.add(new Coin(9, 20));
 		coins.add(new Coin(11, 20));
 		coins.add(new Coin(18, 20));
-		
+
 		coins.add(new Coin(2, 21));
 		coins.add(new Coin(3, 21));
 		coins.add(new Coin(4, 21));
@@ -287,17 +287,17 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(16, 21));
 		coins.add(new Coin(17, 21));
 		coins.add(new Coin(18, 21));
-		
+
 		// 팩맨 생성
 		pacman = new Pacman(this);
-		
+
 		// 유령 생성
 		ghosts = new ArrayList<Ghost>(4);
-		
+
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Red));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Blue));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Orange));
 		ghosts.add(new Ghost(nodes[31], pacman, this, Ghost.GhostType.Pink));
 	}
-	
+
 }

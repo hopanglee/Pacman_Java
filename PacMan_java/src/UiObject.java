@@ -1,4 +1,4 @@
 
-public abstract class UiObject implements RenderableObject{
+public abstract class UiObject implements RenderableObject {
 
 }

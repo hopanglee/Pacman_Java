@@ -1,8 +1,4 @@
 
 public enum Vector2 {
-	Up,
-	Down ,
-	Right,
-	Left,
-	Zero
+	Up, Down, Right, Left, Zero
 }
