@@ -82,7 +82,7 @@ public class Pacman extends GameObject{
 			if(this.intersects(board.coins.get(i))) {
 				score += 10;
 				board.removeObject(board.coins.get(i));
-				System.out.println("코인과 충돌");
+				//System.out.println("코인과 충돌");
 				break;
 			}
 		}
@@ -114,7 +114,7 @@ public class Pacman extends GameObject{
 			Ghost temp = board.ghosts.get(i);
 			if(this.intersects(temp)) {
 				if(temp.currentMode != Ghost.Mode.Consumed) { // 이미 먹은 유령이 아니고
-					System.out.println("유령과 충돌");
+					//System.out.println("유령과 충돌");
 					 if(temp.currentMode == Ghost.Mode.frighted) { // 겁에 질린 유령이라면 유령이 죽음
 						 score += 200;
 						 temp.Consumed();
