@@ -28,7 +28,7 @@ public class Ghost extends GameObject{
 	private float frightenedModeTimer = 0; //frightenMode를 유지할 시간을 잼 -> 필요시 변환
 	public int frightenedModeDuration = 10; // frigtenedMode를 유지할 시간
 	
-	//rivate float blinkTimer = 0;
+	//private float blinkTimer = 0;
 	//public int startBlinkingAt = 7; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 	 
 	//private boolean frightenedModelsWhite = false; //아마 사용 안할 듯
@@ -75,7 +75,7 @@ public class Ghost extends GameObject{
 	private int boardHeight = 24;
 	public float[][] minDistance = new float[boardWidth][boardHeight];
 	
-	public int scale = 20;
+	private int scale = GameBoard.SCALE;
 	
 	public enum Mode{
 		Scatter,
@@ -201,12 +201,13 @@ public class Ghost extends GameObject{
 		Move();
 		CheckIsInGhostHouse();
 		
+		/*
 		if(ghostType == GhostType.Red)System.out.print("Red: ");
 		else if(ghostType == GhostType.Blue)System.out.print("blue: ");
 		else if(ghostType == GhostType.Orange)System.out.print("Orange: ");
 		else if(ghostType == GhostType.Pink)System.out.print("Pink: ");
 		
-		System.out.println("x = " + x + ", y = "+ y);
+		System.out.println("x = " + x + ", y = "+ y);*/
 	}
 	
 	void SetDijkstra(int x, int y) {
