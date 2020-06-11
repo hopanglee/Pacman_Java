@@ -247,7 +247,7 @@ public class Ghost extends GameObject{
 	}
 	
 	float GetDistance(GameObject a, GameObject b) {
-		float dx = a.x - b.y;
+		float dx = a.x - b.x;
 		float dy = a.y - b.y;
 		float dis = dx * dx + dy * dy;
 		return (float) Math.sqrt(dis);
