@@ -10,6 +10,7 @@ import java.util.List;
 
 //2019311680 김정원 작성
 public class Scene extends Canvas {
+
 	private List<RenderableObject> objs = new ArrayList<RenderableObject>();
 	private String subtitle = "";
 	private Graphics graphics;
