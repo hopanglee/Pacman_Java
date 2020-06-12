@@ -3,6 +3,7 @@ import java.awt.event.KeyListener;
 import java.io.IOException;
 import javax.swing.JFrame;
 
+//2019311680 김정원 작성
 public class Game extends JFrame implements Runnable {
 
 	public static final int WIDTH = 672;

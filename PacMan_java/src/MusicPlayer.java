@@ -1,6 +1,7 @@
 import java.io.File;
 import javax.sound.sampled.*;
 
+// 2019311680 김정원 작성
 public class MusicPlayer {
 	private Clip clip;
 	private File sound;

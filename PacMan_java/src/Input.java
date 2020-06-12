@@ -1,6 +1,7 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+// 2019311680 김정원 작성
 public class Input implements KeyListener {
 
 	private static final int KEY_COUNT = 256;

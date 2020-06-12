@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+//2019311680 김정원 작성
 public class MenuScene extends Scene {
 
 	private int menuIndex = 0;

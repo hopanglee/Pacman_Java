@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.ArrayList;
 
+// 2019311737 이진영 작성
 public class GameBoard { // Node들을 저장할 class
 
 	public Node[] nodes; // 맵에 존재하는 모든 노드를 담을 배열

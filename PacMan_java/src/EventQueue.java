@@ -2,6 +2,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+//2019311680 김정원 작성
 public class EventQueue {
 
 	private static Queue<GameEvent> events = new LinkedList<GameEvent>();
