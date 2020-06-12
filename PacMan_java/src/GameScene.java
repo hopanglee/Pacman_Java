@@ -12,12 +12,17 @@ public class GameScene extends Scene {
 	private int pauseMenuIndex = 0;
 	private static final String[] pauseMenuStrings = new String[] { "Resume", "Restart", "Back to Main Menu" };
 
+	public MusicPlayer musicPlayer = new MusicPlayer("/PAC-MAN.wav"); // À½¾Ç
+	
 	public GameScene(KeyListener input) {
 		super(input);
 		setSubtitle("Game");
 		addObject(new Map());
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
+		
+		musicPlayer.Stop();
+		musicPlayer.Play();
 	}
 
 	public void addObjectsFromGameBoard(GameBoard gb) {
@@ -52,14 +57,18 @@ public class GameScene extends Scene {
 					o = null;
 					break;
 				case GameClear:
+					musicPlayer.Stop();
 				case GameOver:
+					musicPlayer.Stop();
 				case GamePaused:
+					musicPlayer.Stop();
 					setRunningState(RunningState.PAUSED);
 					return;
 				}
 			}
 			break;
 		case PAUSED:
+			
 			GameEvent e = EventQueue.peekEvent();
 			switch (e.getEvent()) {
 			case GameClear:
