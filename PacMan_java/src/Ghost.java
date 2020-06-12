@@ -660,7 +660,7 @@ public class Ghost extends GameObject {
 				targetNode = ChooseNextNode();
 				previousNode = currentNode;
 				currentMode = Mode.Chase;
-				System.out.println("집 도착!");
+				//System.out.println("집 도착!");
 				// 스프라이트 변경
 			}
 		}

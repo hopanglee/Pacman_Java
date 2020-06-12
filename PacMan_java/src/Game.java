@@ -13,10 +13,11 @@ public class Game extends JFrame implements Runnable {
 	private int FPS = 60;
 
 	KeyListener keyInput = new Input();
-
 	Scene scene;
 	Thread thread;
 
+
+	
 	private static enum SceneState {
 		GAME, MENU
 	}
@@ -36,6 +37,8 @@ public class Game extends JFrame implements Runnable {
 
 		thread = new Thread(this);
 		thread.start();
+		
+
 	}
 
 	public synchronized void stop() {
@@ -46,6 +49,7 @@ public class Game extends JFrame implements Runnable {
 		} finally {
 			System.exit(0);
 		}
+		
 	}
 
 	public void run() {

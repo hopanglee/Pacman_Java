@@ -14,6 +14,7 @@ public class GameScene extends Scene {
 
 	private static final int READYTIME = 300;
 	private int readyTime = 0;
+	public MusicPlayer musicPlayer = new MusicPlayer("/PAC-MAN.wav"); // À½¾Ç
 	
 	public GameScene(KeyListener input) {
 		super(input);
@@ -21,6 +22,9 @@ public class GameScene extends Scene {
 		addObject(new Map());
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
+		
+		musicPlayer.Stop();
+		musicPlayer.Play();
 	}
 
 	public void addObjectsFromGameBoard(GameBoard gb) {
@@ -59,14 +63,18 @@ public class GameScene extends Scene {
 					o = null;
 					break;
 				case GameClear:
+					musicPlayer.Stop();
 				case GameOver:
+					musicPlayer.Stop();
 				case GamePaused:
+					musicPlayer.Stop();
 					setRunningState(RunningState.PAUSED);
 					return;
 				}
 			}
 			break;
 		case PAUSED:
+			
 			GameEvent e = EventQueue.peekEvent();
 			switch (e.getEvent()) {
 			case GameClear:
