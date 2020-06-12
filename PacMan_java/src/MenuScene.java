@@ -14,19 +14,12 @@ public class MenuScene extends Scene {
 
 	private int menuIndex = 0;
 	private static final String[] menuStrings = new String[] { "START", "CREDIT", "EXIT" };
-	private static final String[] creditStrings = new String[] {
-			"Kim Jeong-Won, Programmer & Sound",
-			"Game Loop, Scenes, Menu UI, and Other Systems",
-			"Lee Jin-Yeong, Programmer & Main Director",
-			"Pacman, Ghosts, Game UI, and Other Many Objects",
-			"",
-			"Images, Sounds from PACMAN(1980)",
-			"Pacman Main Theme Remixed by Kim Jeong-Won",
-			"",
-			"Thank you for playing game!",
-			"Press Any Key to Continue"
-	};
-	
+	private static final String[] creditStrings = new String[] { "Kim Jeong-Won, Programmer & Sound",
+			"Game Loop, Scenes, Menu UI, and Other Systems", "Lee Jin-Yeong, Programmer & Main Director",
+			"Pacman, Ghosts, Game UI, and Other Many Objects", "", "Images, Sounds from PACMAN(1980)",
+			"Pacman Main Theme Remixed by Kim Jeong-Won", "", "Thank you for playing game!",
+			"Press Any Key to Continue" };
+
 	private static BufferedImage PacmanLogo;
 
 	private MusicPlayer bgmPlayer = new MusicPlayer("/sound/PACMAN_THEME_REMIX.wav");
@@ -41,8 +34,8 @@ public class MenuScene extends Scene {
 			PacmanLogo = new BufferedImage(540, 175, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics g = PacmanLogo.getGraphics();
 			g.drawImage(img, 0, 0, this);
-			g.dispose();			
-			
+			g.dispose();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -64,8 +57,7 @@ public class MenuScene extends Scene {
 				} else {
 					--menuIndex;
 				}
-			} else if (Input.getKeyDown(KeyEvent.VK_ENTER)
-					|| Input.getKeyDown(KeyEvent.VK_SPACE)) {
+			} else if (Input.getKeyDown(KeyEvent.VK_ENTER) || Input.getKeyDown(KeyEvent.VK_SPACE)) {
 				switch (menuIndex) {
 				case 0: // Start Game
 					bgmPlayer.close();
@@ -90,7 +82,7 @@ public class MenuScene extends Scene {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void render() {
 		BufferStrategy buffer = getBufferStrategy();
@@ -98,8 +90,8 @@ public class MenuScene extends Scene {
 		switch (getRunningState()) {
 		case RUNNING:
 			super.render();
-			graphics.drawImage(PacmanLogo, Game.WIDTH/2 - PacmanLogo.getWidth()/2, 100, null);
-			
+			graphics.drawImage(PacmanLogo, Game.WIDTH / 2 - PacmanLogo.getWidth() / 2, 100, null);
+
 			int centerX = Game.WIDTH / 2;
 			int centerY = Game.HEIGHT / 2 + 100;
 			graphics.setFont(new Font("Thin Pixel-7", Font.BOLD, 50));
@@ -123,11 +115,17 @@ public class MenuScene extends Scene {
 			graphics.setColor(Color.WHITE);
 			for (int i = 0; i < 10; i++) {
 				int y = 80 * i;
-				switch(i) {
-				case 0: case 2: case 4: case 5: case 6: case 7:
+				switch (i) {
+				case 0:
+				case 2:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
 					graphics.setFont(new Font("Thin Pixel-7", Font.PLAIN, 40));
 					break;
-				case 1: case 3:
+				case 1:
+				case 3:
 					graphics.setFont(new Font("Thin Pixel-7", Font.PLAIN, 30));
 					break;
 				case 8:

@@ -34,7 +34,7 @@ public class GameScene extends Scene {
 		addObjects(gb.ghosts);
 	}
 
-	@Override 
+	@Override
 	public void start() {
 		super.start();
 		startBgm.play();
@@ -103,8 +103,7 @@ public class GameScene extends Scene {
 					} else {
 						--pauseMenuIndex;
 					}
-				} else if (Input.getKeyDown(KeyEvent.VK_ENTER)
-						|| Input.getKeyDown(KeyEvent.VK_SPACE)) {
+				} else if (Input.getKeyDown(KeyEvent.VK_ENTER) || Input.getKeyDown(KeyEvent.VK_SPACE)) {
 					switch (pauseMenuIndex) {
 					case 0:
 						EventQueue.popEvent();
@@ -144,13 +143,13 @@ public class GameScene extends Scene {
 			if (startTime < READYTIME) {
 				graphics.setColor(Color.yellow);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 26));
-				drawStringOnCenter(graphics, "READY...", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE,
-						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "READY...", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE, 5 * GameBoard.SCALE,
+						1 * GameBoard.SCALE, StringAlignment.Center);
 			} else if (startTime < STARTTIME) {
 				graphics.setColor(Color.yellow);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 26));
-				drawStringOnCenter(graphics, "..START!", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE,
-						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "..START!", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE, 5 * GameBoard.SCALE,
+						1 * GameBoard.SCALE, StringAlignment.Center);
 			}
 			break;
 		case PAUSED:
@@ -161,12 +160,12 @@ public class GameScene extends Scene {
 				// TODO: 클리어 화면 렌더링
 				graphics.setColor(Color.yellow);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 30));
-				drawStringOnCenter(graphics, "CLEAR!", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE,
-						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "CLEAR!", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE, 5 * GameBoard.SCALE,
+						1 * GameBoard.SCALE, StringAlignment.Center);
 				graphics.setColor(Color.white);
 				graphics.setFont(new Font("Computer Pixel-7", Font.BOLD, 30));
-				drawStringOnCenter(graphics, "Press <R> to Restart, <Enter> to Stop", 5 * GameBoard.SCALE, 23 * GameBoard.SCALE + 5,
-						17 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "Press <R> to Restart, <Enter> to Stop", 5 * GameBoard.SCALE,
+						23 * GameBoard.SCALE + 5, 17 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				break;
 			case GameOver:
 				// TODO: 게임오버 화면 렌더링
@@ -176,8 +175,8 @@ public class GameScene extends Scene {
 						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				graphics.setColor(Color.white);
 				graphics.setFont(new Font("Computer Pixel-7", Font.BOLD, 30));
-				drawStringOnCenter(graphics, "Press <R> to Restart, <Enter> to Stop", 5 * GameBoard.SCALE, 23 * GameBoard.SCALE + 5,
-						17 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "Press <R> to Restart, <Enter> to Stop", 5 * GameBoard.SCALE,
+						23 * GameBoard.SCALE + 5, 17 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				break;
 			case GamePaused:
 				// TODO: 게임 퍼즈 메뉴 렌더링

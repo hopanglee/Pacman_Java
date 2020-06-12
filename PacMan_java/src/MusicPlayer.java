@@ -31,31 +31,30 @@ public class MusicPlayer {
 	public void stop() {
 		clip.stop();
 	}
-	
+
 	public void close() {
 		clip.close();
 	}
 
-	public void playSound(float vol){
-		try{
-			final Clip clip = (Clip)AudioSystem.getLine(new Line.Info(Clip.class));
+	public void playSound(float vol) {
+		try {
+			final Clip clip = (Clip) AudioSystem.getLine(new Line.Info(Clip.class));
 			clip.open(AudioSystem.getAudioInputStream(sound));
-			clip.addLineListener(
-					new LineListener() {
-						@Override
-						public void update(LineEvent event) {
-							// TODO Auto-generated method stub
-							if(event.getType()==LineEvent.Type.STOP){
-								clip.close();
-							}
-						}
-					});
-			FloatControl volume = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+			clip.addLineListener(new LineListener() {
+				@Override
+				public void update(LineEvent event) {
+					// TODO Auto-generated method stub
+					if (event.getType() == LineEvent.Type.STOP) {
+						clip.close();
+					}
+				}
+			});
+			FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			volume.setValue(vol);
 			clip.start();
-			if(repeat)
+			if (repeat)
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
