@@ -487,7 +487,7 @@ public class Ghost extends GameObject {
 	}
 
 	void ModeUpdate() {
-		if (currentMode != Mode.frighted) {
+		if (currentMode != Mode.frighted  && !isInGhostHouse) {
 			modeChangeTimer++;
 			if (modeChangeIteration == 1) {
 				if (currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer1) {

@@ -179,17 +179,21 @@ public class GameScene extends Scene {
 				int centerX = Game.WIDTH / 2;
 				int centerY = Game.HEIGHT / 2;
 				graphics.setColor(Color.black);
-				graphics.fillRect(centerX - 250, centerY - 150, 500, 300);
-				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+				graphics.fillRect(centerX - 250, centerY - 140, 500, 260);
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 24));
 				for (int i = 0; i < 3; i++) {
 					if (i == pauseMenuIndex) {
 						graphics.setColor(Color.WHITE);
-						graphics.fillRect(centerX - 210, centerY + 100 * (i - 1) - 38, 420, 50);
+						graphics.fillRect(centerX - 220, centerY + 80 * (i - 1) - 38, 440, 50);
 						graphics.setColor(Color.black);
-						graphics.drawString(pauseMenuStrings[i], centerX - 200, centerY + 100 * (i - 1));
+						if(i==0) graphics.drawString(pauseMenuStrings[i], centerX - 90, centerY + 80 * (i - 1));
+						else if(i==1) graphics.drawString(pauseMenuStrings[i], centerX - 100, centerY + 80 * (i - 1));
+						else if(i==2) graphics.drawString(pauseMenuStrings[i], centerX - 210, centerY + 80 * (i - 1));
 					} else {
 						graphics.setColor(Color.WHITE);
-						graphics.drawString(pauseMenuStrings[i], centerX - 200, centerY + 100 * (i - 1));
+						if(i==0) graphics.drawString(pauseMenuStrings[i], centerX - 90, centerY + 80 * (i - 1));
+						else if(i==1) graphics.drawString(pauseMenuStrings[i], centerX - 100, centerY + 80 * (i - 1));
+						else if(i==2) graphics.drawString(pauseMenuStrings[i], centerX - 210, centerY + 80 * (i - 1));
 					}
 				}
 				break;
