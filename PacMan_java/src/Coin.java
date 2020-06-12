@@ -14,7 +14,7 @@ public class Coin extends GameObject {
 		this.x = x * scale;
 		this.y = y * scale;
 		try {
-			coinSprite = ImageIO.read(getClass().getResource("/smallcoin.png"));
+			coinSprite = ImageIO.read(getClass().getResource("/image/smallcoin.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

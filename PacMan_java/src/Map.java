@@ -11,27 +11,27 @@ public class Map extends UiObject {
 	public Map() {
 		wallSprite = new BufferedImage[21];
 		try {
-			wallSprite[0] = ImageIO.read(getClass().getResource("/wall0.png"));
-			wallSprite[1] = ImageIO.read(getClass().getResource("/wall1.png"));
-			wallSprite[2] = ImageIO.read(getClass().getResource("/wall2.png"));
-			wallSprite[3] = ImageIO.read(getClass().getResource("/wall3.png"));
-			wallSprite[4] = ImageIO.read(getClass().getResource("/wall4.png"));
-			wallSprite[5] = ImageIO.read(getClass().getResource("/wall5.png"));
-			wallSprite[6] = ImageIO.read(getClass().getResource("/wall6.png"));
-			wallSprite[7] = ImageIO.read(getClass().getResource("/wall7.png"));
-			wallSprite[8] = ImageIO.read(getClass().getResource("/wall8.png"));
-			wallSprite[9] = ImageIO.read(getClass().getResource("/wall9.png"));
-			wallSprite[10] = ImageIO.read(getClass().getResource("/wall10.png"));
-			wallSprite[11] = ImageIO.read(getClass().getResource("/wall11.png"));
-			wallSprite[12] = ImageIO.read(getClass().getResource("/wall12.png"));
-			wallSprite[13] = ImageIO.read(getClass().getResource("/wall13.png"));
-			wallSprite[14] = ImageIO.read(getClass().getResource("/wall14.png"));
-			wallSprite[15] = ImageIO.read(getClass().getResource("/wall15.png"));
-			wallSprite[16] = ImageIO.read(getClass().getResource("/wall16.png"));
-			wallSprite[17] = ImageIO.read(getClass().getResource("/wall17.png"));
-			wallSprite[18] = ImageIO.read(getClass().getResource("/wall18.png"));
-			wallSprite[19] = ImageIO.read(getClass().getResource("/wall19.png"));
-			wallSprite[20] = ImageIO.read(getClass().getResource("/wall20.png"));
+			wallSprite[0] = ImageIO.read(getClass().getResource("/image/wall0.png"));
+			wallSprite[1] = ImageIO.read(getClass().getResource("/image/wall1.png"));
+			wallSprite[2] = ImageIO.read(getClass().getResource("/image/wall2.png"));
+			wallSprite[3] = ImageIO.read(getClass().getResource("/image/wall3.png"));
+			wallSprite[4] = ImageIO.read(getClass().getResource("/image/wall4.png"));
+			wallSprite[5] = ImageIO.read(getClass().getResource("/image/wall5.png"));
+			wallSprite[6] = ImageIO.read(getClass().getResource("/image/wall6.png"));
+			wallSprite[7] = ImageIO.read(getClass().getResource("/image/wall7.png"));
+			wallSprite[8] = ImageIO.read(getClass().getResource("/image/wall8.png"));
+			wallSprite[9] = ImageIO.read(getClass().getResource("/image/wall9.png"));
+			wallSprite[10] = ImageIO.read(getClass().getResource("/image/wall10.png"));
+			wallSprite[11] = ImageIO.read(getClass().getResource("/image/wall11.png"));
+			wallSprite[12] = ImageIO.read(getClass().getResource("/image/wall12.png"));
+			wallSprite[13] = ImageIO.read(getClass().getResource("/image/wall13.png"));
+			wallSprite[14] = ImageIO.read(getClass().getResource("/image/wall14.png"));
+			wallSprite[15] = ImageIO.read(getClass().getResource("/image/wall15.png"));
+			wallSprite[16] = ImageIO.read(getClass().getResource("/image/wall16.png"));
+			wallSprite[17] = ImageIO.read(getClass().getResource("/image/wall17.png"));
+			wallSprite[18] = ImageIO.read(getClass().getResource("/image/wall18.png"));
+			wallSprite[19] = ImageIO.read(getClass().getResource("/image/wall19.png"));
+			wallSprite[20] = ImageIO.read(getClass().getResource("/image/wall20.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

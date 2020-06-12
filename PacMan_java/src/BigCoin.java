@@ -13,7 +13,7 @@ public class BigCoin extends Coin {
 		super(x, y);
 		// TODO Auto-generated constructor stub
 		try {
-			bigCoinSprite = ImageIO.read(getClass().getResource("/bigcoin.png"));
+			bigCoinSprite = ImageIO.read(getClass().getResource("/image/bigcoin.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
