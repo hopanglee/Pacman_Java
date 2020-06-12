@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -47,7 +49,7 @@ public class Ghost extends GameObject {
 	int movingSpeed = 2;
 	int frightenedMovingSpeed = 1;
 	int previousMovingSpeed;
-	int consumedMoveSpeed = 4;
+	int consumedMoveSpeed = 5;
 	int normalMoveSpeed = 2;
 
 	GameBoard board;
@@ -73,6 +75,17 @@ public class Ghost extends GameObject {
 
 	private int scale = GameBoard.SCALE;
 
+	int ghostReleaseTimer = 0;
+	int ghostReleaseDuration = 1*60;
+	boolean isInGhostHouse = true;
+	
+	// Score UI 관련
+	int ghostScore;
+	int scoreTimer = 0;
+	int scoreDuration = 1 * 60;
+	int scoreX, scoreY;
+	boolean scoreUi = false;
+	
 	public enum Mode {
 		Scatter, Chase, Consumed, frighted
 	}
@@ -138,21 +151,25 @@ public class Ghost extends GameObject {
 		case Red:
 			// System.out.println("red");
 			homeNode = board.nodes[71];
+			ghostReleaseDuration = 0;
 			break;
 
 		case Blue:
 			// System.out.println("blue");
 			homeNode = board.nodes[72];
+			ghostReleaseDuration = 1*60;
 			break;
 
 		case Orange:
 			// System.out.println("orange");
 			homeNode = board.nodes[73];
+			ghostReleaseDuration = 2*60;
 			break;
 
 		case Pink:
 			// System.out.println("pink");
 			homeNode = board.nodes[70];
+			ghostReleaseDuration = 3*60;
 			break;
 		}
 
@@ -187,15 +204,14 @@ public class Ghost extends GameObject {
 	public void update() {
 		ModeUpdate();
 		Move();
-
-		/*
-		 * if(ghostType == GhostType.Red) { if (currentNode ==
-		 * null)System.out.println("currentNode is null"); else
-		 * System.out.println("currentNode.x: "+currentNode.x + ", currentNode.y: " +
-		 * currentNode.y); }
-		 */
-		// CheckIsInGhostHouse();
-		// setLocation(x, y);
+		ReleaseGhost();
+		if(scoreUi) {
+			scoreTimer++;
+			
+			if(scoreTimer > scoreDuration) {
+				scoreUi = false;
+			}
+		}
 	}
 
 	void SetDijkstra(int x, int y) {
@@ -376,11 +392,11 @@ public class Ghost extends GameObject {
 		int targetx = 0, targety = 0;
 		switch (pacManOrientation) {
 		case Up:
-			targety = 4 * GameBoard.SCALE;
+			targety = -4 * GameBoard.SCALE;
 			break;
 
 		case Down:
-			targety = -4 * GameBoard.SCALE;
+			targety = 4 * GameBoard.SCALE;
 			break;
 
 		case Left:
@@ -406,11 +422,11 @@ public class Ghost extends GameObject {
 		int targetx = 0, targety = 0;
 		switch (pacManOrientation) {
 		case Up:
-			targety = -4 * GameBoard.SCALE;
+			targety = +4 * GameBoard.SCALE;
 			break;
 
 		case Down:
-			targety = +4 * GameBoard.SCALE;
+			targety = -4 * GameBoard.SCALE;
 			break;
 
 		case Left:
@@ -435,11 +451,11 @@ public class Ghost extends GameObject {
 		int targetx = 0, targety = 0;
 		switch (pacManOrientation) {
 		case Up:
-			targety = 4 * GameBoard.SCALE;
+			targety = -4 * GameBoard.SCALE;
 			break;
 
 		case Down:
-			targety = -4 * GameBoard.SCALE;
+			targety = +4 * GameBoard.SCALE;
 			break;
 
 		case Left:
@@ -571,7 +587,7 @@ public class Ghost extends GameObject {
 	}
 
 	void Move() {
-		if (currentNode != targetNode && targetNode != null) {
+		if (currentNode != targetNode && targetNode != null && !isInGhostHouse) {
 			if (OverShotTarget()) {
 				currentNode = targetNode;
 				x = currentNode.x;
@@ -650,7 +666,7 @@ public class Ghost extends GameObject {
 	}
 
 	// 팩맨과 충돌했을 때 죽음(consumed상태로 변경) (유령이 도망상태인 경우)
-	public void Consumed() {
+	public void Consumed(int score) {
 		imageIndex = 6;
 
 		currentMode = Mode.Consumed;
@@ -687,7 +703,12 @@ public class Ghost extends GameObject {
 				previousNode = temp;
 			}
 		}
-
+		
+		ghostScore = score;
+		scoreX = x;
+		scoreY = y;
+		scoreUi = true;
+		scoreTimer = 0;
 		// consumed 스프라이트로 변경
 	}
 
@@ -708,6 +729,18 @@ public class Ghost extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(ghostSprite[imageIndex], x, y, null);
-		// g.drawImage(ghostSprite[imageIndex], 200, 200, null);
+		
+		if(scoreUi) {
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
+			g.drawString(String.valueOf(ghostScore), scoreX, scoreY);
+		}
+	}
+	
+	void ReleaseGhost() {
+		ghostReleaseTimer++;
+		if(ghostReleaseTimer > ghostReleaseDuration) {
+			isInGhostHouse = false;
+		}
 	}
 }
