@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 // 2019311737 이진영 작성
 public class Ghost extends GameObject {
+
 	private BufferedImage[] ghostSprite;
 	/*
 	 * 유령 이미지 index (0: 오른쪽, 1: 위쪽, 2: 왼쪽, 3: 아래쪽, frightened : 4, Consumed: 5)
