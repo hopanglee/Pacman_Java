@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Map extends UiObject{
+public class Map extends UiObject {
 	private BufferedImage[] wallSprite;
-	
+
 	public Map() {
 		wallSprite = new BufferedImage[21];
 		try {
@@ -32,85 +32,52 @@ public class Map extends UiObject{
 			wallSprite[18] = ImageIO.read(getClass().getResource("/wall18.png"));
 			wallSprite[19] = ImageIO.read(getClass().getResource("/wall19.png"));
 			wallSprite[20] = ImageIO.read(getClass().getResource("/wall20.png"));
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void render(Graphics g) {
 		/*
-		g.setColor(Color.blue);
-		g.fillRect(35, 35, 602, 26);
-		g.fillRect(35, 35, 26, 250);
-		g.fillRect(35, 259, 122, 26);
-		g.fillRect(131, 259, 26, 90);
-		g.fillRect(35, 323, 122, 26);
-		g.fillRect(35, 387, 122, 26);
-		g.fillRect(131, 387, 26, 90);
-		g.fillRect(35, 451, 122, 26);
-		g.fillRect(35, 451, 26, 282);
-		g.fillRect(35, 579, 58, 26);
-		g.fillRect(35, 707, 602, 26);
-		g.fillRect(611, 451, 26, 282);
-		g.fillRect(579, 579, 58, 26);
-		g.fillRect(515, 451, 122, 26);
-		g.fillRect(515, 387, 26, 90);
-		g.fillRect(515, 387, 122, 26);
-		g.fillRect(515, 323, 122, 26);
-		g.fillRect(515, 259, 26, 90);
-		g.fillRect(515, 259, 122, 26);
-		g.fillRect(611, 35, 26, 250);
-		g.fillRect(99, 99, 58, 58);
-		g.fillRect(195, 99, 90, 58);
-		g.fillRect(323, 60, 26, 99);
-		g.fillRect(387, 99, 90, 58);
-		g.fillRect(515, 99, 58, 58);
-		g.fillRect(99, 195, 58, 26);
-		g.fillRect(195, 195, 26, 154);
-		g.fillRect(259, 195, 154, 26);
-		g.fillRect(451, 195, 26, 154);
-		g.fillRect(515, 195, 58, 26);
-		g.fillRect(195, 259, 90, 26);
-		g.fillRect(323, 259, 26, 26);
-		g.fillRect(387, 259, 90, 26);
-		g.fillRect(99, 195, 58, 26);
-		g.fillRect(259, 323, 58, 26);
-		g.fillRect(259, 323, 26, 90);
-		g.fillRect(259, 387, 154, 26);
-		g.fillRect(387, 323, 26, 90);
-		g.fillRect(355, 323, 58, 26);
-		g.fillRect(195, 387, 26, 90);
-		g.fillRect(451, 387, 26, 90);
-		g.fillRect(259, 451, 154, 26);
-		g.fillRect(323, 451, 26, 90);
-		g.fillRect(99, 515, 58, 26);
-		g.fillRect(195, 515, 90, 26);
-		g.fillRect(387, 515, 90, 26);
-		g.fillRect(515, 515, 58, 26);
-		g.fillRect(195, 579, 26, 90);
-		g.fillRect(259, 579, 154, 26);
-		g.fillRect(451, 579, 26, 90);
-		g.fillRect(323, 579, 26, 90);
-		g.fillRect(99, 643, 186, 26);
-		g.fillRect(387, 643, 186, 26);
-		g.fillRect(131, 515, 26, 90);
-		g.fillRect(515, 515, 26, 90);
-		*/
-		
+		 * g.setColor(Color.blue); g.fillRect(35, 35, 602, 26); g.fillRect(35, 35, 26,
+		 * 250); g.fillRect(35, 259, 122, 26); g.fillRect(131, 259, 26, 90);
+		 * g.fillRect(35, 323, 122, 26); g.fillRect(35, 387, 122, 26); g.fillRect(131,
+		 * 387, 26, 90); g.fillRect(35, 451, 122, 26); g.fillRect(35, 451, 26, 282);
+		 * g.fillRect(35, 579, 58, 26); g.fillRect(35, 707, 602, 26); g.fillRect(611,
+		 * 451, 26, 282); g.fillRect(579, 579, 58, 26); g.fillRect(515, 451, 122, 26);
+		 * g.fillRect(515, 387, 26, 90); g.fillRect(515, 387, 122, 26); g.fillRect(515,
+		 * 323, 122, 26); g.fillRect(515, 259, 26, 90); g.fillRect(515, 259, 122, 26);
+		 * g.fillRect(611, 35, 26, 250); g.fillRect(99, 99, 58, 58); g.fillRect(195, 99,
+		 * 90, 58); g.fillRect(323, 60, 26, 99); g.fillRect(387, 99, 90, 58);
+		 * g.fillRect(515, 99, 58, 58); g.fillRect(99, 195, 58, 26); g.fillRect(195,
+		 * 195, 26, 154); g.fillRect(259, 195, 154, 26); g.fillRect(451, 195, 26, 154);
+		 * g.fillRect(515, 195, 58, 26); g.fillRect(195, 259, 90, 26); g.fillRect(323,
+		 * 259, 26, 26); g.fillRect(387, 259, 90, 26); g.fillRect(99, 195, 58, 26);
+		 * g.fillRect(259, 323, 58, 26); g.fillRect(259, 323, 26, 90); g.fillRect(259,
+		 * 387, 154, 26); g.fillRect(387, 323, 26, 90); g.fillRect(355, 323, 58, 26);
+		 * g.fillRect(195, 387, 26, 90); g.fillRect(451, 387, 26, 90); g.fillRect(259,
+		 * 451, 154, 26); g.fillRect(323, 451, 26, 90); g.fillRect(99, 515, 58, 26);
+		 * g.fillRect(195, 515, 90, 26); g.fillRect(387, 515, 90, 26); g.fillRect(515,
+		 * 515, 58, 26); g.fillRect(195, 579, 26, 90); g.fillRect(259, 579, 154, 26);
+		 * g.fillRect(451, 579, 26, 90); g.fillRect(323, 579, 26, 90); g.fillRect(99,
+		 * 643, 186, 26); g.fillRect(387, 643, 186, 26); g.fillRect(131, 515, 26, 90);
+		 * g.fillRect(515, 515, 26, 90);
+		 */
+
 		g.drawImage(wallSprite[11], 1 * GameBoard.SCALE, 1 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 2 * GameBoard.SCALE, 1 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 3 * GameBoard.SCALE, 1 * GameBoard.SCALE, null);
@@ -130,11 +97,11 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 17 * GameBoard.SCALE, 1 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 18 * GameBoard.SCALE, 1 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[10], 19 * GameBoard.SCALE, 1 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 2 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 10 * GameBoard.SCALE, 2 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 2 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 3 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[15], 3 * GameBoard.SCALE, 3 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[14], 4 * GameBoard.SCALE, 3 * GameBoard.SCALE, null);
@@ -148,7 +115,7 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[15], 16 * GameBoard.SCALE, 3 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[14], 17 * GameBoard.SCALE, 3 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 3 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 4 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[16], 3 * GameBoard.SCALE, 4 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[17], 4 * GameBoard.SCALE, 4 * GameBoard.SCALE, null);
@@ -162,10 +129,10 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[16], 16 * GameBoard.SCALE, 4 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[17], 17 * GameBoard.SCALE, 4 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 4 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 5 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 5 * GameBoard.SCALE, null);
-	
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[4], 3 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 4 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
@@ -179,12 +146,12 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[4], 16 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 17 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 6 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 14 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[12], 1 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 2 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 3 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
@@ -200,12 +167,12 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 17 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 18 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[13], 19 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 4 * GameBoard.SCALE, 9 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 6 * GameBoard.SCALE, 9 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 14 * GameBoard.SCALE, 9 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 16 * GameBoard.SCALE, 9 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[1], 1 * GameBoard.SCALE, 10 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 2 * GameBoard.SCALE, 10 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 3 * GameBoard.SCALE, 10 * GameBoard.SCALE, null);
@@ -220,10 +187,10 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 17 * GameBoard.SCALE, 10 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 18 * GameBoard.SCALE, 10 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 19 * GameBoard.SCALE, 10 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 8 * GameBoard.SCALE, 11 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 12 * GameBoard.SCALE, 11 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[1], 1 * GameBoard.SCALE, 12 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 2 * GameBoard.SCALE, 12 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 3 * GameBoard.SCALE, 12 * GameBoard.SCALE, null);
@@ -239,12 +206,12 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 17 * GameBoard.SCALE, 12 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 18 * GameBoard.SCALE, 12 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 19 * GameBoard.SCALE, 12 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 4 * GameBoard.SCALE, 13 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 6 * GameBoard.SCALE, 13 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 14 * GameBoard.SCALE, 13 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 16 * GameBoard.SCALE, 13 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[11], 1 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 2 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 3 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
@@ -254,17 +221,17 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 9 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[7], 10 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 11 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
-		g.drawImage(wallSprite[2], 12 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);		
+		g.drawImage(wallSprite[2], 12 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[5], 14 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[12], 16 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 17 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 18 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[10], 19 * GameBoard.SCALE, 14 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 15 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 10 * GameBoard.SCALE, 15 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 15 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 16 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[4], 3 * GameBoard.SCALE, 16 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[10], 4 * GameBoard.SCALE, 16 * GameBoard.SCALE, null);
@@ -278,12 +245,12 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[11], 16 * GameBoard.SCALE, 16 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 17 * GameBoard.SCALE, 16 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 16 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 17 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 4 * GameBoard.SCALE, 17 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 16 * GameBoard.SCALE, 17 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 17 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[8], 1 * GameBoard.SCALE, 18 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 2 * GameBoard.SCALE, 18 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[5], 4 * GameBoard.SCALE, 18 * GameBoard.SCALE, null);
@@ -297,13 +264,13 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[5], 16 * GameBoard.SCALE, 18 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[4], 18 * GameBoard.SCALE, 18 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[6], 19 * GameBoard.SCALE, 18 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 19 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 6 * GameBoard.SCALE, 19 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 10 * GameBoard.SCALE, 19 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 14 * GameBoard.SCALE, 19 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 19 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 20 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[4], 3 * GameBoard.SCALE, 20 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 4 * GameBoard.SCALE, 20 * GameBoard.SCALE, null);
@@ -319,10 +286,10 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 16 * GameBoard.SCALE, 20 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 17 * GameBoard.SCALE, 20 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 20 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 21 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 21 * GameBoard.SCALE, null);
-		
+
 		g.drawImage(wallSprite[12], 1 * GameBoard.SCALE, 22 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 2 * GameBoard.SCALE, 22 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 3 * GameBoard.SCALE, 22 * GameBoard.SCALE, null);
@@ -342,8 +309,7 @@ public class Map extends UiObject{
 		g.drawImage(wallSprite[1], 17 * GameBoard.SCALE, 22 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 18 * GameBoard.SCALE, 22 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[13], 19 * GameBoard.SCALE, 22 * GameBoard.SCALE, null);
-		
-		
+
 		g.setColor(Color.white);
 		g.fillRect(317, 333, 38, 3);
 	}
