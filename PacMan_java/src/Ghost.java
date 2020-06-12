@@ -178,7 +178,7 @@ public class Ghost extends GameObject {
 		x = currentNode.x;
 		y = currentNode.y;
 
-		setBounds(x, y, 27, 27);
+		setBounds(x, y, 25, 25);
 
 		nodeX = board.nodeX;
 		nodeY = board.nodeY;
