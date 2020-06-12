@@ -1,11 +1,10 @@
 import java.awt.*;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.io.IOException;
 import javax.swing.JFrame;
 
 public class Game extends JFrame implements Runnable {
-
+	
 	public static final int WIDTH = 672;
 	public static final int HEIGHT = 812;
 	public static final String TITLE = "PACMAN";
@@ -38,7 +37,7 @@ public class Game extends JFrame implements Runnable {
 			e.printStackTrace();
 		}
 
-		SCENESTATE = SceneState.GAME;
+		SCENESTATE = SceneState.MENU;
 	}
 
 	public synchronized void start() {
@@ -82,7 +81,9 @@ public class Game extends JFrame implements Runnable {
 
 			switch (scene.getRunningState()) {
 			case RESTART:
-				System.out.println("Restart!!");
+				if (SCENESTATE == SceneState.MENU) {
+					SCENESTATE = SceneState.GAME;
+				}
 				remove(scene);
 				scene = null;
 				init();
