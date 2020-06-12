@@ -12,6 +12,8 @@ public class GameScene extends Scene {
 	private int pauseMenuIndex = 0;
 	private static final String[] pauseMenuStrings = new String[] { "Resume", "Restart", "Back to Main Menu" };
 
+	private static final int READYTIME = 300;
+	private int readyTime = 0;
 	public MusicPlayer musicPlayer = new MusicPlayer("/PAC-MAN.wav"); // 음악
 	
 	public GameScene(KeyListener input) {
@@ -21,7 +23,6 @@ public class GameScene extends Scene {
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
 		
-		musicPlayer.Stop();
 		musicPlayer.Play();
 	}
 
@@ -38,6 +39,10 @@ public class GameScene extends Scene {
 		case RUNNING:
 			if (Input.getKeyDown(KeyEvent.VK_ESCAPE)) {
 				EventQueue.pushEvent(GameEvent.EventType.GamePaused, null);
+				return;
+			}
+			if (readyTime < READYTIME) {
+				++readyTime;
 				return;
 			}
 			super.update();
@@ -129,6 +134,11 @@ public class GameScene extends Scene {
 		switch (getRunningState()) {
 		case RUNNING:
 			super.render();
+			if (readyTime < READYTIME) {
+				graphics.setColor(Color.yellow);
+				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+				drawStringOnCenter(graphics, "READY", 321, 481, 158, 30, StringAlignment.Center);
+			}
 			break;
 		case PAUSED:
 			super.render();
@@ -136,6 +146,8 @@ public class GameScene extends Scene {
 			switch (e.getEvent()) {
 			case GameClear:
 				// TODO: 클리어 화면 렌더링
+				graphics.setColor(Color.yellow);
+				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
 				break;
 			case GameOver:
 				// TODO: 게임오버 화면 렌더링
