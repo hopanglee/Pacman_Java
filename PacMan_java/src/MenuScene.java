@@ -47,7 +47,6 @@ public class MenuScene extends Scene {
 			}
 			break;
 		case PAUSED: // Credit
-
 			break;
 		default:
 			break;

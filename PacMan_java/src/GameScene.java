@@ -23,7 +23,6 @@ public class GameScene extends Scene {
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
 		
-		musicPlayer.Stop();
 		musicPlayer.Play();
 	}
 
