@@ -477,9 +477,10 @@ public class Ghost extends GameObject {
 
 	Node GetRandomTile() {
 		Random rand = new Random();
-		int targetx = rand.nextInt(boardWidth);
-		int targety = rand.nextInt(boardHeight);
-
+		rand.setSeed(System.currentTimeMillis());
+		int targetx = rand.nextInt(boardWidth * scale);
+		int targety = rand.nextInt(boardHeight * scale);
+		
 		Node targetTile = new Node(targetx, targety);
 
 		return targetTile;

@@ -12,7 +12,7 @@ public class Pacman extends GameObject {
 	public int score = 0; // 나중에 game클라스나 gameboard클라스의 score에 대체
 	int combo = 1; // 유령을 연속으로 잡을시 점수의 배수
 	int ghostAteTimer = 3 * 60;
-	int comboTime = 3 * 60;
+	int comboTime = 150; //(2.5초 * 60)
 	public boolean ghostAte = false; // 팩맨이 유령들을 방금 먹었는지
 
 	public Vector2 direction; // 팩맨의 이동 방향
