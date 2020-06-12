@@ -1,10 +1,8 @@
-import java.io.File;
 import javax.sound.sampled.*;
 
 // 2019311680 ±èÁ¤¿ø ÀÛ¼º
 public class MusicPlayer {
 	private Clip clip;
-	private File sound;
 
 	public MusicPlayer(String fileName) {
 		AudioInputStream stream;
@@ -12,8 +10,7 @@ public class MusicPlayer {
 		DataLine.Info info;
 
 		try {
-			sound = new File(getClass().getResource(fileName).toURI());
-			stream = AudioSystem.getAudioInputStream(sound);
+			stream = AudioSystem.getAudioInputStream(getClass().getResource(fileName));
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip) AudioSystem.getLine(info);
