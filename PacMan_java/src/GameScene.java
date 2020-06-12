@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.net.URISyntaxException;
 
 public class GameScene extends Scene {
 
@@ -65,6 +67,11 @@ public class GameScene extends Scene {
 						gameBoard.bigCoins.remove(o);
 					} else if (o instanceof Coin) {
 						gameBoard.coins.remove(o);
+						try {
+							MusicPlayer.playSound(new File(getClass().getResource("/sound/pacman_chomp.wav").toURI()), 1.f, false);
+						} catch (URISyntaxException e1) {
+							e1.printStackTrace();
+						}
 						// wakawaka.Play();
 					}
 					o = null;
