@@ -49,7 +49,10 @@ public class Game extends JFrame implements Runnable {
 
 	public synchronized void stop() {
 		try {
-			thread.join();
+			if (!thread.isInterrupted()) {
+				Thread.sleep(100);
+			}
+			thread.interrupt();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -88,10 +91,11 @@ public class Game extends JFrame implements Runnable {
 				scene = null;
 				init();
 				previousTime = System.nanoTime();
+				break;
 			case EXIT:
 				switch (SCENESTATE) {
 				case GAME:
-					SCENESTATE = SceneState.GAME;
+					SCENESTATE = SceneState.MENU;
 					remove(scene);
 					scene = null;
 					init();
@@ -135,7 +139,6 @@ public class Game extends JFrame implements Runnable {
 		scene.start();
 		setVisible(true);
 		scene.requestFocus();
-
 	}
 
 	public static void main(String[] args) {
