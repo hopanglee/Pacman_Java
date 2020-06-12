@@ -14,15 +14,15 @@ public class GameScene extends Scene {
 
 	private static final int READYTIME = 300;
 	private int readyTime = 0;
-	public MusicPlayer musicPlayer = new MusicPlayer("/PAC-MAN.wav"); // À½¾Ç
-	
+	public MusicPlayer musicPlayer = new MusicPlayer("/sound/PACMAN_THEME_REMIX.wav"); // À½¾Ç
+
 	public GameScene(KeyListener input) {
 		super(input);
 		setSubtitle("Game");
 		addObject(new Map());
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
-		
+
 		musicPlayer.Play();
 	}
 
@@ -73,7 +73,7 @@ public class GameScene extends Scene {
 			}
 			break;
 		case PAUSED:
-			
+
 			GameEvent e = EventQueue.peekEvent();
 			switch (e.getEvent()) {
 			case GameClear:
@@ -136,8 +136,9 @@ public class GameScene extends Scene {
 			super.render();
 			if (readyTime < READYTIME) {
 				graphics.setColor(Color.yellow);
-				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-				drawStringOnCenter(graphics, "READY", 321, 481, 158, 30, StringAlignment.Center);
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 30));
+				drawStringOnCenter(graphics, "READY", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
+						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 			}
 			break;
 		case PAUSED:
