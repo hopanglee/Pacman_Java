@@ -1,5 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
@@ -78,6 +80,36 @@ public class Scene extends Canvas {
 
 		for (RenderableObject o : objs) {
 			o.render(graphics);
+		}
+	}
+	
+	public static enum StringAlignment {
+		Normal,
+		HorizontalCenter,
+		VerticalCenter,
+		Center
+	}
+	public void drawStringOnCenter(Graphics g, String str, int x, int y, int w, int h, StringAlignment sa) {
+		Font f = g.getFont();
+		FontMetrics metrics = g.getFontMetrics(f);
+		int width = metrics.stringWidth(str);
+		int height = metrics.getHeight();
+		int centerX = x + w/2, centerY = y + h/2;
+		switch(sa) {
+		case Normal:
+			g.drawString(str, x, y);
+			break;
+		case HorizontalCenter:
+			g.drawString(str, centerX - width, y);
+			break;
+		case VerticalCenter:
+			g.drawString(str, x, centerY - height);
+			break;
+		case Center:
+			g.drawString(str, centerX - width, centerY - height);
+			break;
+		default:
+			break;
 		}
 	}
 
