@@ -316,6 +316,7 @@ public class Pacman extends GameObject {
 	// 코인 및 유령 및 빅코인과 충돌시 함수
 
 	// 그리기 함수
+	@Override
 	public void render(Graphics g) {
 		g.drawImage(pacmanSprite[imageIndex + animation_index / 3], x, y, null);
 
