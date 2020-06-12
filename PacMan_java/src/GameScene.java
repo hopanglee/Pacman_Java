@@ -7,6 +7,8 @@ import java.awt.image.BufferStrategy;
 import java.io.File;
 import java.net.URISyntaxException;
 
+
+
 public class GameScene extends Scene {
 
 	private GameBoard gameBoard = new GameBoard();
@@ -168,27 +170,37 @@ public class GameScene extends Scene {
 			case GameClear:
 				// TODO: 클리어 화면 렌더링
 				graphics.setColor(Color.yellow);
-				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 30));
+				drawStringOnCenter(graphics, "CLEAR", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
+						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				break;
 			case GameOver:
 				// TODO: 게임오버 화면 렌더링
+				graphics.setColor(Color.red);
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 25));
+				drawStringOnCenter(graphics, "GAME OVER", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
+						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				break;
 			case GamePaused:
 				// TODO: 게임 퍼즈 메뉴 렌더링
 				int centerX = Game.WIDTH / 2;
 				int centerY = Game.HEIGHT / 2;
 				graphics.setColor(Color.black);
-				graphics.fillRect(centerX - 300, centerY - 300, 600, 600);
-				graphics.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
-				for (int i = 0; i < 2; i++) {
+				graphics.fillRect(centerX - 250, centerY - 140, 500, 260);
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 24));
+				for (int i = 0; i < 3; i++) {
 					if (i == pauseMenuIndex) {
 						graphics.setColor(Color.WHITE);
-						graphics.fillRect(centerX - 210, centerY + 200 * (i - 1) - 10, 420, 50);
+						graphics.fillRect(centerX - 220, centerY + 80 * (i - 1) - 38, 440, 50);
 						graphics.setColor(Color.black);
-						graphics.drawString(pauseMenuStrings[i], centerX - 200, centerY + 200 * (i - 1));
+						if(i==0) graphics.drawString(pauseMenuStrings[i], centerX - 90, centerY + 80 * (i - 1));
+						else if(i==1) graphics.drawString(pauseMenuStrings[i], centerX - 100, centerY + 80 * (i - 1));
+						else if(i==2) graphics.drawString(pauseMenuStrings[i], centerX - 210, centerY + 80 * (i - 1));
 					} else {
 						graphics.setColor(Color.WHITE);
-						graphics.drawString(pauseMenuStrings[i], centerX - 200, centerY + 200 * (i - 1));
+						if(i==0) graphics.drawString(pauseMenuStrings[i], centerX - 90, centerY + 80 * (i - 1));
+						else if(i==1) graphics.drawString(pauseMenuStrings[i], centerX - 100, centerY + 80 * (i - 1));
+						else if(i==2) graphics.drawString(pauseMenuStrings[i], centerX - 210, centerY + 80 * (i - 1));
 					}
 				}
 				break;
