@@ -46,11 +46,11 @@ public class Ghost extends GameObject {
 	Node currentPosition;
 	Pacman pacMan;
 	Node currentNode, previousNode, targetNode, homeNode;
-	int movingSpeed = 2;
-	int frightenedMovingSpeed = 1;
+	int movingSpeed = 3;
+	int frightenedMovingSpeed = 2;
 	int previousMovingSpeed;
 	int consumedMoveSpeed = 5;
-	int normalMoveSpeed = 2;
+	int normalMoveSpeed = 3;
 
 	GameBoard board;
 	Vector2 direction, nextDirection;
