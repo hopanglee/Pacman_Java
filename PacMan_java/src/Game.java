@@ -81,7 +81,9 @@ public class Game extends JFrame implements Runnable {
 
 			switch (scene.getRunningState()) {
 			case RESTART:
-				System.out.println("Restart!!");
+				if (SCENESTATE == SceneState.MENU) {
+					SCENESTATE = SceneState.GAME;
+				}
 				remove(scene);
 				scene = null;
 				init();

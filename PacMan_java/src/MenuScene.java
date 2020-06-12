@@ -50,7 +50,7 @@ public class MenuScene extends Scene {
 			} else if (Input.getKeyDown(KeyEvent.VK_ENTER)) {
 				switch (menuIndex) {
 				case 0:
-					setRunningState(RunningState.RUNNING);
+					setRunningState(RunningState.RESTART);
 					break;
 				case 1:
 					setRunningState(RunningState.PAUSED);
