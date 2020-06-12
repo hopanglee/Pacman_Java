@@ -5,14 +5,15 @@ import javax.swing.JFrame;
 
 //2019311680 ±èÁ¤¿ø ÀÛ¼º
 public class Game extends JFrame implements Runnable {
-	
+
 	public static final int WIDTH = 672;
 	public static final int HEIGHT = 812;
 	public static final String TITLE = "PACMAN";
-	
-	//public static final Font GameFont = Font.createFont(Font.TRUETYPE_FONT, new File("PressStart2P.ttf")));
 
-	private int FPS = 60;
+	// public static final Font GameFont = Font.createFont(Font.TRUETYPE_FONT, new
+	// File("PressStart2P.ttf")));
+
+	private static int FPS = 60;
 
 	KeyListener keyInput = new Input();
 	Scene scene;
@@ -29,11 +30,15 @@ public class Game extends JFrame implements Runnable {
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		requestFocus();
-		
-		GraphicsEnvironment ge = 
-				GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		try {
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/font/PressStart2P.ttf")));
+			ge.registerFont(
+					Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/font/PressStart2P.ttf")));
+			ge.registerFont(
+					Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/font/ComputerPixel-7.ttf")));
+			ge.registerFont(
+					Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/font/ThinPixel-7.ttf")));
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}

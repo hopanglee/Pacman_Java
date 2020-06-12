@@ -13,7 +13,7 @@ public class Pacman extends GameObject {
 	public int score = 0; // 나중에 game클라스나 gameboard클라스의 score에 대체
 	int combo = 1; // 유령을 연속으로 잡을시 점수의 배수
 	int ghostAteTimer = 3 * 60;
-	int comboTime = 150; //(2.5초 * 60)
+	int comboTime = 150; // (2.5초 * 60)
 	public boolean ghostAte = false; // 팩맨이 유령들을 방금 먹었는지
 
 	public Vector2 direction; // 팩맨의 이동 방향
@@ -27,6 +27,9 @@ public class Pacman extends GameObject {
 	private int animation_index = 0; // 팩맨 애니메이션 index (0,1,2,1)
 
 	private Vector2 nextDirection; // 방향키를 눌러서 팩맨이 움직일 방향
+
+	private MusicPlayer gameOverBgm = new MusicPlayer("/sound/pacman_death.wav");
+	private MusicPlayer gameClearBgm = new MusicPlayer("/sound/pacman_intermission.wav");
 
 	private GameBoard board;
 
@@ -110,6 +113,7 @@ public class Pacman extends GameObject {
 		// 모든 coin을 다 먹음 -> Game Clear
 		if (board.coins.size() == 0 && board.bigCoins.size() == 0) {
 			EventQueue.pushEvent(GameEvent.EventType.GameClear, null);
+			gameClearBgm.play();
 			// System.out.println("Game Clear!");
 			return;
 		}
@@ -129,6 +133,7 @@ public class Pacman extends GameObject {
 					} else { // 아니라면 팩맨이 잡힘
 								// Game Over (목숨 3개?)
 						EventQueue.pushEvent(GameEvent.EventType.GameOver, null);
+						gameOverBgm.play();
 						System.out.println("Game Over!");
 						return;
 					}

@@ -14,7 +14,6 @@ public class GameBoard { // Node들을 저장할 class
 	public List<Ghost> ghosts; // 맵에 존재하는 모든 유령을 담을 배열
 	public Pacman pacman; // 팩맨 생성
 
-
 	private int boardWidth = 21;
 	private int boardHeight = 24;
 

@@ -35,8 +35,8 @@ public class GameScene extends Scene {
 		addObjects(gb.coins);
 		addObjects(gb.ghosts);
 	}
-	
-	@Override 
+
+	@Override
 	public void start() {
 		super.start();
 		startBgm.play();
@@ -61,13 +61,11 @@ public class GameScene extends Scene {
 				case RemoveObject:
 					EventQueue.popEvent();
 					RenderableObject o = e.getObject();
-					System.out.println(o.toString());
 					removeObject(o);
 					if (o instanceof BigCoin) {
 						gameBoard.bigCoins.remove(o);
 					} else if (o instanceof Coin) {
 						gameBoard.coins.remove(o);
-						// wakawaka.Play();
 					}
 					o = null;
 					break;
@@ -107,7 +105,7 @@ public class GameScene extends Scene {
 					} else {
 						--pauseMenuIndex;
 					}
-				} else if (Input.getKeyDown(KeyEvent.VK_ENTER)) {
+				} else if (Input.getKeyDown(KeyEvent.VK_ENTER) || Input.getKeyDown(KeyEvent.VK_SPACE)) {
 					switch (pauseMenuIndex) {
 					case 0:
 						EventQueue.popEvent();
@@ -147,13 +145,13 @@ public class GameScene extends Scene {
 			if (startTime < READYTIME) {
 				graphics.setColor(Color.yellow);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 26));
-				drawStringOnCenter(graphics, "READY...", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
-						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "READY...", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE, 5 * GameBoard.SCALE,
+						1 * GameBoard.SCALE, StringAlignment.Center);
 			} else if (startTime < STARTTIME) {
 				graphics.setColor(Color.yellow);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 26));
-				drawStringOnCenter(graphics, "START!!", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
-						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "..START!", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE, 5 * GameBoard.SCALE,
+						1 * GameBoard.SCALE, StringAlignment.Center);
 			}
 			break;
 		case PAUSED:
@@ -164,15 +162,23 @@ public class GameScene extends Scene {
 				// TODO: 클리어 화면 렌더링
 				graphics.setColor(Color.yellow);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 30));
-				drawStringOnCenter(graphics, "CLEAR", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
-						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				drawStringOnCenter(graphics, "CLEAR!", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE, 5 * GameBoard.SCALE,
+						1 * GameBoard.SCALE, StringAlignment.Center);
+				graphics.setColor(Color.white);
+				graphics.setFont(new Font("Computer Pixel-7", Font.BOLD, 30));
+				drawStringOnCenter(graphics, "Press <R> to Restart, <Enter> to Stop", 5 * GameBoard.SCALE,
+						23 * GameBoard.SCALE + 5, 17 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				break;
 			case GameOver:
 				// TODO: 게임오버 화면 렌더링
 				graphics.setColor(Color.red);
 				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 25));
-				drawStringOnCenter(graphics, "GAME OVER", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
+				drawStringOnCenter(graphics, "GAME OVER", 8 * GameBoard.SCALE, 13 * GameBoard.SCALE,
 						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+				graphics.setColor(Color.white);
+				graphics.setFont(new Font("Computer Pixel-7", Font.BOLD, 30));
+				drawStringOnCenter(graphics, "Press <R> to Restart, <Enter> to Stop", 5 * GameBoard.SCALE,
+						23 * GameBoard.SCALE + 5, 17 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 				break;
 			case GamePaused:
 				// TODO: 게임 퍼즈 메뉴 렌더링
@@ -180,20 +186,18 @@ public class GameScene extends Scene {
 				int centerY = Game.HEIGHT / 2;
 				graphics.setColor(Color.black);
 				graphics.fillRect(centerX - 250, centerY - 140, 500, 260);
-				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 24));
+				graphics.setFont(new Font("Thin Pixel-7", Font.BOLD, 40));
 				for (int i = 0; i < 3; i++) {
+					int x = centerX - 220;
+					int y = centerY + 80 * (i - 1) - 38;
 					if (i == pauseMenuIndex) {
 						graphics.setColor(Color.WHITE);
 						graphics.fillRect(centerX - 220, centerY + 80 * (i - 1) - 38, 440, 50);
 						graphics.setColor(Color.black);
-						if(i==0) graphics.drawString(pauseMenuStrings[i], centerX - 90, centerY + 80 * (i - 1));
-						else if(i==1) graphics.drawString(pauseMenuStrings[i], centerX - 100, centerY + 80 * (i - 1));
-						else if(i==2) graphics.drawString(pauseMenuStrings[i], centerX - 210, centerY + 80 * (i - 1));
+						drawStringOnCenter(graphics, pauseMenuStrings[i], x, y, 440, 50, StringAlignment.Center);
 					} else {
 						graphics.setColor(Color.WHITE);
-						if(i==0) graphics.drawString(pauseMenuStrings[i], centerX - 90, centerY + 80 * (i - 1));
-						else if(i==1) graphics.drawString(pauseMenuStrings[i], centerX - 100, centerY + 80 * (i - 1));
-						else if(i==2) graphics.drawString(pauseMenuStrings[i], centerX - 210, centerY + 80 * (i - 1));
+						drawStringOnCenter(graphics, pauseMenuStrings[i], x, y, 440, 50, StringAlignment.Center);
 					}
 				}
 				break;

@@ -73,16 +73,16 @@ public class Ghost extends GameObject {
 	private int scale = GameBoard.SCALE;
 
 	int ghostReleaseTimer = 0;
-	int ghostReleaseDuration = 1*60;
+	int ghostReleaseDuration = 1 * 60;
 	boolean isInGhostHouse = true;
-	
+
 	// Score UI 관련
 	int ghostScore;
 	int scoreTimer = 0;
 	int scoreDuration = 1 * 60;
 	int scoreX, scoreY;
 	boolean scoreUi = false;
-	
+
 	public enum Mode {
 		Scatter, Chase, Consumed, frighted
 	}
@@ -154,19 +154,19 @@ public class Ghost extends GameObject {
 		case Blue:
 			// System.out.println("blue");
 			homeNode = board.nodes[72];
-			ghostReleaseDuration = 1*60;
+			ghostReleaseDuration = 1 * 60;
 			break;
 
 		case Orange:
 			// System.out.println("orange");
 			homeNode = board.nodes[73];
-			ghostReleaseDuration = 2*60;
+			ghostReleaseDuration = 2 * 60;
 			break;
 
 		case Pink:
 			// System.out.println("pink");
 			homeNode = board.nodes[70];
-			ghostReleaseDuration = 3*60;
+			ghostReleaseDuration = 3 * 60;
 			break;
 		}
 
@@ -202,10 +202,10 @@ public class Ghost extends GameObject {
 		ModeUpdate();
 		Move();
 		ReleaseGhost();
-		if(scoreUi) {
+		if (scoreUi) {
 			scoreTimer++;
-			
-			if(scoreTimer > scoreDuration) {
+
+			if (scoreTimer > scoreDuration) {
 				scoreUi = false;
 			}
 		}
@@ -477,14 +477,14 @@ public class Ghost extends GameObject {
 		rand.setSeed(System.currentTimeMillis());
 		int targetx = rand.nextInt(boardWidth * scale);
 		int targety = rand.nextInt(boardHeight * scale);
-		
+
 		Node targetTile = new Node(targetx, targety);
 
 		return targetTile;
 	}
 
 	void ModeUpdate() {
-		if (currentMode != Mode.frighted  && !isInGhostHouse) {
+		if (currentMode != Mode.frighted && !isInGhostHouse) {
 			modeChangeTimer++;
 			if (modeChangeIteration == 1) {
 				if (currentMode == Mode.Scatter && modeChangeTimer > scatterModeTimer1) {
@@ -657,7 +657,7 @@ public class Ghost extends GameObject {
 				targetNode = ChooseNextNode();
 				previousNode = currentNode;
 				currentMode = Mode.Chase;
-				//System.out.println("집 도착!");
+				// System.out.println("집 도착!");
 				// 스프라이트 변경
 			}
 		}
@@ -701,7 +701,7 @@ public class Ghost extends GameObject {
 				previousNode = temp;
 			}
 		}
-		
+
 		ghostScore = score;
 		scoreX = x;
 		scoreY = y;
@@ -727,17 +727,17 @@ public class Ghost extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(ghostSprite[imageIndex], x, y, null);
-		
-		if(scoreUi) {
+
+		if (scoreUi) {
 			g.setColor(Color.WHITE);
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
 			g.drawString(String.valueOf(ghostScore), scoreX, scoreY);
 		}
 	}
-	
+
 	void ReleaseGhost() {
 		ghostReleaseTimer++;
-		if(ghostReleaseTimer > ghostReleaseDuration) {
+		if (ghostReleaseTimer > ghostReleaseDuration) {
 			isInGhostHouse = false;
 		}
 	}
