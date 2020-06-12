@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+// 2019311737 이진영 작성
 public class Ghost extends GameObject {
 	private BufferedImage[] ghostSprite;
 	/*
@@ -14,10 +15,6 @@ public class Ghost extends GameObject {
 	 */
 	private int imageIndex = 0;
 
-	// public float ghostReleaseTimer = 0; // 유령이 나오는 시간 -> 사용안할 수도 있음
-	// public int pinkyReleaseTimer = 5;
-
-	// public boolean isInGhostHouse = true; // 유령이 현재 집에 있는지
 
 	/*
 	 * 난이도마다 탐지 시간과 추격 시간 scatter : 탐지, chase : 추격 시간이 갈수록 탐지시간이 짧아지고 추격시간이 늘어남
@@ -29,7 +26,7 @@ public class Ghost extends GameObject {
 	private float blinkTimer = 0;
 	public int startBlinkingAt = 6 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 
-	private boolean frightenedModelsWhite = false; // 아마 사용 안할 듯 -> 이걸 만들게됬네?
+	private boolean frightenedModelsWhite = false; 
 
 	public float scatterModeTimer1 = 4 * 60; // 60 = 60fps때문
 	public float chaseModeTimer1 = 4 * 60;

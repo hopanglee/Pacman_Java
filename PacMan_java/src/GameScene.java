@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 
-
+// 2019311680 김정원 작성
 public class GameScene extends Scene {
 
 	private GameBoard gameBoard = new GameBoard();

@@ -1,4 +1,5 @@
 
+// 2019311680 김정원 작성
 public class GameEvent {
 
 	public static enum EventType {

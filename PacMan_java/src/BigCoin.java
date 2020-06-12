@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+// 2019311737 이진영 작성
 public class BigCoin extends Coin {
 	private int scale = GameBoard.SCALE;
 

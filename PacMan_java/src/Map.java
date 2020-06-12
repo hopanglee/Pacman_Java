@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+// 2019311737 이진영 작성
 public class Map extends UiObject {
 	private BufferedImage[] wallSprite;
 

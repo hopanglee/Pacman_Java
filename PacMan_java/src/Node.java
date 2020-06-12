@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 
+// 2019311737 이진영 작성
 public class Node extends GameObject { // GameObject를 상속받을 때 x,y위치 변수 갖음
 
 	public Node[] temp = new Node[4]; // 해당 노드에서 갈 수 있는 노드를 임시 저장 (0: 오른쪽, 1: 아래, 2: 왼쪽, 3: 위쪽)

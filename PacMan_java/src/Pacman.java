@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.imageio.ImageIO;
 
+//2019311737 이진영 작성
 public class Pacman extends GameObject {
 
 	public int score = 0; // 나중에 game클라스나 gameboard클라스의 score에 대체
