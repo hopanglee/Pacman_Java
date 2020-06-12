@@ -23,12 +23,17 @@ public class MusicPlayer {
 		}
 	}
 
-	public void Play() {
+	public void play() {
+		System.out.println("Play BGM: " + clip.toString());
 		clip.start();
 	}
 
-	public void Stop() {
+	public void stop() {
 		clip.stop();
+	}
+	
+	public void close() {
+		clip.close();
 	}
 
 	public void playSound(File file, float vol, boolean repeat){

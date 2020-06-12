@@ -15,9 +15,10 @@ public class GameScene extends Scene {
 	private static final String[] pauseMenuStrings = new String[] { "Resume", "Restart", "Back to Main Menu" };
 
 	private static final int READYTIME = 240;
-	private int readyTime = 0;
-	
-	private MusicPlayer bgmPlayer = new MusicPlayer("/sound/PACMAN_THEME_REMIX.wav");
+	private static final int STARTTIME = 300;
+	private int startTime = 0;
+
+	private MusicPlayer startBgm = new MusicPlayer("/sound/pacman_beginning.wav");
 	private MusicPlayer wakawaka = new MusicPlayer("/sound/pacman_chomp.wav");
 
 	public GameScene(KeyListener input) {
@@ -26,8 +27,6 @@ public class GameScene extends Scene {
 		addObject(new Map());
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
-
-		bgmPlayer.Play();
 	}
 
 	public void addObjectsFromGameBoard(GameBoard gb) {
@@ -35,6 +34,12 @@ public class GameScene extends Scene {
 		addObjects(gb.bigCoins);
 		addObjects(gb.coins);
 		addObjects(gb.ghosts);
+	}
+	
+	@Override 
+	public void start() {
+		super.start();
+		startBgm.play();
 	}
 
 	@Override
@@ -45,8 +50,8 @@ public class GameScene extends Scene {
 				EventQueue.pushEvent(GameEvent.EventType.GamePaused, null);
 				return;
 			}
-			if (readyTime < READYTIME) {
-				++readyTime;
+			if (startTime < STARTTIME) {
+				++startTime;
 				return;
 			}
 			super.update();
@@ -62,16 +67,13 @@ public class GameScene extends Scene {
 						gameBoard.bigCoins.remove(o);
 					} else if (o instanceof Coin) {
 						gameBoard.coins.remove(o);
-						wakawaka.Play();
+						// wakawaka.Play();
 					}
 					o = null;
 					break;
 				case GameClear:
-					bgmPlayer.Stop();
 				case GameOver:
-					bgmPlayer.Stop();
 				case GamePaused:
-					bgmPlayer.Stop();
 					setRunningState(RunningState.PAUSED);
 					return;
 				}
@@ -108,12 +110,15 @@ public class GameScene extends Scene {
 				} else if (Input.getKeyDown(KeyEvent.VK_ENTER)) {
 					switch (pauseMenuIndex) {
 					case 0:
+						EventQueue.popEvent();
 						setRunningState(RunningState.RUNNING);
 						break;
 					case 1:
+						EventQueue.popEvent();
 						setRunningState(RunningState.RESTART);
 						break;
 					case 2:
+						EventQueue.popEvent();
 						setRunningState(RunningState.EXIT);
 						break;
 					}
@@ -139,10 +144,15 @@ public class GameScene extends Scene {
 		switch (getRunningState()) {
 		case RUNNING:
 			super.render();
-			if (readyTime < READYTIME) {
+			if (startTime < READYTIME) {
 				graphics.setColor(Color.yellow);
-				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 30));
-				drawStringOnCenter(graphics, "READY", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 26));
+				drawStringOnCenter(graphics, "READY...", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
+						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
+			} else if (startTime < STARTTIME) {
+				graphics.setColor(Color.yellow);
+				graphics.setFont(new Font("Press Start 2P", Font.BOLD, 26));
+				drawStringOnCenter(graphics, "START!!", 8 * GameBoard.SCALE, 14 * GameBoard.SCALE,
 						5 * GameBoard.SCALE, 1 * GameBoard.SCALE, StringAlignment.Center);
 			}
 			break;

@@ -15,8 +15,11 @@ public class MenuScene extends Scene {
 	
 	private static BufferedImage PacmanLogo;
 
+	private MusicPlayer bgmPlayer = new MusicPlayer("/sound/PACMAN_THEME_REMIX.wav");
+
 	public MenuScene(KeyListener input) {
 		super(input);
+		bgmPlayer.play();
 		setSubtitle("Start Menu");
 		try {
 			Image img = ImageIO.read(getClass().getResource("/image/Pacman_Logo.png"));
@@ -50,12 +53,14 @@ public class MenuScene extends Scene {
 			} else if (Input.getKeyDown(KeyEvent.VK_ENTER)) {
 				switch (menuIndex) {
 				case 0:
+					bgmPlayer.close();
 					setRunningState(RunningState.RESTART);
 					break;
 				case 1:
 					setRunningState(RunningState.PAUSED);
 					break;
 				case 2:
+					bgmPlayer.close();
 					setRunningState(RunningState.EXIT);
 					break;
 				}
