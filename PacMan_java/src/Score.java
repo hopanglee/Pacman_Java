@@ -27,5 +27,4 @@ public class Score extends UiObject {
 	public void render(Graphics g) {
 		g.drawString("Score   " + score.toString(), x, y);
 	}
-
 }

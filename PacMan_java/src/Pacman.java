@@ -27,6 +27,9 @@ public class Pacman extends GameObject {
 
 	private Vector2 nextDirection; // 방향키를 눌러서 팩맨이 움직일 방향
 
+	private MusicPlayer gameOverBgm = new MusicPlayer("/sound/pacman_death.wav");
+	private MusicPlayer gameClearBgm = new MusicPlayer("/sound/pacman_intermission.wav");
+
 	private GameBoard board;
 
 	public Pacman(GameBoard board) {
@@ -109,6 +112,7 @@ public class Pacman extends GameObject {
 		// 모든 coin을 다 먹음 -> Game Clear
 		if (board.coins.size() == 0 && board.bigCoins.size() == 0) {
 			EventQueue.pushEvent(GameEvent.EventType.GameClear, null);
+			gameClearBgm.play();
 			// System.out.println("Game Clear!");
 			return;
 		}
@@ -128,6 +132,7 @@ public class Pacman extends GameObject {
 					} else { // 아니라면 팩맨이 잡힘
 								// Game Over (목숨 3개?)
 						EventQueue.pushEvent(GameEvent.EventType.GameOver, null);
+						gameOverBgm.play();
 						System.out.println("Game Over!");
 						return;
 					}

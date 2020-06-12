@@ -14,6 +14,18 @@ public class MenuScene extends Scene {
 
 	private int menuIndex = 0;
 	private static final String[] menuStrings = new String[] { "START", "CREDIT", "EXIT" };
+	private static final String[] creditStrings = new String[] {
+			"Kim Jeong-Won, Programmer & Sound",
+			"Game Loop, Scenes, Menu UI, and Other Systems",
+			"Lee Jin-Yeong, Programmer & Main Director",
+			"Pacman, Ghosts, Game UI, and Other Many Objects",
+			"",
+			"Images, Sounds from PACMAN(1980)",
+			"Pacman Main Theme Remixed by Kim Jeong-Won",
+			"",
+			"Thank you for playing game!",
+			"Press Any Key to Continue"
+	};
 	
 	private static BufferedImage PacmanLogo;
 
@@ -52,16 +64,17 @@ public class MenuScene extends Scene {
 				} else {
 					--menuIndex;
 				}
-			} else if (Input.getKeyDown(KeyEvent.VK_ENTER)) {
+			} else if (Input.getKeyDown(KeyEvent.VK_ENTER)
+					|| Input.getKeyDown(KeyEvent.VK_SPACE)) {
 				switch (menuIndex) {
-				case 0:
+				case 0: // Start Game
 					bgmPlayer.close();
 					setRunningState(RunningState.RESTART);
 					break;
-				case 1:
+				case 1: // Credit
 					setRunningState(RunningState.PAUSED);
 					break;
-				case 2:
+				case 2: // Exit
 					bgmPlayer.close();
 					setRunningState(RunningState.EXIT);
 					break;
@@ -69,6 +82,9 @@ public class MenuScene extends Scene {
 			}
 			break;
 		case PAUSED: // Credit
+			if (Input.getAnyKeyDown()) {
+				setRunningState(RunningState.RUNNING);
+			}
 			break;
 		default:
 			break;
@@ -86,27 +102,44 @@ public class MenuScene extends Scene {
 			
 			int centerX = Game.WIDTH / 2;
 			int centerY = Game.HEIGHT / 2 + 100;
-			graphics.setColor(Color.black);
-			graphics.fillRect(centerX - 250, centerY - 150, 500, 300);
-			graphics.setFont(new Font("Press Start 2P", Font.BOLD, 30));
+			graphics.setFont(new Font("Thin Pixel-7", Font.BOLD, 50));
 			for (int i = 0; i < 3; i++) {
+				int x = centerX - 210;
+				int y = centerY + 80 * (i - 1) - 38;
 				if (i == menuIndex) {
 					graphics.setColor(Color.WHITE);
-					graphics.fillRect(centerX - 210, centerY + 80 * (i - 1) - 38, 420, 50);
+					graphics.fillRect(x, y, 420, 50);
 					graphics.setColor(Color.black);
-					if(i==0) graphics.drawString(menuStrings[i], centerX - 78, centerY + 80 * (i - 1));
-					else if(i==1) graphics.drawString(menuStrings[i], centerX - 95, centerY + 80 * (i - 1));
-					else if(i==2) graphics.drawString(menuStrings[i], centerX - 65, centerY + 80 * (i - 1));
+					drawStringOnCenter(graphics, menuStrings[i], x, y, 420, 50, StringAlignment.Center);
 				} else {
 					graphics.setColor(Color.WHITE);
-					if(i==0) graphics.drawString(menuStrings[i], centerX - 78, centerY + 80 * (i - 1));
-					else if(i==1) graphics.drawString(menuStrings[i], centerX - 95, centerY + 80 * (i - 1));
-					else if(i==2) graphics.drawString(menuStrings[i], centerX - 65, centerY + 80 * (i - 1));
-					//graphics.drawString(menuStrings[i], centerX - 100, centerY + 80 * (i - 1));
+					drawStringOnCenter(graphics, menuStrings[i], x, y, 420, 50, StringAlignment.Center);
 				}
 			}
 			break;
 		case PAUSED:
+			super.render();
+			int x = Game.WIDTH / 2 - 300;
+			graphics.setColor(Color.WHITE);
+			for (int i = 0; i < 10; i++) {
+				int y = 80 * i;
+				switch(i) {
+				case 0: case 2: case 4: case 5: case 6: case 7:
+					graphics.setFont(new Font("Thin Pixel-7", Font.PLAIN, 40));
+					break;
+				case 1: case 3:
+					graphics.setFont(new Font("Thin Pixel-7", Font.PLAIN, 30));
+					break;
+				case 8:
+					graphics.setFont(new Font("Press Start 2P", Font.BOLD, 22));
+					break;
+				case 9:
+					graphics.setColor(Color.yellow);
+					graphics.setFont(new Font("Thin Pixel-7", Font.PLAIN, 40));
+					break;
+				}
+				drawStringOnCenter(graphics, creditStrings[i], x, y, 600, 80, StringAlignment.Center);
+			}
 			break;
 		default:
 			break;

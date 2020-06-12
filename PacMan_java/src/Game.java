@@ -11,7 +11,7 @@ public class Game extends JFrame implements Runnable {
 	
 	//public static final Font GameFont = Font.createFont(Font.TRUETYPE_FONT, new File("PressStart2P.ttf")));
 
-	private int FPS = 60;
+	private static int FPS = 60;
 
 	KeyListener keyInput = new Input();
 	Scene scene;
@@ -32,7 +32,12 @@ public class Game extends JFrame implements Runnable {
 		GraphicsEnvironment ge = 
 				GraphicsEnvironment.getLocalGraphicsEnvironment();
 		try {
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/font/PressStart2P.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
+					getClass().getResourceAsStream("/font/PressStart2P.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
+					getClass().getResourceAsStream("/font/ComputerPixel-7.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
+					getClass().getResourceAsStream("/font/ThinPixel-7.ttf")));
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}

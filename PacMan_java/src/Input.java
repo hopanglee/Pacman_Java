@@ -55,6 +55,14 @@ public class Input implements KeyListener {
 	public static boolean getKeyDown(int keyCode) {
 		return keys[keyCode] == KeyState.ONCE;
 	}
+	
+	public static boolean getAnyKeyDown() {
+		for (int i = 0; i < KEY_COUNT; i++) {
+			if (keys[i] == KeyState.ONCE)
+				return true;
+		}
+		return false;
+	}
 
 	public synchronized void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();

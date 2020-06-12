@@ -90,8 +90,8 @@ public class Scene extends Canvas {
 	public void drawStringOnCenter(Graphics g, String str, int x, int y, int w, int h, StringAlignment sa) {
 		Font f = g.getFont();
 		FontMetrics metrics = g.getFontMetrics(f);
-		int width = metrics.stringWidth(str);
-		int height = metrics.getHeight();
+		int width = metrics.stringWidth(str) / 2;
+		int height = metrics.getHeight() / 2 - metrics.getAscent();
 		int centerX = x + w/2, centerY = y + h/2;
 		switch(sa) {
 		case Normal:
@@ -104,7 +104,7 @@ public class Scene extends Canvas {
 			g.drawString(str, x, centerY - height);
 			break;
 		case Center:
-			g.drawString(str, centerX - width / 2, centerY - height / 2);
+			g.drawString(str, centerX - width, centerY - height);
 			break;
 		default:
 			break;

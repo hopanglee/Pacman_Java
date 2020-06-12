@@ -3,16 +3,17 @@ import javax.sound.sampled.*;
 
 public class MusicPlayer {
 	private Clip clip;
+	private File sound;
+	private boolean repeat;
 
 	public MusicPlayer(String fileName) {
-		File bgm;
 		AudioInputStream stream;
 		AudioFormat format;
 		DataLine.Info info;
 
 		try {
-			bgm = new File(getClass().getResource(fileName).toURI());
-			stream = AudioSystem.getAudioInputStream(bgm);
+			sound = new File(getClass().getResource(fileName).toURI());
+			stream = AudioSystem.getAudioInputStream(sound);
 			format = stream.getFormat();
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip) AudioSystem.getLine(info);
@@ -24,7 +25,6 @@ public class MusicPlayer {
 	}
 
 	public void play() {
-		System.out.println("Play BGM: " + clip.toString());
 		clip.start();
 	}
 
@@ -36,10 +36,10 @@ public class MusicPlayer {
 		clip.close();
 	}
 
-	public void playSound(File file, float vol, boolean repeat){
+	public void playSound(float vol){
 		try{
 			final Clip clip = (Clip)AudioSystem.getLine(new Line.Info(Clip.class));
-			clip.open(AudioSystem.getAudioInputStream(file));
+			clip.open(AudioSystem.getAudioInputStream(sound));
 			clip.addLineListener(
 					new LineListener() {
 						@Override
