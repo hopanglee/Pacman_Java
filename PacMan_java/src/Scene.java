@@ -6,9 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class Scene extends Canvas {
 	private List<RenderableObject> objs = new ArrayList<RenderableObject>();
@@ -106,7 +104,7 @@ public class Scene extends Canvas {
 			g.drawString(str, x, centerY - height);
 			break;
 		case Center:
-			g.drawString(str, centerX - width, centerY - height);
+			g.drawString(str, centerX - width / 2, centerY - height / 2);
 			break;
 		default:
 			break;

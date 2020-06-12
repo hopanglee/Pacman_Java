@@ -33,22 +33,22 @@ public class Pacman extends GameObject {
 		this.board = board; // 모든 노드를 담고 있는 게임보드를 받음
 		pacmanSprite = new BufferedImage[16];
 		try {
-			pacmanSprite[0] = ImageIO.read(getClass().getResource("/PacMan0.PNG"));
-			pacmanSprite[1] = ImageIO.read(getClass().getResource("/PacMan1.PNG"));
-			pacmanSprite[2] = ImageIO.read(getClass().getResource("/PacMan2.PNG"));
-			pacmanSprite[3] = ImageIO.read(getClass().getResource("/PacMan1.PNG"));
-			pacmanSprite[4] = ImageIO.read(getClass().getResource("/PacMan3.PNG"));
-			pacmanSprite[5] = ImageIO.read(getClass().getResource("/PacMan4.PNG"));
-			pacmanSprite[6] = ImageIO.read(getClass().getResource("/PacMan5.PNG"));
-			pacmanSprite[7] = ImageIO.read(getClass().getResource("/PacMan4.PNG"));
-			pacmanSprite[8] = ImageIO.read(getClass().getResource("/PacMan6.PNG"));
-			pacmanSprite[9] = ImageIO.read(getClass().getResource("/PacMan7.PNG"));
-			pacmanSprite[10] = ImageIO.read(getClass().getResource("/PacMan8.PNG"));
-			pacmanSprite[11] = ImageIO.read(getClass().getResource("/PacMan7.PNG"));
-			pacmanSprite[12] = ImageIO.read(getClass().getResource("/PacMan9.PNG"));
-			pacmanSprite[13] = ImageIO.read(getClass().getResource("/PacMan10.PNG"));
-			pacmanSprite[14] = ImageIO.read(getClass().getResource("/PacMan11.PNG"));
-			pacmanSprite[15] = ImageIO.read(getClass().getResource("/PacMan10.PNG"));
+			pacmanSprite[0] = ImageIO.read(getClass().getResource("/image/PacMan0.PNG"));
+			pacmanSprite[1] = ImageIO.read(getClass().getResource("/image/PacMan1.PNG"));
+			pacmanSprite[2] = ImageIO.read(getClass().getResource("/image/PacMan2.PNG"));
+			pacmanSprite[3] = ImageIO.read(getClass().getResource("/image/PacMan1.PNG"));
+			pacmanSprite[4] = ImageIO.read(getClass().getResource("/image/PacMan3.PNG"));
+			pacmanSprite[5] = ImageIO.read(getClass().getResource("/image/PacMan4.PNG"));
+			pacmanSprite[6] = ImageIO.read(getClass().getResource("/image/PacMan5.PNG"));
+			pacmanSprite[7] = ImageIO.read(getClass().getResource("/image/PacMan4.PNG"));
+			pacmanSprite[8] = ImageIO.read(getClass().getResource("/image/PacMan6.PNG"));
+			pacmanSprite[9] = ImageIO.read(getClass().getResource("/image/PacMan7.PNG"));
+			pacmanSprite[10] = ImageIO.read(getClass().getResource("/image/PacMan8.PNG"));
+			pacmanSprite[11] = ImageIO.read(getClass().getResource("/image/PacMan7.PNG"));
+			pacmanSprite[12] = ImageIO.read(getClass().getResource("/image/PacMan9.PNG"));
+			pacmanSprite[13] = ImageIO.read(getClass().getResource("/image/PacMan10.PNG"));
+			pacmanSprite[14] = ImageIO.read(getClass().getResource("/image/PacMan11.PNG"));
+			pacmanSprite[15] = ImageIO.read(getClass().getResource("/image/PacMan10.PNG"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -323,7 +323,7 @@ public class Pacman extends GameObject {
 		// g.setColor(Color.BLACK);
 		// g.fillRect(30, 860, 150, 70);
 		g.setColor(Color.WHITE);
-		g.setFont(new Font(Font.DIALOG, Font.BOLD, 30));
+		g.setFont(new Font("Press Start 2P", Font.BOLD, 28));
 		g.drawString(String.valueOf(score), 32, 780);
 	}
 }

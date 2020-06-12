@@ -1,6 +1,4 @@
 import java.io.File;
-import java.net.URISyntaxException;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -8,7 +6,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
 public class MusicPlayer {
-	Clip clip;
+	private Clip clip;
 
 	public MusicPlayer(String fileName) {
 		File bgm;
@@ -24,11 +22,9 @@ public class MusicPlayer {
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(stream);
 			// clip.start();
-
 		} catch (Exception e) {
 			System.out.println("err : " + e);
 		}
-
 	}
 
 	public void Play() {

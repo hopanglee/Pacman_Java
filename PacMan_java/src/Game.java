@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.KeyListener;
-import java.awt.image.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JFrame;
 
 public class Game extends JFrame implements Runnable {
@@ -9,6 +9,8 @@ public class Game extends JFrame implements Runnable {
 	public static final int WIDTH = 672;
 	public static final int HEIGHT = 812;
 	public static final String TITLE = "PACMAN";
+	
+	//public static final Font GameFont = Font.createFont(Font.TRUETYPE_FONT, new File("PressStart2P.ttf")));
 
 	private int FPS = 60;
 
@@ -16,8 +18,6 @@ public class Game extends JFrame implements Runnable {
 	Scene scene;
 	Thread thread;
 
-
-	
 	private static enum SceneState {
 		GAME, MENU
 	}
@@ -29,6 +29,14 @@ public class Game extends JFrame implements Runnable {
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		requestFocus();
+		
+		GraphicsEnvironment ge = 
+				GraphicsEnvironment.getLocalGraphicsEnvironment();
+		try {
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/font/PressStart2P.ttf")));
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
 
 		SCENESTATE = SceneState.GAME;
 	}
@@ -37,7 +45,6 @@ public class Game extends JFrame implements Runnable {
 
 		thread = new Thread(this);
 		thread.start();
-		
 
 	}
 
@@ -49,14 +56,11 @@ public class Game extends JFrame implements Runnable {
 		} finally {
 			System.exit(0);
 		}
-		
+
 	}
 
 	public void run() {
 		init();
-
-		BufferStrategy buffer = scene.getBufferStrategy();
-		Graphics g = buffer.getDrawGraphics();
 
 		double frameUpdateTime = 1000000000 / FPS;
 
@@ -82,8 +86,6 @@ public class Game extends JFrame implements Runnable {
 				remove(scene);
 				scene = null;
 				init();
-				buffer = scene.getBufferStrategy();
-				g = buffer.getDrawGraphics();
 				previousTime = System.nanoTime();
 			case EXIT:
 				switch (SCENESTATE) {
@@ -92,8 +94,6 @@ public class Game extends JFrame implements Runnable {
 					remove(scene);
 					scene = null;
 					init();
-					buffer = scene.getBufferStrategy();
-					g = buffer.getDrawGraphics();
 					previousTime = System.nanoTime();
 					break;
 				case MENU:
@@ -103,6 +103,7 @@ public class Game extends JFrame implements Runnable {
 			default:
 				break;
 			}
+
 			scene.render();
 		}
 	}

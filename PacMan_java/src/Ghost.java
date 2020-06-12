@@ -104,41 +104,41 @@ public class Ghost extends GameObject {
 		try {
 			switch (ghostType) {
 			case Red:
-				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_red_right.png")); // ©Л
-				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_red_up.png")); // ╩С
-				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_red.png")); // аб
-				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_red_down.png")); // го
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/image/ghost_red_right.png")); // ©Л
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/image/ghost_red_up.png")); // ╩С
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/image/ghost_red.png")); // аб
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/image/ghost_red_down.png")); // го
 				// System.out.println("red");
 				break;
 
 			case Blue:
-				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_blue_right.png"));
-				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_blue_up.png"));
-				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_blue.png"));
-				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_blue_down.png"));
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/image/ghost_blue_right.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/image/ghost_blue_up.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/image/ghost_blue.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/image/ghost_blue_down.png"));
 				// System.out.println("blue");
 				break;
 
 			case Orange:
-				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_orange_right.png"));
-				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_orange_up.png"));
-				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_orange.png"));
-				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_orange_down.png"));
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/image/ghost_orange_right.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/image/ghost_orange_up.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/image/ghost_orange.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/image/ghost_orange_down.png"));
 				// System.out.println("orange");
 				break;
 
 			case Pink:
-				ghostSprite[0] = ImageIO.read(getClass().getResource("/ghost_pink_right.png"));
-				ghostSprite[1] = ImageIO.read(getClass().getResource("/ghost_pink_up.png"));
-				ghostSprite[2] = ImageIO.read(getClass().getResource("/ghost_pink.png"));
-				ghostSprite[3] = ImageIO.read(getClass().getResource("/ghost_pink_down.png"));
+				ghostSprite[0] = ImageIO.read(getClass().getResource("/image/ghost_pink_right.png"));
+				ghostSprite[1] = ImageIO.read(getClass().getResource("/image/ghost_pink_up.png"));
+				ghostSprite[2] = ImageIO.read(getClass().getResource("/image/ghost_pink.png"));
+				ghostSprite[3] = ImageIO.read(getClass().getResource("/image/ghost_pink_down.png"));
 				// System.out.println("pink");
 				break;
 			}
 
-			ghostSprite[4] = ImageIO.read(getClass().getResource("/ghost_frighten.png"));
-			ghostSprite[5] = ImageIO.read(getClass().getResource("/ghost_white.png"));
-			ghostSprite[6] = ImageIO.read(getClass().getResource("/ghost_consumed.png"));
+			ghostSprite[4] = ImageIO.read(getClass().getResource("/image/ghost_frighten.png"));
+			ghostSprite[5] = ImageIO.read(getClass().getResource("/image/ghost_white.png"));
+			ghostSprite[6] = ImageIO.read(getClass().getResource("/image/ghost_consumed.png"));
 
 		} catch (IOException e) {
 			e.printStackTrace();
