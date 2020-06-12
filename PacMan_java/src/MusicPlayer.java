@@ -1,9 +1,5 @@
 import java.io.File;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
+import javax.sound.sampled.*;
 
 public class MusicPlayer {
 	private Clip clip;
@@ -33,5 +29,29 @@ public class MusicPlayer {
 
 	public void Stop() {
 		clip.stop();
+	}
+
+	public void playSound(File file, float vol, boolean repeat){
+		try{
+			final Clip clip = (Clip)AudioSystem.getLine(new Line.Info(Clip.class));
+			clip.open(AudioSystem.getAudioInputStream(file));
+			clip.addLineListener(
+					new LineListener() {
+						@Override
+						public void update(LineEvent event) {
+							// TODO Auto-generated method stub
+							if(event.getType()==LineEvent.Type.STOP){
+								clip.close();
+							}
+						}
+					});
+			FloatControl volume = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+			volume.setValue(vol);
+			clip.start();
+			if(repeat)
+				clip.loop(Clip.LOOP_CONTINUOUSLY);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

@@ -14,9 +14,11 @@ public class GameScene extends Scene {
 	private int pauseMenuIndex = 0;
 	private static final String[] pauseMenuStrings = new String[] { "Resume", "Restart", "Back to Main Menu" };
 
-	private static final int READYTIME = 300;
+	private static final int READYTIME = 240;
 	private int readyTime = 0;
-	public MusicPlayer musicPlayer = new MusicPlayer("/sound/PACMAN_THEME_REMIX.wav"); // À½¾Ç
+	
+	private MusicPlayer bgmPlayer = new MusicPlayer("/sound/PACMAN_THEME_REMIX.wav");
+	private MusicPlayer wakawaka = new MusicPlayer("/sound/pacman_chomp.wav");
 
 	public GameScene(KeyListener input) {
 		super(input);
@@ -25,7 +27,7 @@ public class GameScene extends Scene {
 		addObjectsFromGameBoard(gameBoard);
 		EventQueue.popAllEvents();
 
-		musicPlayer.Play();
+		bgmPlayer.Play();
 	}
 
 	public void addObjectsFromGameBoard(GameBoard gb) {
@@ -60,15 +62,16 @@ public class GameScene extends Scene {
 						gameBoard.bigCoins.remove(o);
 					} else if (o instanceof Coin) {
 						gameBoard.coins.remove(o);
+						wakawaka.Play();
 					}
 					o = null;
 					break;
 				case GameClear:
-					musicPlayer.Stop();
+					bgmPlayer.Stop();
 				case GameOver:
-					musicPlayer.Stop();
+					bgmPlayer.Stop();
 				case GamePaused:
-					musicPlayer.Stop();
+					bgmPlayer.Stop();
 					setRunningState(RunningState.PAUSED);
 					return;
 				}
