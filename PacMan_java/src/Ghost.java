@@ -16,7 +16,6 @@ public class Ghost extends GameObject {
 	 */
 	private int imageIndex = 0;
 
-
 	/*
 	 * 난이도마다 탐지 시간과 추격 시간 scatter : 탐지, chase : 추격 시간이 갈수록 탐지시간이 짧아지고 추격시간이 늘어남
 	 */
@@ -27,7 +26,7 @@ public class Ghost extends GameObject {
 	private float blinkTimer = 0;
 	public int startBlinkingAt = 6 * 60; // frightened 모드가 거의 끝나감을 표시하기 시작하는 시간(안해도됨)
 
-	private boolean frightenedModelsWhite = false; 
+	private boolean frightenedModelsWhite = false;
 
 	public float scatterModeTimer1 = 4 * 60; // 60 = 60fps때문
 	public float chaseModeTimer1 = 4 * 60;

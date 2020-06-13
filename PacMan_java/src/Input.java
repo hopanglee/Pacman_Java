@@ -77,6 +77,6 @@ public class Input implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 }
