@@ -45,8 +45,8 @@ public class GameBoard { // Node들을 저장할 class
 		nodes[15].Setting(null, nodes[29], nodes[14], nodes[7], false, null, 5, 7);
 		nodes[16].Setting(nodes[17], null, null, nodes[8], false, null, 7, 7);
 		nodes[17].Setting(null, nodes[24], nodes[16], null, false, null, 9, 7);
-		//nodes[18].Setting(nodes[19], null, nodes[17], null, false, null, 10, 7);
-		nodes[19].Setting(nodes[20], nodes[26],null, null, false, null, 11, 7);
+		// nodes[18].Setting(nodes[19], null, nodes[17], null, false, null, 10, 7);
+		nodes[19].Setting(nodes[20], nodes[26], null, null, false, null, 11, 7);
 		nodes[20].Setting(null, null, nodes[19], nodes[11], false, null, 13, 7);
 		nodes[21].Setting(nodes[22], nodes[33], null, nodes[12], false, null, 15, 7);
 		nodes[22].Setting(null, null, nodes[21], nodes[13], false, null, 18, 7);
@@ -179,7 +179,7 @@ public class GameBoard { // Node들을 저장할 class
 		coins.add(new Coin(7, 7));
 		coins.add(new Coin(8, 7));
 		coins.add(new Coin(9, 7));
-		//coins.add(new Coin(10, 7));
+		// coins.add(new Coin(10, 7));
 		coins.add(new Coin(11, 7));
 		coins.add(new Coin(12, 7));
 		coins.add(new Coin(13, 7));

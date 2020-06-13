@@ -35,8 +35,6 @@ public class Input implements KeyListener {
 
 	public static synchronized void poll() {
 		for (int i = 0; i < KEY_COUNT; ++i) {
-			if (i == KeyEvent.VK_ESCAPE && keys[i] == KeyState.ONCE)
-				System.out.println(KeyEvent.getKeyText(i) + " " + keys[i].toString());
 			if (currentKeys[i]) {
 				if (keys[i] == KeyState.RELEASED)
 					keys[i] = KeyState.ONCE;
@@ -66,7 +64,6 @@ public class Input implements KeyListener {
 
 	public synchronized void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		// System.out.println(keyCode);
 		if (keyCode >= 0 && keyCode < KEY_COUNT) {
 			currentKeys[keyCode] = true;
 		}
@@ -74,13 +71,12 @@ public class Input implements KeyListener {
 
 	public synchronized void keyReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		// System.out.println(keyCode);
 		if (keyCode >= 0 && keyCode < KEY_COUNT) {
 			currentKeys[keyCode] = false;
 		}
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// Not needed
+
 	}
 }

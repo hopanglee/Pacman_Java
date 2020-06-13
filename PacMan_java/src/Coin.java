@@ -6,10 +6,6 @@ import javax.imageio.ImageIO;
 
 // 2019311737 이진영 작성
 public class Coin extends GameObject {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	private int scale = GameBoard.SCALE;
 
