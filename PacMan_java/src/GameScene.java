@@ -19,7 +19,6 @@ public class GameScene extends Scene {
 	private int startTime = 0;
 
 	private MusicPlayer startBgm = new MusicPlayer("/sound/pacman_beginning.wav");
-	private MusicPlayer wakawaka = new MusicPlayer("/sound/pacman_chomp.wav");
 
 	public GameScene(KeyListener input) {
 		super(input);

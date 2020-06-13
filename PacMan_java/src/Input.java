@@ -5,7 +5,6 @@ import java.awt.event.KeyListener;
 public class Input implements KeyListener {
 
 	private static final int KEY_COUNT = 256;
-	private static final int KEY_DELAY = 10;
 
 	private enum KeyState {
 		RELEASED, // Not down

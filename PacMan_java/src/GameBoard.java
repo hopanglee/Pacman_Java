@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Queue;
 import java.util.ArrayList;
 
 // 2019311737 이진영 작성
