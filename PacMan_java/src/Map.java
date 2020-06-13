@@ -140,7 +140,7 @@ public class Map extends UiObject {
 		g.drawImage(wallSprite[3], 6 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[4], 8 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 9 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
-		g.drawImage(wallSprite[1], 10 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
+		g.drawImage(wallSprite[7], 10 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 11 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 12 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[3], 14 * GameBoard.SCALE, 6 * GameBoard.SCALE, null);
@@ -150,6 +150,7 @@ public class Map extends UiObject {
 
 		g.drawImage(wallSprite[0], 1 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 6 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
+		g.drawImage(wallSprite[0], 10 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 14 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[0], 19 * GameBoard.SCALE, 7 * GameBoard.SCALE, null);
 
@@ -160,7 +161,7 @@ public class Map extends UiObject {
 		g.drawImage(wallSprite[8], 6 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 7 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[2], 8 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
-		g.drawImage(wallSprite[20], 10 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
+		g.drawImage(wallSprite[5], 10 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[4], 12 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[1], 13 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
 		g.drawImage(wallSprite[6], 14 * GameBoard.SCALE, 8 * GameBoard.SCALE, null);
